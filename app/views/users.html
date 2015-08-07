@@ -1,0 +1,44 @@
+<div class="row">
+    <div class="col-lg-12">
+        <h1 class="page-header">Users</h1>
+    </div>
+    <!-- /.col-lg-12 -->
+</div>
+<!-- /.row -->
+<div class="row">
+    <div class="col-lg-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                List of Users
+            </div>
+            <!-- /.panel-heading -->
+            <div class="panel-body">
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Username</th>
+                                <th>Email</th>
+                            </tr>
+                        </thead>
+                        <tbody ng-repeat="user in users">
+                            <tr>
+                                <td>{{ user.id }}</td>
+                                <td>{{ user.username }}</td>
+                                <td>{{ user.email }}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <!-- /.table-responsive -->
+            </div>
+            <!-- /.panel-body -->
+        </div>
+        <ul class="pager">
+            <li ng-class="(next_page == 2 && pre_page == 1)?'disabled':''"><a ng-class="(pre_page <= 1)?'disabled':''" ui-sref="dashboard.users({page: {{ pre_page }}, limit: {{ limit }} })">Previous</a></li>
+            <li ng-class="(users.length < limit)?'disabled':''"><a ui-sref="dashboard.users({page: {{ next_page }}, limit: {{ limit }} })">Next</a></li>
+        </ul>
+    </div>
+    <!-- /.col-lg-12 -->
+</div>

@@ -1,0 +1,5 @@
+{
+  "users": {
+      "GET_LIST": "http://192.168.1.191:7007/api/v1/admin/"
+  }
+}
