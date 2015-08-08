@@ -11,3 +11,5 @@ This project get started from [sb-admin-angular](https://github.com/start-angula
 - `npm run dist` - a shortcut for `grunt serve:dist` to minify the files for deployment
 - Run `grunt test` to make sure the application work perfectly
 
+And please make note that this project includes PhantomJS for test. So you have to [install PhantomJS](https://sonnguyen.ws/install-nodejs-phantomjs-casperjs-ubuntu-14-04/)
+
