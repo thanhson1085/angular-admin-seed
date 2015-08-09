@@ -1,4 +1,4 @@
-This project get started from [sb-admin-angular](https://github.com/start-angular/sb-admin-angular). However, I want to forcus to Ajax API, And I hope that this souce code will help you to get start a Front-End project easier.
+This project get started from [sb-admin-angular](https://github.com/start-angular/sb-admin-angular). However, I want to forcus to Ajax API, And I hope that this souce code will help you to get started a Front-End project easier.
 
 ## Installation
 1. Clone this source code
