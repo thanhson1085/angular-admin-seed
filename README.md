@@ -1,4 +1,6 @@
 [![Build Status](https://travis-ci.org/thanhson1085/angular-admin-seed.svg)](https://travis-ci.org/thanhson1085/angular-admin-seed)
+[![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/thanhson1085/angular-admin-seed?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
+
 This project get started from [sb-admin-angular](https://github.com/start-angular/sb-admin-angular). However, I want to forcus to Ajax API, And I hope that this souce code will help you to get started a Front-End project easier.
 
 ## Installation
