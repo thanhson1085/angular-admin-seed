@@ -1,3 +1,4 @@
+[![Build Status](https://travis-ci.org/thanhson1085/angular-admin-seed.svg)](https://travis-ci.org/thanhson1085/angular-admin-seed)
 This project get started from [sb-admin-angular](https://github.com/start-angular/sb-admin-angular). However, I want to forcus to Ajax API, And I hope that this souce code will help you to get started a Front-End project easier.
 
 ## Installation
