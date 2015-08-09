@@ -2,6 +2,8 @@
 This project get started from [sb-admin-angular](https://github.com/start-angular/sb-admin-angular). However, I want to forcus to Ajax API, And I hope that this souce code will help you to get started a Front-End project easier.
 
 ## Installation
+
+[![Join the chat at https://gitter.im/thanhson1085/angular-admin-seed](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/thanhson1085/angular-admin-seed?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 1. Clone this source code
 2. Make sure you have [bower](http://bower.io/), [grunt-cli](https://www.npmjs.com/package/grunt-cli) and  [npm](https://www.npmjs.org/) installed globally
 3. Run `cp config/default.json config/dev.json` - create config file for your enviroment
