@@ -1,0 +1,9 @@
+language: node_js
+node_js:
+  - 0.10.25
+before_install:
+  - npm install -g bower
+  - npm install -g grunt-cli
+  - cp config/default.json config/dev.json
+script:
+  - grunt test
