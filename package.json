@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "repository": {
     "type": "git",
-    "url": "https://github.com/start-angular/sb-admin-angular"
+    "url": "git+https://github.com/start-angular/sb-admin-angular.git"
   },
   "dependencies": {},
   "devDependencies": {
@@ -44,5 +44,24 @@
     "start": "grunt serve",
     "dist": "grunt serve:dist",
     "postinstall": "bower install"
-  }
+  },
+  "description": "A seed application with angularjs",
+  "bugs": {
+    "url": "https://github.com/start-angular/sb-admin-angular/issues"
+  },
+  "homepage": "https://github.com/start-angular/sb-admin-angular#readme",
+  "main": "Gruntfile.js",
+  "directories": {
+    "test": "test"
+  },
+  "keywords": [
+    "sb",
+    "admin",
+    "2",
+    "angularjs",
+    "karma",
+    "phantomjs"
+  ],
+  "author": "Nguyen Sy Thanh Son <thanhson1085@gmail.com>",
+  "license": "MIT"
 }
