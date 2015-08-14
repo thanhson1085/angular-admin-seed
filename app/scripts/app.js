@@ -19,6 +19,24 @@ angular
     $urlRouterProvider.otherwise('/dashboard/home');
 
     $stateProvider
+    .state('login',{
+        templateUrl:'views/pages/login.html',
+        controller: 'LoginCtrl',
+        controllerAs: 'vm',
+        url:'/login',
+        resolve: {
+            loadMyDirectives:function($ocLazyLoad){
+                return $ocLazyLoad.load(
+                    {
+                        name:'sbAdminApp',
+                        files:[
+                            'scripts/controllers/login.js',
+                            'scripts/services/users.js'
+                        ]
+                    });
+            }
+        }
+    })
     .state('dashboard', {
         url:'/dashboard',
         templateUrl: 'views/dashboard/main.html',
@@ -69,29 +87,19 @@ angular
                 });
             }
         }
-    })
-    .state('dashboard.panels-wells',{
-        templateUrl:'views/ui-elements/panels-wells.html',
-        url:'/panels-wells'
-    })
-    .state('dashboard.buttons',{
-        templateUrl:'views/ui-elements/buttons.html',
-        url:'/buttons'
-    })
-    .state('dashboard.notifications',{
-        templateUrl:'views/ui-elements/notifications.html',
-        url:'/notifications'
-    })
-    .state('dashboard.typography',{
-        templateUrl:'views/ui-elements/typography.html',
-        url:'/typography'
-    })
-    .state('dashboard.icons',{
-        templateUrl:'views/ui-elements/icons.html',
-        url:'/icons'
-    })
-    .state('dashboard.grid',{
-        templateUrl:'views/ui-elements/grid.html',
-        url:'/grid'
+    });
+}])
+.run(['$location', '$cookies', '$rootScope', function($location, $cookies, $rootScope){
+    // keep user logged in after page refresh
+    var user_info = $cookies.get('user_info') || '{}';
+    $rootScope.user_info = JSON.parse(user_info);
+
+    $rootScope.$on('$locationChangeStart', function () {
+        // redirect to login page if not logged in and trying to access a restricted page
+        var restrictedPage = $location.path() !== '/login';
+        var loggedIn = $rootScope.user_info.access_token;
+        if (restrictedPage && !loggedIn){
+            $location.path('/login');
+        }
     });
 }]);
