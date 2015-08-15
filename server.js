@@ -7,9 +7,18 @@ app.use(function(req, res, next){
     next();
 });
 
-// general infor of your application
+// nothing for root
 app.get('/', function(req, res){
-    res.setHeader('Content-Type', 'application/json');
+    res.send(JSON.stringify({}));
+});
+
+// list users
+app.get('/api/v1/users', function(req, res){
+    res.send(JSON.stringify({}));
+});
+
+// login
+app.post('/api/v1/login', function(req, res){
     res.send(JSON.stringify({}));
 });
 
@@ -18,6 +27,6 @@ var port = config.get("server.port");
 var server = app.listen(port, function () {
     var host = server.address().address;
     var port = server.address().port;
-    console.log('Combines swaggers http://%s:%s', host, port);
+    console.log('Server start at http://%s:%s', host, port);
 });
 

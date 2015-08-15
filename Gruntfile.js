@@ -26,6 +26,16 @@ module.exports = function (grunt) {
     grunt.initConfig({
         // Project settings
         yeoman: appConfig,
+        express: {
+            options: {
+                // Override defaults here
+            },
+            dev: {
+                options: {
+                    script: 'server.js'
+                }
+            }
+        },
         ngconstant: {
             options: {
                 name: 'sbAdminApp',
@@ -368,6 +378,7 @@ module.exports = function (grunt) {
     });
 
     grunt.loadNpmTasks('grunt-ng-constant');
+    grunt.loadNpmTasks('grunt-express-server');
     grunt.registerTask('serve', 'Compile then start a connect web server', function (target) {
         if (target === 'dist') {
             return grunt.task.run(['build', 'connect:dist:keepalive']);
@@ -375,6 +386,7 @@ module.exports = function (grunt) {
 
         grunt.task.run([
             'clean:server',
+            'express',
             'ngconstant',
             'concurrent:server',
             'autoprefixer',

@@ -1,7 +1,7 @@
 {
     "users": {
-        "list": "http://192.168.1.191:7007/api/v1/admin/",
-        "login": "http://192.168.1.191:7007/api/v1/admin/login"
+        "list": "http://192.168.1.191:7007/api/v1/users",
+        "login": "http://192.168.1.191:7007/api/v1/login"
     },
     "server": {
         "port": 3000
