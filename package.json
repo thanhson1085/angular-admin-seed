@@ -5,7 +5,10 @@
         "type": "git",
         "url": "git+https://github.com/start-angular/sb-admin-angular.git"
     },
-    "dependencies": {},
+    "dependencies": {
+        "express": "^4.13.3",
+        "config": "^1.15.0"
+    },
     "devDependencies": {
         "grunt": "^0.4.1",
         "grunt-autoprefixer": "^0.7.3",
