@@ -9,7 +9,8 @@
  */
 angular
 .module('sbAdminApp')
-.config(['$stateProvider','$urlRouterProvider','$ocLazyLoadProvider',function ($stateProvider,$urlRouterProvider,$ocLazyLoadProvider) {
+.config(['$stateProvider','$urlRouterProvider','$ocLazyLoadProvider', '$httpProvider',
+        function ($stateProvider,$urlRouterProvider,$ocLazyLoadProvider, $httpProvider) {
 
     $ocLazyLoadProvider.config({
         debug:false,
@@ -88,6 +89,7 @@ angular
             }
         }
     });
+    $httpProvider.interceptors.push('httpRequestInterceptor');
 }])
 .run(['$location', '$cookies', '$rootScope', function($location, $cookies, $rootScope){
     // keep user logged in after page refresh
@@ -102,4 +104,21 @@ angular
             $location.path('/login');
         }
     });
-}]);
+    $rootScope.$on('unauthorized', function() {
+        $location.path('/login');
+    });
+}])
+.factory('httpRequestInterceptor', function ($rootScope) {
+    return {
+        request: function (config) {
+            // add token to header for auth
+            return config;
+        },
+        responseError: function(response){
+            if (response.status === 401) {
+                $rootScope.$broadcast('unauthorized');
+            }
+            return response;
+        }
+    };
+});
