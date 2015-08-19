@@ -61,7 +61,7 @@ module.exports = function (grunt) {
             },
             js: {
                 files: ['<%= yeoman.app %>/scripts/{,*/}*.js', '<%= yeoman.config %>/*.json', '<%= yeoman.server %>/server.js'],
-                tasks: ['newer:jshint:all'],
+                tasks: ['ngconstant', 'newer:jshint:all'],
                 options: {
                     livereload: '<%= connect.options.livereload %>'
                 }
@@ -388,7 +388,7 @@ module.exports = function (grunt) {
 
         grunt.task.run([
             'clean:server',
-            'express',
+            'express:dev',
             'ngconstant',
             'concurrent:server',
             'autoprefixer',

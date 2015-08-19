@@ -1,5 +1,6 @@
 var config = require('config');
 var express = require('express');
+var crypto = require('crypto');
 var app = express();
 
 app.use(function(req, res, next){
@@ -21,9 +22,12 @@ app.get('/api/v1/users', function(req, res){
 
 // login
 app.post('/api/v1/login', function(req, res){
-    res.send(JSON.stringify({
-        access_token: 'test'
-    }));
+    crypto.randomBytes(48, function(ex, buf) {
+        var token = buf.toString('hex');
+        res.send(JSON.stringify({
+            access_token: token
+        }));
+    });
 });
 
 // Start web server at port 3000

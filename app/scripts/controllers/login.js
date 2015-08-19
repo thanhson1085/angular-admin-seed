@@ -9,6 +9,7 @@
 angular.module('sbAdminApp')
     .controller('LoginCtrl', function($scope, Users, $cookies, $location, $rootScope) {
         var vm = this;
+        // logout before login
         $rootScope.user_info = {};
         $cookies.put('user_info', JSON.stringify({}));
         vm.login = function login(){
