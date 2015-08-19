@@ -4,6 +4,8 @@ var app = express();
 
 app.use(function(req, res, next){
     res.header('Content-Type', 'application/json');
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
     next();
 });
 
@@ -19,7 +21,9 @@ app.get('/api/v1/users', function(req, res){
 
 // login
 app.post('/api/v1/login', function(req, res){
-    res.send(JSON.stringify({}));
+    res.send(JSON.stringify({
+        access_token: 'test'
+    }));
 });
 
 // Start web server at port 3000

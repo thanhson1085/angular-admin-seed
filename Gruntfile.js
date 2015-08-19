@@ -18,6 +18,8 @@ module.exports = function (grunt) {
     // Configurable paths for the application
     var appConfig = {
         app: require('./bower.json').appPath || 'app',
+        server: 'server',
+        config: 'config',
         dist: 'dist'
     };
     var env = process.env.NODE_ENV || 'dev';
@@ -32,7 +34,7 @@ module.exports = function (grunt) {
             },
             dev: {
                 options: {
-                    script: 'server.js'
+                    script: 'server/server.js'
                 }
             }
         },
@@ -58,7 +60,7 @@ module.exports = function (grunt) {
                 tasks: ['wiredep']
             },
             js: {
-                files: ['<%= yeoman.app %>/scripts/{,*/}*.js'],
+                files: ['<%= yeoman.app %>/scripts/{,*/}*.js', '<%= yeoman.config %>/*.json', '<%= yeoman.server %>/server.js'],
                 tasks: ['newer:jshint:all'],
                 options: {
                     livereload: '<%= connect.options.livereload %>'
