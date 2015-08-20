@@ -1,6 +1,5 @@
 var config = require('config');
 var express = require('express');
-var crypto = require('crypto');
 var app = express();
 
 app.use(function(req, res, next){
@@ -10,25 +9,8 @@ app.use(function(req, res, next){
     next();
 });
 
-// nothing for root
-app.get('/', function(req, res){
-    res.send(JSON.stringify({}));
-});
-
-// list users
-app.get('/api/v1/users', function(req, res){
-    res.send(JSON.stringify({}));
-});
-
-// login
-app.post('/api/v1/login', function(req, res){
-    crypto.randomBytes(64, function(ex, buf) {
-        var token = buf.toString('base64');
-        res.send(JSON.stringify({
-            access_token: token
-        }));
-    });
-});
+app.use(require('./api/main'));
+app.use(require('./api/users'));
 
 // Start web server at port 3000
 var port = config.get("server.port");

@@ -60,7 +60,7 @@ module.exports = function (grunt) {
                 tasks: ['wiredep']
             },
             express: {
-                files:  [ '<%= yeoman.server %>/*.js' ],
+                files:  [ '<%= yeoman.server %>/*/*.js', '<%= yeoman.server %>/*.js' ],
                 tasks:  [ 'express:dev' ],
                 options: {
                     spawn: false
