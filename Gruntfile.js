@@ -59,8 +59,15 @@ module.exports = function (grunt) {
                 files: ['bower.json'],
                 tasks: ['wiredep']
             },
+            express: {
+                files:  [ '<%= yeoman.server %>/*.js' ],
+                tasks:  [ 'express:dev' ],
+                options: {
+                    spawn: false
+                }
+            },
             js: {
-                files: ['<%= yeoman.app %>/scripts/{,*/}*.js', '<%= yeoman.config %>/*.json', '<%= yeoman.server %>/server.js'],
+                files: ['<%= yeoman.app %>/scripts/{,*/}*.js', '<%= yeoman.config %>/*.json'],
                 tasks: ['ngconstant', 'newer:jshint:all'],
                 options: {
                     livereload: '<%= connect.options.livereload %>'
@@ -381,6 +388,7 @@ module.exports = function (grunt) {
 
     grunt.loadNpmTasks('grunt-ng-constant');
     grunt.loadNpmTasks('grunt-express-server');
+    grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.registerTask('serve', 'Compile then start a connect web server', function (target) {
         if (target === 'dist') {
             return grunt.task.run(['build', 'connect:dist:keepalive']);
