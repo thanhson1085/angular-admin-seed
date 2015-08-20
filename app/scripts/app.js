@@ -95,11 +95,10 @@ angular
     // keep user logged in after page refresh
     var user_info = $cookies.get('user_info') || '{}';
     $rootScope.user_info = JSON.parse(user_info);
-
     $rootScope.$on('$locationChangeStart', function () {
         // redirect to login page if not logged in and trying to access a restricted page
         var restrictedPage = $location.path() !== '/login';
-        var loggedIn = $rootScope.user_info.access_token;
+        var loggedIn = ($rootScope.user_info)? $rootScope.user_info.access_token: false;
         if (restrictedPage && !loggedIn){
             $location.path('/login');
         }
@@ -108,10 +107,12 @@ angular
         $location.path('/login');
     });
 }])
-.factory('httpRequestInterceptor', function ($rootScope) {
+.factory('httpRequestInterceptor', function ($rootScope, $cookies) {
     return {
         request: function (config) {
-            // add token to header for auth
+            var user_info = $cookies.get('user_info') || '{}';
+            $rootScope.user_info = JSON.parse(user_info);
+            config.headers.Authorization = 'Basic ' + $rootScope.user_info.access_token;
             return config;
         },
         responseError: function(response){

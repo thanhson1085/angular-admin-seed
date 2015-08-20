@@ -11,7 +11,7 @@ angular.module('sbAdminApp')
         var vm = this;
         // logout before login
         $rootScope.user_info = {};
-        $cookies.put('user_info', JSON.stringify({}));
+        $cookies.remove('user_info');
         vm.login = function login(){
             Users.login(vm.username, vm.password).then(function(data){
                 $rootScope.user_info = data;

@@ -6,7 +6,7 @@ var app = express();
 app.use(function(req, res, next){
     res.header('Content-Type', 'application/json');
     res.header("Access-Control-Allow-Origin", "*");
-    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    res.header("Access-Control-Allow-Headers", "Authorization, Origin, X-Requested-With, Content-Type, Accept");
     next();
 });
 
@@ -22,8 +22,8 @@ app.get('/api/v1/users', function(req, res){
 
 // login
 app.post('/api/v1/login', function(req, res){
-    crypto.randomBytes(48, function(ex, buf) {
-        var token = buf.toString('hex');
+    crypto.randomBytes(64, function(ex, buf) {
+        var token = buf.toString('base64');
         res.send(JSON.stringify({
             access_token: token
         }));
