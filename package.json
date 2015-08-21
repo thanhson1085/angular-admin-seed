@@ -6,8 +6,12 @@
     "url": "git+https://github.com/start-angular/sb-admin-angular.git"
   },
   "dependencies": {
+    "config": "^1.15.0",
     "express": "^4.13.3",
-    "config": "^1.15.0"
+    "mysql": "^2.9.0",
+    "pg": "^4.4.1",
+    "pg-hstore": "^2.3.2",
+    "sequelize": "^3.6.0"
   },
   "devDependencies": {
     "grunt": "^0.4.1",

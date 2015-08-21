@@ -9,8 +9,8 @@ app.use(function(req, res, next){
     next();
 });
 
-app.use(require('./api/main'));
-app.use(require('./api/users'));
+app.use(require('./apis/main'));
+app.use(require('./apis/users'));
 
 // Start web server at port 3000
 var port = config.get("server.port");
