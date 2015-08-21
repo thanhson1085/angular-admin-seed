@@ -1,6 +1,7 @@
-var express = require('express')
-    , router = express.Router()
-    , crypto = require('crypto');
+'use strict';
+var express = require('express'), 
+    router = express.Router(), 
+    crypto = require('crypto');
 
 // list users
 router.get('/api/v1/users', function(req, res){
@@ -37,4 +38,4 @@ router.post('/api/v1/login', function(req, res){
     });
 });
 
-module.exports = router
+module.exports = router;

@@ -61,7 +61,7 @@ module.exports = function (grunt) {
             },
             express: {
                 files:  [ '<%= yeoman.server %>/*/*.js', '<%= yeoman.server %>/*.js' ],
-                tasks:  [ 'express:dev' ],
+                tasks:  [ 'express:dev', 'newer:jshint:all' ],
                 options: {
                     spawn: false
                 }
@@ -152,7 +152,8 @@ module.exports = function (grunt) {
             all: {
                 src: [
                     'Gruntfile.js',
-                    '<%= yeoman.app %>/scripts/{,*/}*.js'
+                    '<%= yeoman.app %>/scripts/{,*/}*.js',
+                    '<%= yeoman.server %>/{,*/}*.js'
                 ]
             },
             test: {
