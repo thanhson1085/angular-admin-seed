@@ -1,11 +1,16 @@
 'use strict';
 var express = require('express'), 
     router = express.Router(), 
-    crypto = require('crypto');
+    crypto = require('crypto'),
+    db = require('../models');
 
 // list users
 router.get('/api/v1/users', function(req, res){
-    res.send(JSON.stringify({}));
+    db.User.findAll({
+        include: []
+    }).then(function(users) {
+        res.send(JSON.stringify({}));
+    });
 });
 
 // new user

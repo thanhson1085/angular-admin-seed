@@ -11,8 +11,7 @@ app.use(function(req, res, next){
     next();
 });
 
-app.use(require('./apis/main'));
-app.use(require('./apis/users'));
+app.use(require('./apis'));
 
 // Start web server at port 3000
 var port = config.get('server.port');

@@ -5,5 +5,12 @@
     },
     "server": {
         "port": 3000
+    },
+    "db": {
+        "dialect": "sqlite",
+        "storage": "./db/db.sqlite",
+        "database": "",
+        "username": "",
+        "password": ""
     }
 }

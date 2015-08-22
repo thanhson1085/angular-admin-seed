@@ -1,5 +1,6 @@
-var express = require('express')
-    , router = express.Router();
+var express = require('express'), 
+    router = express.Router(),
+    db = require('../models');
 
 // nothing for root
 router.get('/', function(req, res){
