@@ -5,13 +5,6 @@ var express = require('express');
 var db = require('./models');
 var app = express();
 
-app.use(function(req, res, next){
-    res.header('Content-Type', 'application/json');
-    res.header('Access-Control-Allow-Origin', '*');
-    res.header('Access-Control-Allow-Headers', 'Authorization, Origin, X-Requested-With, Content-Type, Accept');
-    next();
-});
-
 app.use(require('./apis'));
 
 // Start web server at port 3000

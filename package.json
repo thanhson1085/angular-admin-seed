@@ -12,7 +12,8 @@
     "pg": "^4.4.1",
     "pg-hstore": "^2.3.2",
     "sequelize": "^3.6.0",
-    "sqlite3": "^3.0.10"
+    "sqlite3": "^3.0.10",
+    "swagger-ui": "^2.1.2"
   },
   "devDependencies": {
     "grunt": "^0.4.1",
