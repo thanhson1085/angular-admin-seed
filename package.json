@@ -6,6 +6,7 @@
     "url": "git+https://github.com/start-angular/sb-admin-angular.git"
   },
   "dependencies": {
+    "body-parser": "^1.13.3",
     "config": "^1.15.0",
     "express": "^4.13.3",
     "js-yaml": "^3.4.0",

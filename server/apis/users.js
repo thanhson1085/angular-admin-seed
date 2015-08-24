@@ -5,7 +5,7 @@ var express = require('express'),
     db = require('../models');
 
 // list users
-router.get('/', function(req, res){
+router.get('/list', function(req, res){
     db.User.findAll({
         include: []
     }).then(function(users) {
@@ -14,8 +14,14 @@ router.get('/', function(req, res){
 });
 
 // new user
-router.post('/', function(req, res){
-    res.send(JSON.stringify({}));
+router.post('/create', function(req, res){
+    db.User.create({
+        username: req.body.username,
+        password: req.body.password
+    }).then(function(user){
+        res.send(JSON.stringify(user));
+    });
+
 });
 
 // delete user

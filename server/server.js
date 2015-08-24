@@ -5,6 +5,7 @@ var express = require('express');
 var db = require('./models');
 var fs = require('fs');
 var yaml = require('js-yaml');
+var bodyParser = require('body-parser');
 var app = express();
 
 // add-on swagger-ui
@@ -12,6 +13,9 @@ app.use('/swagger', express.static('./node_modules/swagger-ui/dist'));
 
 // redirect page
 app.use('/', express.static('./server/docs'));
+
+// body parse
+app.use(bodyParser());
 
 // api-json swagger
 app.get('/docs', function(req, res){

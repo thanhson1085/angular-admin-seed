@@ -4,10 +4,10 @@ info:
   description: Happy to code User API
   version: '1.0.0'
 # the domain of the service
-host: api.sonnguyen.ws
+# host: api.sonnguyen.ws
 # array of all schemes that your API supports
 schemes:
-  - https
+  - http
 # will be prefixed to all paths
 basePath: /
 produces:
@@ -48,6 +48,26 @@ paths:
         - name: password
           in: formData
           description: password for login
+          required: true
+          type: string
+          format: string
+      tags:
+        - Users
+  /api/v1/users/list:
+    get:
+      summary: List user accounts
+      description: |
+          Show user accouts
+      parameters:
+        - name: page
+          in: query
+          description: page number
+          required: true
+          type: string
+          format: string
+        - name: limit
+          in: query
+          description: limit of record
           required: true
           type: string
           format: string
