@@ -1,0 +1,55 @@
+swagger: '2.0'
+info:
+  title: User API
+  description: Happy to code User API
+  version: '1.0.0'
+# the domain of the service
+host: api.sonnguyen.ws
+# array of all schemes that your API supports
+schemes:
+  - https
+# will be prefixed to all paths
+basePath: /
+produces:
+  - application/json
+paths:
+  /api/v1/users/login:
+    post:
+      summary: Login with your account
+      description: |
+          Happy to access The System
+      parameters:
+        - name: username
+          in: formData
+          description: username for login
+          required: true
+          type: string
+          format: string
+        - name: password
+          in: formData
+          description: password for login
+          required: true
+          type: string
+          format: string
+      tags:
+        - Users
+  /api/v1/users/create:
+    post:
+      summary: Create a new account
+      description: |
+          Register a new account to use the system
+      parameters:
+        - name: username
+          in: formData
+          description: username is a email
+          required: true
+          type: string
+          format: string
+        - name: password
+          in: formData
+          description: password for login
+          required: true
+          type: string
+          format: string
+      tags:
+        - Users
