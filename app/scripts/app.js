@@ -74,7 +74,7 @@ angular
         }
     })
     .state('dashboard.users',{
-        templateUrl:'views/users.html',
+        templateUrl:'views/users/list.html',
         controller:'UserCtrl',
         url:'/users/:page/:limit',
         resolve: {

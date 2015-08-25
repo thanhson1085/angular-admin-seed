@@ -62,13 +62,13 @@ paths:
         - name: page
           in: query
           description: page number
-          required: true
+          required: false
           type: string
           format: string
         - name: limit
           in: query
           description: limit of record
-          required: true
+          required: false
           type: string
           format: string
       tags:

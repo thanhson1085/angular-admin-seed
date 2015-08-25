@@ -19,14 +19,14 @@
                             <tr>
                                 <th>#</th>
                                 <th>Username</th>
-                                <th>Email</th>
+                                <th>Created At</th>
                             </tr>
                         </thead>
-                        <tbody ng-repeat="user in users">
-                            <tr>
+                        <tbody>
+                            <tr ng-repeat="user in users">
                                 <td>{{ user.id }}</td>
                                 <td>{{ user.username }}</td>
-                                <td>{{ user.email }}</td>
+                                <td>{{ user.createdAt }}</td>
                             </tr>
                         </tbody>
                     </table>
@@ -35,10 +35,6 @@
             </div>
             <!-- /.panel-body -->
         </div>
-        <ul class="pager">
-            <li ng-class="(next_page == 2 && pre_page == 1)?'disabled':''"><a ng-class="(pre_page <= 1)?'disabled':''" ui-sref="dashboard.users({page: {{ pre_page }}, limit: {{ limit }} })">Previous</a></li>
-            <li ng-class="(users.length < limit)?'disabled':''"><a ui-sref="dashboard.users({page: {{ next_page }}, limit: {{ limit }} })">Next</a></li>
-        </ul>
     </div>
     <!-- /.col-lg-12 -->
 </div>

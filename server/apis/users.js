@@ -17,9 +17,23 @@ router.get('/list', function(req, res){
 router.post('/create', function(req, res){
     db.User.create({
         username: req.body.username,
-        password: req.body.password
+        password: req.body.password,
+        salt: req.body.password
     }).then(function(user){
-        res.send(JSON.stringify(user));
+        crypto.randomBytes(64, function(ex, buf) {
+            var token = buf.toString('base64');
+            var now = new Date();
+            db.Token.create({
+                UserId: user.id,
+                token: token,
+                expiredAt: now
+            }).then(function(t){
+                user.dataValues.token = t.token;
+                res.send(JSON.stringify(user));
+            });
+        });
+    }).catch(function(e){
+        res.status(500).send(JSON.stringify(e));
     });
 
 });
@@ -41,11 +55,26 @@ router.put('/:id', function(req, res){
 
 // login
 router.post('/login', function(req, res){
-    crypto.randomBytes(64, function(ex, buf) {
-        var token = buf.toString('base64');
-        res.send(JSON.stringify({
-            access_token: token
-        }));
+    var username = req.body.username;
+    var password = req.body.password;
+    db.User.findOne({
+        where: {
+            username: username,
+            password: password
+        }
+    }).then(function(user){
+        db.Token.findOne({
+            where: {
+                UserId: user.id
+            }
+        }).then(function(t){
+            res.send(JSON.stringify({
+                token: t.token,
+                id: user.id
+            }));
+        });
+    }).catch(function(e){
+        res.status(401).send(JSON.stringify(e));
     });
 });
 
