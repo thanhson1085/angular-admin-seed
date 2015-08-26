@@ -15,7 +15,8 @@ app.use('/swagger', express.static('./node_modules/swagger-ui/dist'));
 app.use('/', express.static('./server/docs'));
 
 // body parse
-app.use(bodyParser());
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
 
 // api-json swagger
 app.get('/docs', function(req, res){

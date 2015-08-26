@@ -74,9 +74,25 @@ angular
             }
         }
     })
+    .state('dashboard.user_view',{
+        templateUrl:'views/users/view.html',
+        controller:'ViewUserCtrl',
+        url:'/users/view/:id',
+        resolve: {
+            loadMyFiles:function($ocLazyLoad) {
+                return $ocLazyLoad.load({
+                    name:'sbAdminApp',
+                    files:[
+                        'scripts/controllers/users.js',
+                        'scripts/services/users.js',
+                    ]
+                });
+            }
+        }
+    })
     .state('dashboard.users',{
         templateUrl:'views/users/list.html',
-        controller:'UserCtrl',
+        controller:'ListUserCtrl',
         url:'/users/:page/:limit',
         resolve: {
             loadMyFiles:function($ocLazyLoad) {

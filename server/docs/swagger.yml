@@ -57,7 +57,7 @@ paths:
     get:
       summary: List user accounts
       description: |
-          Show user accouts
+          Show user accounts
       parameters:
         - name: page
           in: query
@@ -68,6 +68,20 @@ paths:
         - name: limit
           in: query
           description: limit of record
+          required: false
+          type: string
+          format: string
+      tags:
+        - Users
+  /api/v1/users/view/{id}:
+    get:
+      summary: List user accounts
+      description: |
+          Show user details
+      parameters:
+        - name: id
+          in: path
+          description: page number
           required: false
           type: string
           format: string

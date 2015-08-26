@@ -44,8 +44,16 @@ router.delete('/:id', function(req, res){
 });
 
 // user detail
-router.get('/:id', function(req, res){
-    res.send(JSON.stringify({}));
+router.get('/view/:id', function(req, res){
+    db.User.findOne({
+        where: {
+            id: req.params.id
+        }
+    }).then(function(user){
+        res.send(JSON.stringify(user));
+    }).catch(function(e){
+        res.status(500).send(JSON.stringify(e));
+    });
 });
 
 // update user

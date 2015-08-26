@@ -25,7 +25,7 @@
                         <tbody>
                             <tr ng-repeat="user in users">
                                 <td>{{ user.id }}</td>
-                                <td>{{ user.username }}</td>
+                                <td><a ui-sref="dashboard.user_view({id: user.id})">{{ user.username }}</a></td>
                                 <td>{{ user.createdAt }}</td>
                             </tr>
                         </tbody>
