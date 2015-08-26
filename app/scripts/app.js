@@ -32,7 +32,8 @@ angular
                         name:'sbAdminApp',
                         files:[
                             'scripts/controllers/login.js',
-                            'scripts/services/users.js'
+                            'scripts/services/users.js',
+                            'scripts/services/httpi.js'
                         ]
                     });
             }
@@ -115,7 +116,7 @@ angular
     $rootScope.$on('$locationChangeStart', function () {
         // redirect to login page if not logged in and trying to access a restricted page
         var restrictedPage = $location.path() !== '/login';
-        var loggedIn = ($rootScope.user_info)? $rootScope.user_info.access_token: false;
+        var loggedIn = ($rootScope.user_info)? $rootScope.user_info.token: false;
         if (restrictedPage && !loggedIn){
             $location.path('/login');
         }
@@ -129,7 +130,7 @@ angular
         request: function (config) {
             var user_info = $cookies.get('user_info') || '{}';
             $rootScope.user_info = JSON.parse(user_info);
-            config.headers.Authorization = 'Basic ' + $rootScope.user_info.access_token;
+            config.headers.Authorization = 'Basic ' + $rootScope.user_info.token;
             return config;
         },
         responseError: function(response){

@@ -76,6 +76,20 @@ router.post('/login', function(req, res){
                 UserId: user.id
             }
         }).then(function(t){
+            if (!t.token){
+                crypto.randomBytes(64, function(ex, buf) {
+                    var token = buf.toString('base64');
+                    var now = new Date();
+                    db.Token.create({
+                        UserId: user.id,
+                        token: token,
+                        expiredAt: now
+                    }).then(function(to){
+                        user.dataValues.token = to.token;
+                        res.send(JSON.stringify(user));
+                    });
+                });
+            }
             res.send(JSON.stringify({
                 token: t.token,
                 id: user.id
