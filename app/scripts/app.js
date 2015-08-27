@@ -39,6 +39,25 @@ angular
             }
         }
     })
+    .state('register',{
+        templateUrl:'views/pages/register.html',
+        controller: 'RegisterCtrl',
+        controllerAs: 'vs',
+        url:'/register',
+        resolve: {
+            loadMyDirectives:function($ocLazyLoad){
+                return $ocLazyLoad.load(
+                    {
+                        name:'sbAdminApp',
+                        files:[
+                            'scripts/controllers/register.js',
+                            'scripts/services/users.js',
+                            'scripts/services/httpi.js'
+                        ]
+                    });
+            }
+        }
+    })
     .state('dashboard', {
         url:'/dashboard',
         templateUrl: 'views/dashboard/main.html',
@@ -115,7 +134,7 @@ angular
     $rootScope.user_info = JSON.parse(user_info);
     $rootScope.$on('$locationChangeStart', function () {
         // redirect to login page if not logged in and trying to access a restricted page
-        var restrictedPage = $location.path() !== '/login';
+        var restrictedPage = ($location.path() !== '/login') && ($location.path() !== '/register');
         var loggedIn = ($rootScope.user_info)? $rootScope.user_info.token: false;
         if (restrictedPage && !loggedIn){
             $location.path('/login');

@@ -18,6 +18,14 @@ module.exports = function(sequelize, DataTypes){
         avatar: {
             type: DataTypes.STRING,
             allowNull: true
+        },
+        firstname: {
+            type: DataTypes.STRING,
+            allowNull: true
+        },
+        lastname: {
+            type: DataTypes.STRING,
+            allowNull: true
         }
     }, {
         classMethods: {
