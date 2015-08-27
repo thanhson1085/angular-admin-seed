@@ -62,6 +62,18 @@ paths:
           required: true
           type: string
           format: string
+        - name: firstname
+          in: formData
+          description: firstname for new user
+          required: false
+          type: string
+          format: string
+        - name: lastname
+          in: formData
+          description: firstname for new user
+          required: false
+          type: string
+          format: string
       responses:
         200:
             description: Returns user info

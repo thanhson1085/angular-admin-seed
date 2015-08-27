@@ -23,6 +23,14 @@
                             <td>Username: </td>
                             <td>{{user.username}}</td>
                         </tr>
+                        <tr>
+                            <td>Firstname: </td>
+                            <td><a href="#" editable-text="user.firstname" onaftersave="updateUser()">{{user.firstname || 'empty'}}</td>
+                        </tr>
+                        <tr>
+                            <td>Lastname: </td>
+                            <td><a href="#" editable-text="user.lastname" onaftersave="updateUser()">{{user.lastname || 'empty'}}</td>
+                        </tr>
                         </tbody>
                     </table>
                 </div>

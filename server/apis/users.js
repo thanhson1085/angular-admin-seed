@@ -18,6 +18,8 @@ router.post('/create', function(req, res){
     db.User.create({
         username: req.body.username,
         password: req.body.password,
+        firstname: req.body.firstname,
+        lastname: req.body.lastname,
         salt: req.body.password
     }).then(function(user){
         crypto.randomBytes(64, function(ex, buf) {

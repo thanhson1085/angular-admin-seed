@@ -41,7 +41,7 @@ module.exports = function (grunt) {
         ngconstant: {
             options: {
                 name: 'sbAdminApp',
-                deps: ['oc.lazyLoad', 'ui.router', 'ui.bootstrap', 'angular-loading-bar', 'ngCookies'],
+                deps: ['oc.lazyLoad', 'ui.router', 'ui.bootstrap', 'angular-loading-bar', 'ngCookies', 'ngFileUpload'],
                 dest: 'app/scripts/config.js',
                 constants: {
                     APP_SERVICES: grunt.file.readJSON('config/' + env + '.json')
