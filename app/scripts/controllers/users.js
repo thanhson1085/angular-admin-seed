@@ -19,5 +19,15 @@ angular.module('sbAdminApp')
         $scope.user = data;
     });
 
+    $scope.updateUser = function(){
+        var userData = {
+            id: $scope.user.id,
+            firstname: $scope.user.firstname,
+            lastname: $scope.user.lastname
+        };
+        Users.update(userData).then(function(data){
+            console.log(data);
+        });
+    };
     $scope.forUnitTest = true;
 });

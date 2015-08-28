@@ -3,7 +3,8 @@
         "list": "http://192.168.1.191:3000/api/v1/users/list",
         "login": "http://192.168.1.191:3000/api/v1/users/login",
         "get": "http://192.168.1.191:3000/api/v1/users/view/:id",
-        "create": "http://192.168.1.191:3000/api/v1/users/create"
+        "create": "http://192.168.1.191:3000/api/v1/users/create",
+        "update": "http://192.168.1.191:3000/api/v1/users/update/:id"
     },
     "server": {
         "port": 3000

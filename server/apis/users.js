@@ -23,7 +23,7 @@ router.post('/create', function(req, res){
         salt: req.body.password
     }).then(function(user){
         crypto.randomBytes(64, function(ex, buf) {
-            var token = buf.toString('base64');
+            var token = buf.toString('base64').replace(/\//g,'_').replace(/\+/g,'-');
             var now = new Date();
             db.Token.create({
                 UserId: user.id,
@@ -59,8 +59,23 @@ router.get('/view/:id', function(req, res){
 });
 
 // update user
-router.put('/:id', function(req, res){
-    res.send(JSON.stringify({}));
+router.put('/update/:id', function(req, res){
+    db.User.find({ 
+        where: {
+            id: req.params.id
+        } 
+    }).then(function(user) {
+        if (user) {
+            user.updateAttributes({
+                firstname: req.body.firstname,
+                lastname: req.body.lastname
+            }).then(function() {
+                res.send(JSON.stringify(user));
+            });
+        }
+    }).catch(function(e){
+        res.status(500).send(JSON.stringify(e));
+    });
 });
 
 // login
