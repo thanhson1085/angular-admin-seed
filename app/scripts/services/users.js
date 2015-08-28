@@ -25,7 +25,7 @@ angular.module('sbAdminApp').factory('Users', function($http, httpi, $q, APP_SER
         },
         register: function(data){
             var deferred = $q.defer();
-            var url = APP_SERVICES.users.get;
+            var url = APP_SERVICES.users.create;
             httpi({
                 method: 'POST',
                 url: url,

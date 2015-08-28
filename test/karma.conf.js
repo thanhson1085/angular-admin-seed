@@ -35,6 +35,8 @@ module.exports = function(config) {
       'bower_components/angular-bootstrap/ui-bootstrap-tpls.js',
       'bower_components/metisMenu/dist/metisMenu.js',
       'bower_components/Chart.js/Chart.min.js',
+      'bower_components/ng-file-upload/ng-file-upload.js',
+      'bower_components/angular-xeditable/dist/js/xeditable.js',
       'app/scripts/config.js',
       'app/scripts/app.js',
       'app/scripts/**/*.js',
