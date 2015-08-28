@@ -7,15 +7,25 @@
  * Controller of the sbAdminApp
  */
 angular.module('sbAdminApp')
-.controller('ListUserCtrl', function($scope, Users) {
-    Users.get().then(function(data){
-        $scope.users = data;
+.controller('ListUserCtrl', function($scope, $stateParams, Users, APP_SERVICES) {
+    var page = $stateParams.page ? parseInt($stateParams.page) : 1,
+        limit = $stateParams.limit ? parseInt($stateParams.limit) : APP_SERVICES.limit;
+
+    $scope.limit = limit;
+    Users.list(page, limit).then(function(data){
+        $scope.users = data.rows;
+        $scope.count = data.count;
     });
 
+    $scope.pageChanged = function() {
+        Users.list($scope.current_page, limit).then(function(response){
+            $scope.users = response.rows;
+        });
+    };
     $scope.forUnitTest = true;
 })
 .controller('ViewUserCtrl', function($scope, $stateParams, Users) {
-    Users.getUserById($stateParams.id).then(function(data){
+    Users.get($stateParams.id).then(function(data){
         $scope.user = data;
     });
 

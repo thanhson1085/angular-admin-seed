@@ -1,15 +1,23 @@
 'use strict';
 angular.module('sbAdminApp').factory('Users', function($http, httpi, $q, APP_SERVICES) {
     return {
-        get: function(){
+        list: function(page, limit){
             var deferred = $q.defer();
             var url = APP_SERVICES.users.list;
-            $http.get(url).success(function(data) {
+            var data = {
+                page: page,
+                limit: limit
+            };
+            httpi({
+                method: 'GET',
+                url: url,
+                data: data
+            }).success(function(data) {
                 deferred.resolve(data);
             }).error(deferred.reject);
             return deferred.promise;
         },
-        getUserById: function(id){
+        get: function(id){
             var deferred = $q.defer();
             var url = APP_SERVICES.users.get;
             httpi({

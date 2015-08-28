@@ -87,20 +87,20 @@ paths:
             description: Server Internal error
       tags:
         - Users
-  /api/v1/users/list:
+  /api/v1/users/list/{page}/{limit}:
     get:
       summary: List user accounts
       description: |
           Show user accounts
       parameters:
         - name: page
-          in: query
+          in: path
           description: page number
           required: false
           type: string
           format: string
         - name: limit
-          in: query
+          in: path
           description: limit of record
           required: false
           type: string

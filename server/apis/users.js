@@ -5,9 +5,14 @@ var express = require('express'),
     db = require('../models');
 
 // list users
-router.get('/list', function(req, res){
-    db.User.findAll({
-        include: []
+router.get('/list/:page/:limit', function(req, res){
+    var limit = (req.params.limit)? req.params.limit: 10;
+    var offset = (req.params.page)? limit * (req.params.page - 1): 0;
+    db.User.findAndCountAll({
+        include: [],
+        limit: limit,
+        offset: offset
+
     }).then(function(users) {
         res.send(JSON.stringify(users));
     });
