@@ -2,7 +2,8 @@
 var express = require('express'), 
     router = express.Router(), 
     crypto = require('crypto'),
-    db = require('../models');
+    db = require('../models'),
+    pass = require('../helpers/password.js');
 
 // list users
 router.get('/list/:page/:limit', function(req, res){
@@ -20,12 +21,13 @@ router.get('/list/:page/:limit', function(req, res){
 
 // new user
 router.post('/create', function(req, res){
+    var hash = pass.hash(req.body.password);
     db.User.create({
         username: req.body.username,
-        password: req.body.password,
+        password: hash.password,
         firstname: req.body.firstname,
         lastname: req.body.lastname,
-        salt: req.body.password
+        salt: hash.salt
     }).then(function(user){
         crypto.randomBytes(64, function(ex, buf) {
             var token = buf.toString('base64').replace(/\//g,'_').replace(/\+/g,'-');
@@ -89,10 +91,12 @@ router.post('/login', function(req, res){
     var password = req.body.password;
     db.User.findOne({
         where: {
-            username: username,
-            password: password
+            username: username
         }
     }).then(function(user){
+        if (!pass.validate(user.password, password, user.salt)){
+            res.status(401).send(JSON.stringify({}));
+        }
         db.Token.findOne({
             where: {
                 UserId: user.id
