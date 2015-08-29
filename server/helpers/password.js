@@ -1,5 +1,5 @@
 var crypto = require('crypto');
-var SaltLength = 9;
+var SaltLength = 16;
 
 function createHash(password) {
   var salt = generateSalt(SaltLength);
@@ -7,9 +7,8 @@ function createHash(password) {
   return {salt: salt, password: hash};
 }
 
-function validateHash(hash, password) {
-  var salt = hash.substr(0, SaltLength);
-  var validHash = salt + md5(password + salt);
+function validateHash(hash, password, salt) {
+  var validHash = md5(password + salt);
   return hash === validHash;
 }
 
@@ -25,7 +24,7 @@ function generateSalt(len) {
 }
 
 function md5(string) {
-  return crypto.createHash('md5').update(string).digest('hex');
+  return crypto.createHash('sha512').update(string).digest('base64');
 }
 
 module.exports = {

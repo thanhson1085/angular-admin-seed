@@ -91,10 +91,12 @@ router.post('/login', function(req, res){
     var password = req.body.password;
     db.User.findOne({
         where: {
-            username: username,
-            password: password
+            username: username
         }
     }).then(function(user){
+        if (!pass.validate(user.password, password, user.salt)){
+            res.status(401).send(JSON.stringify({}));
+        }
         db.Token.findOne({
             where: {
                 UserId: user.id
