@@ -27,7 +27,12 @@ RUN npm install -g grunt-cli
 
 WORKDIR /build
 ADD . /build
+# install all package
 RUN npm install
+RUN npm install sqlite3 --save
+
+EXPOSE 9000:9000
+EXPOSE 3000:3000
 
 RUN pip install supervisor-stdout
 COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
