@@ -35,8 +35,8 @@ angular.module('sbAdminApp')
             firstname: $scope.user.firstname,
             lastname: $scope.user.lastname
         };
-        Users.update(userData).then(function(data){
-            console.log(data);
+        Users.update(userData).then(function(){
+            $scope.update_message = 'Updated successfully!';
         });
     };
     $scope.forUnitTest = true;

@@ -149,7 +149,7 @@ angular
         request: function (config) {
             var user_info = $cookies.get('user_info') || '{}';
             $rootScope.user_info = JSON.parse(user_info);
-            config.headers.Authorization = 'Basic ' + $rootScope.user_info.token;
+            config.headers.Authorization = $rootScope.user_info.token;
             return config;
         },
         responseError: function(response){
