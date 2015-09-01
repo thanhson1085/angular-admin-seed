@@ -1,0 +1,6 @@
+{
+    "views.users.list.Users": "Users",
+    "views.users.setting.Settings": "Settings",
+    "views.users.setting.SettingsPanel": "Settings Panel",
+    "directives.language-select.Language": "Language"
+}

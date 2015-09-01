@@ -1,0 +1,6 @@
+{
+    "views.users.list.Users": "Người sử dụng",
+    "views.users.setting.Settings": "Các thiết lập",
+    "views.users.setting.SettingsPanel": "Bảng điều chỉnh các thiết lập",
+    "directives.language-select.Language": "Ngôn ngữ"
+}

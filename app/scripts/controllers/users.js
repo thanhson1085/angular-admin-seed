@@ -7,9 +7,9 @@
  * Controller of the sbAdminApp
  */
 angular.module('sbAdminApp')
-.controller('ListUserCtrl', function($scope, $stateParams, Users, APP_SERVICES) {
+.controller('ListUserCtrl', function($scope, $stateParams, Users, APP_CONFIG) {
     var page = $stateParams.page ? parseInt($stateParams.page) : 1,
-        limit = $stateParams.limit ? parseInt($stateParams.limit) : APP_SERVICES.limit;
+        limit = $stateParams.limit ? parseInt($stateParams.limit) : APP_CONFIG.pagination.limit;
 
     $scope.limit = limit;
     Users.list(page, limit).then(function(data){

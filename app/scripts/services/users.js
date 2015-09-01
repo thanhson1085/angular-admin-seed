@@ -1,9 +1,9 @@
 'use strict';
-angular.module('sbAdminApp').factory('Users', function($http, httpi, $q, APP_SERVICES) {
+angular.module('sbAdminApp').factory('Users', function($http, httpi, $q, APP_CONFIG) {
     return {
         list: function(page, limit){
             var deferred = $q.defer();
-            var url = APP_SERVICES.users.list;
+            var url = APP_CONFIG.services.users.list;
             var data = {
                 page: page,
                 limit: limit
@@ -19,7 +19,7 @@ angular.module('sbAdminApp').factory('Users', function($http, httpi, $q, APP_SER
         },
         get: function(id){
             var deferred = $q.defer();
-            var url = APP_SERVICES.users.get;
+            var url = APP_CONFIG.services.users.get;
             httpi({
                 method: 'GET',
                 url: url,
@@ -33,7 +33,7 @@ angular.module('sbAdminApp').factory('Users', function($http, httpi, $q, APP_SER
         },
         register: function(data){
             var deferred = $q.defer();
-            var url = APP_SERVICES.users.create;
+            var url = APP_CONFIG.services.users.create;
             httpi({
                 method: 'POST',
                 url: url,
@@ -53,7 +53,7 @@ angular.module('sbAdminApp').factory('Users', function($http, httpi, $q, APP_SER
         },
         update: function(data){
             var deferred = $q.defer();
-            var url = APP_SERVICES.users.update;
+            var url = APP_CONFIG.services.users.update;
             httpi({
                 method: 'PUT',
                 url: url,
@@ -73,7 +73,7 @@ angular.module('sbAdminApp').factory('Users', function($http, httpi, $q, APP_SER
         },
         login: function(username, password){
             var deferred = $q.defer();
-            var url = APP_SERVICES.users.login;
+            var url = APP_CONFIG.services.users.login;
             $http({
                 method: 'POST',
                 url: url,

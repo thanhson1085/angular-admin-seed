@@ -9,6 +9,20 @@
  */
 angular
 .module('sbAdminApp')
+.config(function ($translateProvider) {
+    $translateProvider.useMissingTranslationHandlerLog();
+})
+.config(function ($translateProvider) {
+    $translateProvider.useStaticFilesLoader({
+        prefix: 'resources/locale-',
+        suffix: '.json'
+    });
+    $translateProvider.preferredLanguage('en_US');
+    $translateProvider.useLocalStorage();
+})
+.config(function (tmhDynamicLocaleProvider) {
+    tmhDynamicLocaleProvider.localeLocationPattern('bower_components/angular-i18n/angular-locale_{{locale}}.js');
+})
 .config(['$stateProvider','$urlRouterProvider','$ocLazyLoadProvider', '$httpProvider',
         function ($stateProvider,$urlRouterProvider,$ocLazyLoadProvider, $httpProvider) {
 
@@ -33,7 +47,9 @@ angular
                         files:[
                             'scripts/controllers/login.js',
                             'scripts/services/users.js',
-                            'scripts/services/httpi.js'
+                            'scripts/services/httpi.js',
+                            'scripts/services/locale.js',
+                            'scripts/directives/locale/locale.js'
                         ]
                     });
             }
@@ -52,7 +68,9 @@ angular
                         files:[
                             'scripts/controllers/register.js',
                             'scripts/services/users.js',
-                            'scripts/services/httpi.js'
+                            'scripts/services/httpi.js',
+                            'scripts/services/locale.js',
+                            'scripts/directives/locale/locale.js'
                         ]
                     });
             }
@@ -71,7 +89,9 @@ angular
                             'scripts/directives/header/header-notification/header-notification.js',
                             'scripts/directives/sidebar/sidebar.js',
                             'scripts/directives/sidebar/sidebar-search/sidebar-search.js',
-                            'scripts/services/httpi.js'
+                            'scripts/services/httpi.js',
+                            'scripts/services/locale.js',
+                            'scripts/directives/locale/locale.js'
                         ]
                     });
             }
@@ -93,6 +113,10 @@ angular
                 });
             }
         }
+    })
+    .state('dashboard.user_setting',{
+        templateUrl:'views/users/setting.html',
+        url:'/users/setting',
     })
     .state('dashboard.user_view',{
         templateUrl:'views/users/view.html',

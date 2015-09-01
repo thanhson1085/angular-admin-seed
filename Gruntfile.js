@@ -43,10 +43,11 @@ module.exports = function (grunt) {
                 name: 'sbAdminApp',
                 deps: ['oc.lazyLoad', 'ui.router', 'ui.bootstrap', 
                     'angular-loading-bar', 'ngCookies', 'ngFileUpload', 
-                    'ngAnimate', 'xeditable'],
+                    'ngAnimate', 'xeditable',
+                    'pascalprecht.translate', 'tmh.dynamicLocale'],
                 dest: 'app/scripts/config.js',
                 constants: {
-                    APP_SERVICES: grunt.file.readJSON('config/' + env + '.json')
+                    APP_CONFIG: grunt.file.readJSON('config/' + env + '.json')
                 },
                 values: {
                     debug: true
@@ -92,6 +93,7 @@ module.exports = function (grunt) {
                 },
                 files: [
                     '<%= yeoman.app %>/{,*/}*.html',
+                    '<%= yeoman.app %>/resources/*.json',
                     '<%= yeoman.app %>/views/{,*/}*.html',
                     '.tmp/styles/{,*/}*.css',
                     '<%= yeoman.app %>/images/{,*/}*.{png,jpg,jpeg,gif,webp,svg}'
