@@ -12,12 +12,22 @@ angular
 .config(function ($translateProvider) {
     $translateProvider.useMissingTranslationHandlerLog();
 })
-.config(function ($translateProvider) {
+.config(function ($compileProvider, APP_CONFIG) {
+    if (!APP_CONFIG.debug_mode) {
+        $compileProvider.debugInfoEnabled(false);// disables AngularJS debug info
+    }
+})
+.config(function ($translateProvider, APP_CONFIG) {
+    if (APP_CONFIG.debug_mode) {
+        $translateProvider.useMissingTranslationHandlerLog();// warns about missing translates
+    }
+
     $translateProvider.useStaticFilesLoader({
         prefix: 'resources/locale-',
         suffix: '.json'
     });
-    $translateProvider.preferredLanguage('en_US');
+
+    $translateProvider.preferredLanguage(APP_CONFIG.locales.locales.preferredLocale);
     $translateProvider.useLocalStorage();
 })
 .config(function (tmhDynamicLocaleProvider) {
