@@ -1,6 +1,6 @@
 <div class="row">
     <div class="col-lg-12">
-        <h1 class="page-header">User {{ user.username }}</h1>
+        <h1 class="page-header">{{ "views.users.view.User" | translate }} {{ user.username }}</h1>
     </div>
     <!-- /.col-lg-12 -->
 </div>
@@ -8,7 +8,7 @@
     <div class="col-lg-12">
         <div class="panel panel-default">
             <div class="panel-heading">
-                User detail
+                {{ "views.users.view.UserDetail" | translate }}
             </div>
             <!-- /.panel-heading -->
             <div class="panel-body">
@@ -20,19 +20,19 @@
                     <table class="table table-hover">
                         <tbody>
                         <tr>
-                            <td>ID: </td>
-                            <td>{{user.id}}</td>
+                            <td class="col-xs-4">{{ "views.users.view.ID:" | translate }} </td>
+                            <td class="col-xs-8">{{user.id}}</td>
                         </tr>
                         <tr>
-                            <td>Username: </td>
+                            <td>{{ "views.users.view.Username:" | translate }} </td>
                             <td>{{user.username}}</td>
                         </tr>
                         <tr>
-                            <td>Firstname: </td>
+                            <td>{{ "views.users.view.Firstname:" | translate }} </td>
                             <td><a href="#" editable-text="user.firstname" onaftersave="updateUser()">{{user.firstname || 'empty'}}</a></td>
                         </tr>
                         <tr>
-                            <td>Lastname: </td>
+                            <td>{{ "views.users.view.Lastname:" | translate }} </td>
                             <td><a href="#" editable-text="user.lastname" onaftersave="updateUser()">{{user.lastname || 'empty'}}</a></td>
                         </tr>
                         </tbody>

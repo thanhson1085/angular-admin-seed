@@ -28,6 +28,30 @@ module.exports = function (grunt) {
     grunt.initConfig({
         // Project settings
         yeoman: appConfig,
+        locales: {
+            options: {
+                locales: ['en_US', 'vi_VN', 'de_DE']
+            },
+            update: {
+                src: [
+                    '<%= yeoman.app %>/views/**/*.html',
+                    '<%= yeoman.app %>/scripts/**/*.js'
+                ],
+                dest: '<%= yeoman.app %>/resources/{locale}.json'
+            },
+            build: {
+                src: '<%= yeoman.app %>/resources/{locale}.json',
+                dest: '<%= yeoman.app %>/resources/{locale}.js'
+            },
+            export: {
+                src: '<%= yeoman.app %>/resources/{locale}.json',
+                dest: '<%= yeoman.app %>/resources/{locale}.csv'
+            },
+            import: {
+                src: '<%= yeoman.app %>/resources/{locale}.csv',
+                dest: '<%= yeoman.app %>/resources/{locale}.json'
+            }
+        }
         express: {
             options: {
                 // Override defaults here
@@ -395,6 +419,7 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-ng-constant');
     grunt.loadNpmTasks('grunt-express-server');
     grunt.loadNpmTasks('grunt-contrib-watch');
+    grunt.loadNpmTasks('grunt-locales');
     grunt.registerTask('serve', 'Compile then start a connect web server', function (target) {
         if (target === 'dist') {
             return grunt.task.run(['build', 'connect:dist:keepalive']);
