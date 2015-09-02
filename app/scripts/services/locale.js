@@ -15,7 +15,7 @@ angular.module('sbAdminApp')
     });
 
     // STORING CURRENT LOCALE
-    var currentLocale = $translate.proposedLanguage();// because of async loading
+    var currentLocale = $translate.use();
 
     // METHODS
     var checkLocaleIsValid = function (locale) {
