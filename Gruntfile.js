@@ -75,7 +75,7 @@ module.exports = function (grunt) {
                     'pascalprecht.translate', 'tmh.dynamicLocale'],
                 dest: 'app/scripts/config.js',
                 constants: {
-                    APP_CONFIG: grunt.file.readJSON('config/' + env + '.json')
+                    APP_CONFIG: grunt.file.readJSON('config/client-' + env + '.json')
                 },
                 values: {
                     debug: true
