@@ -34,7 +34,7 @@ app.use(function(req, res, next){
 });
 
 // auth
-app.use(require('./middlewares/users'))
+app.use(require('./middlewares/users'));
 app.use(require('./apis'));
 
 // Start web server at port 3000

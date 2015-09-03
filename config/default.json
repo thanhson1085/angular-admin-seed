@@ -14,6 +14,12 @@
     "server": {
         "port": 3000
     },
+    "redis": {
+        "host": "192.168.1.191",
+        "port": "6379",
+        "password": "9asEitDaHoicCihapohavyahifeyFripmuDradwawb",
+        "prefix": "q"
+    },
     "db": {
         "dialect": "sqlite",
         "storage": "./db/db.sqlite",
@@ -21,6 +27,7 @@
         "username": "",
         "password": ""
     },
+    "unauthorization": ["/api/v1/users/login", "/api/v1/users/create"],
     "locales": {
         "locales": {
             "vi_VN": "Việt Nam",

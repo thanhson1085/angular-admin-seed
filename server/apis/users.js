@@ -38,6 +38,12 @@ router.post('/create', function(req, res){
                 expiredAt: now
             }).then(function(t){
                 user.dataValues.token = t.token;
+                var q = require('../queues');
+                q.create('email', {
+                    title: 'Welcome Email',
+                    to: user.username,
+                    template: 'welcome-email'
+                }).priority('high').save();
                 res.send(JSON.stringify(user));
             });
         });

@@ -11,6 +11,8 @@
     "express": "^4.13.3",
     "grunt-locales": "git+https://github.com/thanhson1085/grunt-locales.git",
     "js-yaml": "^3.4.0",
+    "kue": "^0.9.4",
+    "lodash": "^3.10.1",
     "mysql": "^2.9.0",
     "pg": "^4.4.1",
     "pg-hstore": "^2.3.2",
