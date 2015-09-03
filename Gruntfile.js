@@ -97,6 +97,16 @@ module.exports = function (grunt) {
                     spawn: false
                 }
             },
+            locales: {
+                files: [
+                    '<%= yeoman.app %>/views/**/*.html',
+                    '<%= yeoman.app %>/scripts/directives/**/*.html'
+                ],
+                tasks: ['locales:update'],
+                options: {
+                    spawn: false
+                }
+            },
             js: {
                 files: ['<%= yeoman.app %>/scripts/{,*/}*.js', '<%= yeoman.config %>/*.json'],
                 tasks: ['ngconstant', 'newer:jshint:all'],

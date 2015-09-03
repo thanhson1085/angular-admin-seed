@@ -1,4 +1,5 @@
 {
+  "directives.language-select.Language": "directives.language-select.Language",
   "directives.sidebar.Dashboard": "directives.sidebar.Dashboard",
   "directives.sidebar.Users": "directives.sidebar.Users",
   "views.users.list.CreatedAt": "views.users.list.CreatedAt",
@@ -6,6 +7,8 @@
   "views.users.list.Name": "views.users.list.Name",
   "views.users.list.Username": "views.users.list.Username",
   "views.users.list.Users": "Người sử dụng",
+  "views.users.setting.Settings": "views.users.setting.Settings",
+  "views.users.setting.SettingsPanel": "views.users.setting.SettingsPanel",
   "views.users.view.Firstname": "views.users.view.Firstname",
   "views.users.view.ID": "views.users.view.ID",
   "views.users.view.Lastname": "views.users.view.Lastname",

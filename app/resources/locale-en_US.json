@@ -1,4 +1,5 @@
 {
+  "directives.language-select.Language": "Language",
   "directives.sidebar.Dashboard": "Dashboard",
   "directives.sidebar.Users": "Users",
   "views.users.list.CreatedAt": "Created At",
@@ -6,6 +7,8 @@
   "views.users.list.Name": "Name",
   "views.users.list.Username": "Username",
   "views.users.list.Users": "Users",
+  "views.users.setting.Settings": "Settings",
+  "views.users.setting.SettingsPanel": "Settings Panel",
   "views.users.view.Firstname": "Firstname",
   "views.users.view.ID": "ID",
   "views.users.view.Lastname": "Lastname",
