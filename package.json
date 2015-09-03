@@ -9,7 +9,7 @@
     "body-parser": "^1.13.3",
     "config": "^1.15.0",
     "express": "^4.13.3",
-    "grunt-locales": "^7.0.3",
+    "grunt-locales": "git+https://github.com/thanhson1085/grunt-locales.git",
     "js-yaml": "^3.4.0",
     "mysql": "^2.9.0",
     "pg": "^4.4.1",

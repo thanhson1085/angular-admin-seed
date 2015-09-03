@@ -30,28 +30,32 @@ module.exports = function (grunt) {
         yeoman: appConfig,
         locales: {
             options: {
-                locales: ['en_US', 'vi_VN', 'de_DE']
+                locales: ['en_US', 'vi_VN', 'de_DE'],
+                localizeAttributes: ['translate'],
+                localeJsonFlatFormat: true
             },
             update: {
                 src: [
                     '<%= yeoman.app %>/views/**/*.html',
-                    '<%= yeoman.app %>/scripts/**/*.js'
+                    '<%= yeoman.app %>/scripts/**/*.js',
+                    '<%= yeoman.app %>/scripts/directives/**/*.html',
+                    '<%= yeoman.app %>/scripts/directives/**/*.js'
                 ],
-                dest: '<%= yeoman.app %>/resources/{locale}.json'
+                dest: '<%= yeoman.app %>/resources/locale-{locale}.json'
             },
             build: {
-                src: '<%= yeoman.app %>/resources/{locale}.json',
-                dest: '<%= yeoman.app %>/resources/{locale}.js'
+                src: '<%= yeoman.app %>/resources/locale-{locale}.json',
+                dest: '<%= yeoman.app %>/resources/locale-{locale}.js'
             },
             export: {
-                src: '<%= yeoman.app %>/resources/{locale}.json',
-                dest: '<%= yeoman.app %>/resources/{locale}.csv'
+                src: '<%= yeoman.app %>/resources/locale-{locale}.json',
+                dest: '<%= yeoman.app %>/resources/locale-{locale}.csv'
             },
             import: {
-                src: '<%= yeoman.app %>/resources/{locale}.csv',
-                dest: '<%= yeoman.app %>/resources/{locale}.json'
+                src: '<%= yeoman.app %>/resources/locale-{locale}.csv',
+                dest: '<%= yeoman.app %>/resources/locale-{locale}.json'
             }
-        }
+        },
         express: {
             options: {
                 // Override defaults here

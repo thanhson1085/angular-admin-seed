@@ -5,7 +5,7 @@
   "views.users.list.ListOfUsers": "views.users.list.ListOfUsers",
   "views.users.list.Name": "views.users.list.Name",
   "views.users.list.Username": "views.users.list.Username",
-  "views.users.list.Users": "Người sử dụng",
+  "views.users.list.Users": "views.users.list.Users",
   "views.users.view.Firstname": "views.users.view.Firstname",
   "views.users.view.ID": "views.users.view.ID",
   "views.users.view.Lastname": "views.users.view.Lastname",

@@ -1,14 +1,13 @@
 <div class="row">
     <div class="col-lg-12">
-        <h1 class="page-header">{{ "views.users.view.User" | translate }} {{ user.username }}</h1>
+        <h1 class="page-header" translate="views.users.view.User" translate-value-name="{{user.username}}"></h1>
     </div>
     <!-- /.col-lg-12 -->
 </div>
 <div class="row">
     <div class="col-lg-12">
         <div class="panel panel-default">
-            <div class="panel-heading">
-                {{ "views.users.view.UserDetail" | translate }}
+            <div class="panel-heading" translate="views.users.view.UserDetail">
             </div>
             <!-- /.panel-heading -->
             <div class="panel-body">
@@ -20,19 +19,19 @@
                     <table class="table table-hover">
                         <tbody>
                         <tr>
-                            <td class="col-xs-4">{{ "views.users.view.ID:" | translate }} </td>
+                            <td class="col-xs-4" translate="views.users.view.ID"></td>
                             <td class="col-xs-8">{{user.id}}</td>
                         </tr>
                         <tr>
-                            <td>{{ "views.users.view.Username:" | translate }} </td>
+                            <td translate="views.users.view.Username"></td>
                             <td>{{user.username}}</td>
                         </tr>
                         <tr>
-                            <td>{{ "views.users.view.Firstname:" | translate }} </td>
+                            <td translate="views.users.view.Firstname"></td>
                             <td><a href="#" editable-text="user.firstname" onaftersave="updateUser()">{{user.firstname || 'empty'}}</a></td>
                         </tr>
                         <tr>
-                            <td>{{ "views.users.view.Lastname:" | translate }} </td>
+                            <td translate="views.users.view.Lastname"></td>
                             <td><a href="#" editable-text="user.lastname" onaftersave="updateUser()">{{user.lastname || 'empty'}}</a></td>
                         </tr>
                         </tbody>
