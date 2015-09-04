@@ -4,6 +4,6 @@ node_js:
 before_install:
   - npm install -g bower
   - npm install -g grunt-cli
-  - cp config/default.json config/dev.json
+  - cp config/client-default.json config/client-dev.json
 script:
   - grunt test
