@@ -15,13 +15,5 @@
         "username": "",
         "password": ""
     },
-    "unauthorization": ["/api/v1/users/login", "/api/v1/users/create"],
-    "locales": {
-        "locales": {
-            "vi_VN": "Việt Nam",
-            "en_US": "English"
-        },
-        "preferredLocale": "en_US"
-    },
-    "debug_mode": true
+    "unauthorization": ["/api/v1/users/login", "/api/v1/users/create"]
 }

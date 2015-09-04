@@ -10,5 +10,13 @@
     },
     "pagination":{
         "limit": 10
-    }
+    },
+    "locales": {
+        "locales": {
+            "vi_VN": "Việt Nam",
+            "en_US": "English"
+        },
+        "preferredLocale": "en_US"
+    },
+    "debug_mode": true
 }
