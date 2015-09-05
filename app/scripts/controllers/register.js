@@ -21,8 +21,8 @@ angular.module('sbAdminApp')
                 $cookies.put('user_info', JSON.stringify(data));
                 vs.error = null;
                 $location.path('/dashboard/home');
-            }).catch(function(data){
-                vs.error = data.message;
+            }).catch(function(){
+                vs.error = 'Register Denied!';
             });
         };
     });

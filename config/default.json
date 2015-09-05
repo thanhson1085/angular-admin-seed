@@ -15,5 +15,16 @@
         "username": "",
         "password": ""
     },
-    "unauthorization": ["/api/v1/users/login", "/api/v1/users/create"]
+    "unauthorization": ["/api/v1/users/login", "/api/v1/users/create"],
+    "mailer": {
+        "from": "no-reply@example.com",
+        "host": "smtp.gmail.com",
+        "secureConnection": true,
+        "port": 465,
+        "transportMethod": "SMTP",
+        "auth": {
+            "user": "gmail.user@gmail.com",
+            "pass": "userpass"
+        }
+    }
 }

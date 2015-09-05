@@ -27,7 +27,7 @@ angular
         suffix: '.json'
     });
 
-    $translateProvider.preferredLanguage(APP_CONFIG.locales.locales.preferredLocale);
+    $translateProvider.preferredLanguage(APP_CONFIG.locales.preferredLocale);
     $translateProvider.useLocalStorage();
 })
 .config(function (tmhDynamicLocaleProvider) {
@@ -178,19 +178,22 @@ angular
         $location.path('/login');
     });
 }])
-.factory('httpRequestInterceptor', function ($rootScope, $cookies) {
-    return {
+.factory('httpRequestInterceptor', function ($rootScope, $cookies, $location) {
+    var ret = {
         request: function (config) {
             var user_info = $cookies.get('user_info') || '{}';
             $rootScope.user_info = JSON.parse(user_info);
             config.headers.Authorization = $rootScope.user_info.token;
             return config;
-        },
-        responseError: function(response){
+        }
+    };
+    if (!$location.path() && $location.path() !== '/login') {
+        ret.responseError = function(response){
             if (response.status === 401) {
                 $rootScope.$broadcast('unauthorized');
             }
             return response;
-        }
-    };
+        };
+    }
+    return ret;
 });

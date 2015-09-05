@@ -8,6 +8,10 @@ var yaml = require('js-yaml');
 var bodyParser = require('body-parser');
 var app = express();
 
+// set views
+app.set('views', __dirname + '/views');
+app.set('view engine', 'jade');
+
 // add-on swagger-ui
 app.use('/swagger', express.static('./node_modules/swagger-ui/dist'));
 
