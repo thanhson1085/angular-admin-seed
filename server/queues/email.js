@@ -8,21 +8,21 @@ consumer.name = 'email';
 
 var EmailTemplate = require('email-templates').EmailTemplate;
 var path = require('path');
-var templateDir = path.join(__dirname, '../views/emails/', 'welcome');
-var newsletter = new EmailTemplate(templateDir);
 
 consumer.task = function(job, done){
-    newsletter.render({username: job.data.username}, function (err, results) {
+    var data = job.data;
+    var templateDir = path.join(__dirname, '../views/emails/', data.template);
+    var letter = new EmailTemplate(templateDir);
+    letter.render({username: data.to}, function (err, results) {
         transporter.sendMail({
-            from: 'thanhson1085@gmail.com',
-            to: 'thanhson1085@gmail.com',
-            subject: 'hello world!',
+            from: config.get('mailer.from'),
+            to: data.to,
+            subject: data.title,
             html: results.html
 
         });
-      // result.html
-      // result.text
     });
+    done();
 };
 
 module.exports = consumer;
