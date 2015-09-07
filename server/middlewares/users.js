@@ -15,7 +15,7 @@ module.exports = function(req, res, next) {
                 throw('');
             }
         }).catch(function(){
-            res.status(401).send(JSON.stringify({}));
+            res.status(401).end(JSON.stringify({}));
         });
     }
     next();
