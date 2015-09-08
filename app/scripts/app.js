@@ -187,7 +187,7 @@ angular
             return config;
         }
     };
-    if (!$location.path() && $location.path() !== '/login') {
+    if ($location.path() !== '' && $location.path() !== '/login') {
         ret.responseError = function(response){
             if (response.status === 401) {
                 $rootScope.$broadcast('unauthorized');
