@@ -2,7 +2,8 @@ FROM ubuntu:14.04
 MAINTAINER Nguyen Sy Thanh Son <thanhson1085@gmail.com>
 
 RUN apt-get update && \
-    apt-get install -y supervisor sqlite3 build-essential wget git
+    apt-get install -y supervisor sqlite3 build-essential wget
+RUN apt-get install -y python-pip python-dev git
 RUN \
     cd /tmp && \
     wget http://nodejs.org/dist/node-latest.tar.gz && \
@@ -18,7 +19,6 @@ RUN \
     npm install -g npm && \
     printf '\n# Node.js\nexport PATH="node_modules/.bin:$PATH"' >> /root/.bashrc
 
-RUN apt-get install -y python-pip python-dev git
 
 RUN node -v && npm -v
 RUN npm install -g nodemon
