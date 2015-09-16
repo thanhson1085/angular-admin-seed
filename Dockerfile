@@ -29,7 +29,7 @@ WORKDIR /build
 ADD ./package.json /build/package.json
 ADD ./bower.json /build/bower.json
 # install all package
-RUN bower install
+RUN bower install --allow-root
 RUN npm install
 RUN npm install sqlite3 --save
 ADD . /build
