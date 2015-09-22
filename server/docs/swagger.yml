@@ -186,3 +186,48 @@ paths:
             description: Server Internal error
       tags:
         - Users
+
+  /api/v1/usermeta/update/{id}:
+    put:
+      summary: Update usermeta information
+      description: |
+          Update user information
+      parameters:
+        - name: id
+          in: path
+          description: User Id
+          required: true
+          type: string
+          format: string
+        - name: password
+          in: formData
+          description: password for login
+          required: true
+          type: string
+          format: string
+        - name: metaValue
+          in: formData
+          description: Metavalue
+          required: true
+          type: string
+          format: string
+        - name: metaKey
+          in: formData
+          description: Metakey
+          required: true
+          type: string
+          format: string
+      responses:
+        200:
+            description: Returns user info
+        401:
+            description: Unauthorized
+        400:
+            description: Bad Request
+        406:
+            description: Not Acceptable
+        500:
+            description: Server Internal error
+      tags:
+        - Usermeta
+
