@@ -36,5 +36,6 @@ You also can run it in Docker.
 ## Demo
 [angular-admin-seed](http://angular-admin-seed.sonnguyen.ws)
 
-
+[Starting to build a admin site with angularjs and nodejs](https://sonnguyen.ws/starting-to-build-a-admin-site-with-angularjs-and-nodejs/)
 ## License MIT
+Copyright (c) 2015 Nguyen Sy Thanh Son
