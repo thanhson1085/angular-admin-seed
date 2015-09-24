@@ -230,4 +230,30 @@ paths:
             description: Server Internal error
       tags:
         - Usermeta
+        
+  /api/v1/usermeta/view/{id}:
+    get:
+      summary: Usermeta details
+      description: |
+          Show usermeta details
+      parameters:
+        - name: id
+          in: path
+          description: page number
+          required: false
+          type: string
+          format: string
+      responses:
+        200:
+            description: Returns usermeta details
+        401:
+            description: Unauthorized
+        400:
+            description: Bad Request
+        406:
+            description: Not Acceptable
+        500:
+            description: Server Internal error
+      tags:
+        - Usermeta
 
