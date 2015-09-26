@@ -7,6 +7,7 @@ var fs = require('fs');
 var yaml = require('js-yaml');
 var bodyParser = require('body-parser');
 var app = express();
+var logger = require('morgan');
 
 // set views
 app.set('views', __dirname + '/views');
@@ -36,6 +37,9 @@ app.use(function(req, res, next){
     res.header('Access-Control-Allow-Headers', 'Authorization, Origin, X-Requested-With, Content-Type, Accept');
     next();
 });
+
+// enabled logger
+app.use(logger());
 
 // auth
 app.use(require('./middlewares/users'));
