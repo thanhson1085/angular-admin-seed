@@ -100,6 +100,7 @@ module.exports = function (grunt) {
             locales: {
                 files: [
                     '<%= yeoman.app %>/views/**/*.html',
+                    '<%= yeoman.app %>/scripts/controllers/*.js',
                     '<%= yeoman.app %>/scripts/directives/**/*.html'
                 ],
                 tasks: ['locales:update'],

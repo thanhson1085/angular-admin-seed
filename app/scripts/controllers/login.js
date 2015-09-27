@@ -7,7 +7,7 @@
  * Controller of the sbAdminApp
  */
 angular.module('sbAdminApp')
-    .controller('LoginCtrl', function($scope, Users, $cookies, $location, $rootScope) {
+    .controller('LoginCtrl', function($scope, Users, $cookies, $location, $rootScope, $translate) {
         var vm = this;
         // logout before login
         $rootScope.user_info = {};
@@ -19,7 +19,7 @@ angular.module('sbAdminApp')
                 vm.error = null;
                 $location.path('/dashboard/home');
             }).catch(function(){
-                vm.error = 'Access Denied!';
+                vm.error = $translate('controllers.login.AccessDenied');
             });
         };
     });

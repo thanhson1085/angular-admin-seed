@@ -19,7 +19,6 @@ router.get('/list/:page/:limit', function(req, res){
 
 // new meta 
 router.post('/create', function(req, res){
-    var hash = pass.hash(req.body.password);
     db.Usermeta.create({
         metaKey: req.body.metaKey,
         metaValue: req.body.metaValue
