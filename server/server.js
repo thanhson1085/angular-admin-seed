@@ -39,7 +39,7 @@ app.use(function(req, res, next){
 });
 
 // enabled logger
-app.use(logger());
+app.use(logger('combined'));
 
 // auth
 app.use(require('./middlewares/users'));
