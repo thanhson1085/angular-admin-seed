@@ -11,6 +11,7 @@ router.get('/list/:page/:limit', function(req, res){
     var offset = (req.params.page)? limit * (req.params.page - 1): 0;
     db.User.findAndCountAll({
         include: [],
+        order: 'id DESC',
         limit: limit,
         offset: offset
 

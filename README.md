@@ -18,7 +18,11 @@ This is a seed project. It will help you to easily start a Admin Site with Angul
 
 This project includes a simple server-side. So it is very easy for you to download and run.
 
+We use REDIS like Queue Messaging System. So be sure that before running this applicaction you have to install REDIS, GRUNT, BOWER.
+
+
 ## Installation
+  - Run `bowser install`
   - Run `npm install`
 
 
@@ -32,5 +36,6 @@ You also can run it in Docker.
 ## Demo
 [angular-admin-seed](http://angular-admin-seed.sonnguyen.ws)
 
-
+[Starting to build a admin site with angularjs and nodejs](https://sonnguyen.ws/starting-to-build-a-admin-site-with-angularjs-and-nodejs/)
 ## License MIT
+Copyright (c) 2015 Nguyen Sy Thanh Son
