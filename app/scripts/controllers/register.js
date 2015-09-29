@@ -17,12 +17,12 @@ angular.module('sbAdminApp')
                 lastname: vs.lastname
             };
             Users.register(userData).then(function(data){
-                $rootScope.user_info = data;
-                $cookies.put('user_info', JSON.stringify(data));
                 vs.error = null;
-                $location.path('/dashboard/home');
+                $location.path('/register/thankyou');
             }).catch(function(){
                 vs.error = 'Register Denied!';
             });
         };
+    })
+    .controller('ThankyouCtrl', function() {
     });
