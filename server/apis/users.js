@@ -41,9 +41,13 @@ router.post('/create', function(req, res){
                 user.dataValues.token = t.token;
                 var q = require('../queues');
                 q.create('email', {
-                    title: '[Site Admin] Welcome Email',
+                    title: '[Site Admin] Activation Email',
                     to: user.username,
-                    template: 'welcome'
+                    emailContent: {
+                        username: user.firstname,
+                        token: token
+                    },
+                    template: 'activate'
                 }).priority('high').save();
                 res.send(JSON.stringify(user));
             });

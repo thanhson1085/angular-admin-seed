@@ -24,5 +24,7 @@ angular.module('sbAdminApp')
             });
         };
     })
+    .controller('ActivateCtrl', function() {
+    })
     .controller('ThankyouCtrl', function() {
     });

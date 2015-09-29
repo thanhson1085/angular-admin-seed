@@ -13,7 +13,7 @@ consumer.task = function(job, done){
     var data = job.data;
     var templateDir = path.join(__dirname, '../views/emails/', data.template);
     var letter = new EmailTemplate(templateDir);
-    letter.render({username: data.to}, function (err, results) {
+    letter.render(data.emailContent, function (err, results) {
         transporter.sendMail({
             from: config.get('mailer.from'),
             to: data.to,

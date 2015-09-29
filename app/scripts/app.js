@@ -89,8 +89,23 @@ angular
     .state('thankyou',{
         templateUrl:'views/pages/thankyou.html',
         controller: 'ThankyouCtrl',
-        controllerAs: 'vs',
         url:'/thankyou',
+        resolve: {
+            loadMyDirectives:function($ocLazyLoad){
+                return $ocLazyLoad.load(
+                    {
+                        name:'sbAdminApp',
+                        files:[
+                            'scripts/controllers/register.js'
+                        ]
+                    });
+            }
+        }
+    })
+    .state('activate',{
+        templateUrl:'views/pages/activate.html',
+        controller: 'ActivateCtrl',
+        url:'/activate',
         resolve: {
             loadMyDirectives:function($ocLazyLoad){
                 return $ocLazyLoad.load(
@@ -185,7 +200,7 @@ angular
     $rootScope.user_info = JSON.parse(user_info);
     $rootScope.$on('$locationChangeStart', function () {
         // redirect to login page if not logged in and trying to access a restricted page
-        var restrictedPage = ['/login', '/register', '/thankyou'].indexOf($location.path()) > -1;
+        var restrictedPage = ['/login', '/register', '/thankyou', '/activate'].indexOf($location.path()) > -1;
         var loggedIn = ($rootScope.user_info)? $rootScope.user_info.token: false;
         if (!restrictedPage && !loggedIn){
             $location.path('/login');
