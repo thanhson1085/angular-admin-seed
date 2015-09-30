@@ -105,7 +105,7 @@ angular
     .state('activate',{
         templateUrl:'views/pages/activate.html',
         controller: 'ActivateCtrl',
-        url:'/activate',
+        url:'/activate/:token',
         resolve: {
             loadMyDirectives:function($ocLazyLoad){
                 return $ocLazyLoad.load(

@@ -5,7 +5,20 @@
             "login": "http://192.168.1.191:3000/api/v1/users/login",
             "get": "http://192.168.1.191:3000/api/v1/users/view/:id",
             "create": "http://192.168.1.191:3000/api/v1/users/create",
+            "activate": "http://192.168.1.191:3000/api/v1/users/activate",
             "update": "http://192.168.1.191:3000/api/v1/users/update/:id"
+        },
+        "options": {
+            "list": "http://192.168.1.191:3000/api/v1/options/list/:page/:limit",
+            "get": "http://192.168.1.191:3000/api/v1/options/view/:id",
+            "create": "http://192.168.1.191:3000/api/v1/options/create",
+            "update": "http://192.168.1.191:3000/api/v1/options/update/:id"
+        },
+        "usermeta": {
+            "list": "http://192.168.1.191:3000/api/v1/usermeta/list/:page/:limit",
+            "get": "http://192.168.1.191:3000/api/v1/usermeta/view/:id",
+            "create": "http://192.168.1.191:3000/api/v1/usermeta/create",
+            "update": "http://192.168.1.191:3000/api/v1/usermeta/update/:id"
         }
     },
     "pagination":{

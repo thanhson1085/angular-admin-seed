@@ -1,6 +1,7 @@
 'use strict';
 var express = require('express'), 
     router = express.Router(), 
+    config = require('config'),
     crypto = require('crypto'),
     db = require('../models'),
     pass = require('../helpers/password.js');
@@ -26,6 +27,7 @@ router.post('/create', function(req, res){
     db.User.create({
         username: req.body.username,
         password: hash.password,
+        isActivated: false,
         firstname: req.body.firstname,
         lastname: req.body.lastname,
         salt: hash.salt
@@ -45,7 +47,7 @@ router.post('/create', function(req, res){
                     to: user.username,
                     emailContent: {
                         username: user.firstname,
-                        token: token
+                        url: config.get('client.url') + '#/activate/' + t.token
                     },
                     template: 'activate'
                 }).priority('high').save();
@@ -96,13 +98,36 @@ router.put('/update/:id', function(req, res){
     });
 });
 
+// activate user
+router.post('/activate', function(req, res){
+    var t = req.body.token;
+    db.Token.find({ 
+        where: {
+            token: t
+        } ,
+        include: [db.User]
+    }).then(function(token) {
+        if (token) {
+            token.User.updateAttributes({
+                isActivated: true
+            }).then(function() {
+                token.User.dataValues.token = token.token;
+                res.send(JSON.stringify(token.User));
+            });
+        }
+    }).catch(function(e){
+        res.status(500).send(JSON.stringify(e));
+    });
+});
+
 // login
 router.post('/login', function(req, res){
     var username = req.body.username;
     var password = req.body.password;
     db.User.findOne({
         where: {
-            username: username
+            username: username,
+            isActivated: true
         }
     }).then(function(user){
         if (!pass.validate(user.password, password, user.salt)){

@@ -51,6 +51,26 @@ angular.module('sbAdminApp').factory('Users', function($http, httpi, $q, APP_CON
             }).error(deferred.reject);
             return deferred.promise;
         },
+        activate: function(token){
+            var deferred = $q.defer();
+            var url = APP_CONFIG.services.users.activate;
+            $http({
+                method: 'POST',
+                url: url,
+                data: { token: token },
+                transformRequest: function(obj) {
+                    var str = [];
+                    for(var p in obj){
+                        str.push(encodeURIComponent(p) + '=' + encodeURIComponent(obj[p]));
+                    }
+                    return str.join('&');
+                },
+                headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+            }).success(function(data) {
+                deferred.resolve(data);
+            }).error(deferred.reject);
+            return deferred.promise;
+        },
         update: function(data){
             var deferred = $q.defer();
             var url = APP_CONFIG.services.users.update;
