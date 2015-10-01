@@ -2,6 +2,7 @@
 var express = require('express'), 
     router = express.Router(), 
     config = require('config'),
+    moment = require('moment'),
     crypto = require('crypto'),
     db = require('../models'),
     pass = require('../helpers/password.js');
@@ -34,11 +35,12 @@ router.post('/create', function(req, res){
     }).then(function(user){
         crypto.randomBytes(64, function(ex, buf) {
             var token = buf.toString('base64').replace(/\//g,'_').replace(/\+/g,'-');
-            var now = new Date();
+            var today = moment();
+            var tomorrow = moment(today).add('seconds', config.get('token_expire'));
             db.Token.create({
                 UserId: user.id,
                 token: token,
-                expiredAt: now
+                expiredAt: tomorrow
             }).then(function(t){
                 user.dataValues.token = t.token;
                 var q = require('../queues');

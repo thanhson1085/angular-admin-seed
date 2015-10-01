@@ -112,7 +112,11 @@ angular
                     {
                         name:'sbAdminApp',
                         files:[
-                            'scripts/controllers/register.js'
+                            'scripts/controllers/register.js',
+                            'scripts/services/users.js',
+                            'scripts/services/httpi.js',
+                            'scripts/services/locale.js',
+                            'scripts/directives/locale/locale.js'
                         ]
                     });
             }
@@ -201,6 +205,7 @@ angular
     $rootScope.$on('$locationChangeStart', function () {
         // redirect to login page if not logged in and trying to access a restricted page
         var restrictedPage = ['/login', '/register', '/thankyou', '/activate'].indexOf($location.path()) > -1;
+        restrictedPage = restrictedPage || $location.path().indexOf('/activate/');
         var loggedIn = ($rootScope.user_info)? $rootScope.user_info.token: false;
         if (!restrictedPage && !loggedIn){
             $location.path('/login');
