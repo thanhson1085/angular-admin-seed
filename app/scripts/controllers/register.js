@@ -18,7 +18,7 @@ angular.module('sbAdminApp')
             };
             Users.register(userData).then(function(data){
                 vs.error = null;
-                $location.path('/register/thankyou');
+                $location.path('/thankyou');
             }).catch(function(){
                 vs.error = 'Register Denied!';
             });
