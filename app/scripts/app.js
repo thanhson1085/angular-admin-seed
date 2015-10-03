@@ -65,6 +65,27 @@ angular
             }
         }
     })
+    .state('install',{
+        templateUrl:'views/pages/install.html',
+        controller: 'InstallCtrl',
+        controllerAs: 'il',
+        url:'/install',
+        resolve: {
+            loadMyDirectives:function($ocLazyLoad){
+                return $ocLazyLoad.load(
+                    {
+                        name:'sbAdminApp',
+                        files:[
+                            'scripts/controllers/install.js',
+                            'scripts/services/options.js',
+                            'scripts/services/httpi.js',
+                            'scripts/services/locale.js',
+                            'scripts/directives/locale/locale.js'
+                        ]
+                    });
+            }
+        }
+    })
     .state('register',{
         templateUrl:'views/pages/register.html',
         controller: 'RegisterCtrl',
@@ -204,7 +225,7 @@ angular
     $rootScope.user_info = JSON.parse(user_info);
     $rootScope.$on('$locationChangeStart', function () {
         // redirect to login page if not logged in and trying to access a restricted page
-        var restrictedPage = ['/login', '/register', '/thankyou', '/activate'].indexOf($location.path()) > -1;
+        var restrictedPage = ['/install', '/login', '/register', '/thankyou', '/activate'].indexOf($location.path()) > -1;
         restrictedPage = restrictedPage || ($location.path().indexOf('/activate/') > -1);
         var loggedIn = ($rootScope.user_info)? $rootScope.user_info.token: false;
         if (!restrictedPage && !loggedIn){

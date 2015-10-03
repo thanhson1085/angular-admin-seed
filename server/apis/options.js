@@ -3,7 +3,7 @@ var express = require('express'),
     router = express.Router(), 
     db = require('../models');
 
-// list meta
+// list options
 router.get('/list/:page/:limit', function(req, res){
     var limit = (req.params.limit)? req.params.limit: 10;
     var offset = (req.params.page)? limit * (req.params.page - 1): 0;
@@ -17,7 +17,12 @@ router.get('/list/:page/:limit', function(req, res){
     });
 });
 
-// new meta 
+// config
+router.get('/config/:id', function(req, res){
+    res.send(JSON.stringify({}));
+});
+
+// new options
 router.post('/create', function(req, res){
     db.Option.create({
         metaKey: req.body.metaKey,
@@ -29,8 +34,8 @@ router.post('/create', function(req, res){
     });
 });
 
-// delete meta
-router.delete('/:id', function(req, res){
+// delete options
+router.delete('/delete/:id', function(req, res){
     res.send(JSON.stringify({}));
 });
 

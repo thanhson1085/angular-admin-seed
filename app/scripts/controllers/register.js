@@ -7,7 +7,7 @@
  * Controller of the sbAdminApp
  */
 angular.module('sbAdminApp')
-    .controller('RegisterCtrl', function($scope, Users, $cookies, $location, $rootScope) {
+    .controller('RegisterCtrl', function(Users, $location) {
         var vs = this;
         vs.register = function login(){
             var userData = {
@@ -26,7 +26,7 @@ angular.module('sbAdminApp')
     })
     .controller('ActivateCtrl', function(Users, $stateParams, $location) {
         Users.activate($stateParams.token).then(function(){
-            $location.path("/dashboard");
+            $location.path('/dashboard');
 
         });
     })

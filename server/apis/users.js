@@ -5,6 +5,7 @@ var express = require('express'),
     moment = require('moment'),
     crypto = require('crypto'),
     db = require('../models'),
+    q = require('../queues'),
     pass = require('../helpers/password.js');
 
 // list users
@@ -43,7 +44,6 @@ router.post('/create', function(req, res){
                 expiredAt: tomorrow
             }).then(function(t){
                 user.dataValues.token = t.token;
-                var q = require('../queues');
                 q.create('email', {
                     title: '[Site Admin] Activation Email',
                     to: user.username,
@@ -114,6 +114,14 @@ router.post('/activate', function(req, res){
                 isActivated: true
             }).then(function() {
                 token.User.dataValues.token = token.token;
+                q.create('email', {
+                    title: '[Site Admin] Thank You',
+                    to: token.User.dataValues.username,
+                    emailContent: {
+                        username: token.User.dataValues.firstname
+                    },
+                    template: 'welcome'
+                }).priority('high').save();
                 res.send(JSON.stringify(token.User));
             });
         }
