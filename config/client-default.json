@@ -12,6 +12,7 @@
             "list": "http://192.168.1.191:3000/api/v1/options/list/:page/:limit",
             "get": "http://192.168.1.191:3000/api/v1/options/view/:id",
             "create": "http://192.168.1.191:3000/api/v1/options/create",
+            "install": "http://192.168.1.191:3000/api/v1/options/install",
             "update": "http://192.168.1.191:3000/api/v1/options/update/:id"
         },
         "usermeta": {

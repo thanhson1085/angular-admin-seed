@@ -6,28 +6,28 @@
                     <h3 class="panel-title">Setup your Admin Site</h3>
                 </div>
                 <div class="panel-body">
-                    <div ng-show="vs.error" class="alert alert-danger">{{vs.error}}</div>
-                    <form name="form" ng-submit="vs.register()" role="form">
+                    <div ng-show="il.error" class="alert alert-danger">{{il.error}}</div>
+                    <form name="form" ng-submit="il.install()" role="form">
                         <fieldset>
                             <div class="form-group" ng-class="{ 'has-error': form.username.$dirty && form.username.$invalid }">
-                                <input type="email" placeholder="Username is an email" name="username" id="username" class="form-control" ng-model="vs.username" required />
+                                <input type="email" placeholder="Username is an email" name="username" id="username" class="form-control" ng-model="il.username" required />
                                 <span ng-show="form.username.$dirty && form.username.$error.required" class="help-block">Username is required</span>
                                 <span ng-show="form.username.$dirty && form.username.$error.email" class="help-block">Username is an email</span>
                             </div>
                             <div class="form-group" ng-class="{ 'has-error': form.password.$dirty && form.password.$invalid }">
-                                <input type="password" placeholder="Password" minlength=4 maxlength=20 name="password" id="password" class="form-control" ng-model="vs.password" required />
+                                <input type="password" placeholder="Password" minlength=4 maxlength=20 name="password" id="password" class="form-control" ng-model="il.password" required />
                                 <span ng-show="form.password.$dirty && form.password.$error.required" class="help-block">Password is required</span>
                                 <span ng-show="form.password.$dirty && form.password.$error.maxlength" class="help-block">Password max length is 20</span>
                                 <span ng-show="form.password.$dirty && form.password.$error.minlength" class="help-block">Password min length is 4</span>
                             </div>
                             <div class="form-group">
-                                <input type="text" placeholder="First Name" name="firstname" id="firstname" class="form-control" ng-model="vs.firstname"/>
+                                <input type="text" placeholder="First Name" name="firstname" id="firstname" class="form-control" ng-model="il.firstname"/>
                             </div>
                             <div class="form-group">
-                                <input type="text" placeholder="Last Name" name="lastname" id="lastname" class="form-control" ng-model="vs.lastname"/>
+                                <input type="text" placeholder="Last Name" name="lastname" id="lastname" class="form-control" ng-model="il.lastname"/>
                             </div>
                             <div class="form-actions">
-                                <button type="submit" class="btn btn-lg btn-success btn-block" ng-disabled="form.$invalid || vs.dataLoading" class="btn btn-primary">Register</button>
+                                <button type="submit" class="btn btn-lg btn-success btn-block" ng-disabled="form.$invalid || il.dataLoading" class="btn btn-primary">Install</button>
                             </div>
                         </fieldset>
                     </form>

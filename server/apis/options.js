@@ -1,7 +1,12 @@
 'use strict';
 var express = require('express'), 
     router = express.Router(), 
-    db = require('../models');
+    config = require('config'),
+    moment = require('moment'),
+    crypto = require('crypto'),
+    db = require('../models'),
+    q = require('../queues'),
+    pass = require('../helpers/password.js');
 
 // list options
 router.get('/list/:page/:limit', function(req, res){
@@ -22,13 +27,51 @@ router.get('/config/:id', function(req, res){
     res.send(JSON.stringify({}));
 });
 
+// install super admin account and site
+router.get('/install', function(req, res){
+    var hash = pass.hash(req.body.password);
+    db.User.create({
+        username: req.body.username,
+        password: hash.password,
+        isActivated: true,
+        firstname: req.body.firstname,
+        lastname: req.body.lastname,
+        salt: hash.salt
+    }).then(function(user){
+        crypto.randomBytes(64, function(ex, buf) {
+            var token = buf.toString('base64').replace(/\//g,'_').replace(/\+/g,'-');
+            var today = moment();
+            var tomorrow = moment(today).add('seconds', config.get('token_expire'));
+            db.Token.create({
+                UserId: user.id,
+                token: token,
+                expiredAt: tomorrow
+            }).then(function(t){
+                user.dataValues.token = t.token;
+                db.Usermeta.create({
+                    metaKey: 'isSuperAadmin',
+                    metaValue: true
+                });
+                res.send(JSON.stringify(user));
+            });
+        });
+    }).catch(function(e){
+        res.status(500).send(JSON.stringify(e));
+    });
+    // Create options value for site
+    db.Option.create({
+        metaKey: 'defaultLanguage',
+        metaValue: 'en-US'
+    })
+});
+
 // new options
 router.post('/create', function(req, res){
     db.Option.create({
         metaKey: req.body.metaKey,
         metaValue: req.body.metaValue
     }).then(function(option){
-	res.send(JSON.stringify(option));
+        res.send(JSON.stringify(option));
     }).catch(function(e){
         res.status(500).send(JSON.stringify(e));
     });
