@@ -5,7 +5,6 @@ var express = require('express'),
     moment = require('moment'),
     crypto = require('crypto'),
     db = require('../models'),
-    q = require('../queues'),
     pass = require('../helpers/password.js');
 
 // list options
@@ -28,7 +27,7 @@ router.get('/config/:id', function(req, res){
 });
 
 // install super admin account and site
-router.get('/install', function(req, res){
+router.post('/install', function(req, res){
     var hash = pass.hash(req.body.password);
     db.User.create({
         username: req.body.username,
@@ -59,10 +58,15 @@ router.get('/install', function(req, res){
         res.status(500).send(JSON.stringify(e));
     });
     // Create options value for site
-    db.Option.create({
-        metaKey: 'defaultLanguage',
-        metaValue: 'en-US'
-    })
+    var userFields = [ 
+        { name: 'phone', label: 'Phone', type: 'string' },
+        { name: 'address', label: 'Address', type: 'string' },
+        { name: 'defaultLanguage', label: 'Default Language', type: 'string' }
+    ];
+    db.Option.bulkCreate([
+        { metaKey: 'defaultLanguage', metaValue: 'en-US' },
+        { metaKey: 'userFields', metaValue: JSON.stringify(userFields) }
+    ]);
 });
 
 // new options

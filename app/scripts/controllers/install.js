@@ -7,20 +7,20 @@
  * Controller of the sbAdminApp
  */
 angular.module('sbAdminApp')
-    .controller('InstallCtrl', function(Options) {
+    .controller('InstallCtrl', function(Options, $location) {
         var il = this;
-        il.register = function login(){
+        il.install = function login(){
             var userData = {
                 username: il.username,
                 password: il.password,
                 firstname: il.firstname,
                 lastname: il.lastname
             };
-            Options.install(userData).then(function(data){
-                vs.error = null;
+            Options.install(userData).then(function(){
+                il.error = null;
                 $location.path('/login');
             }).catch(function(){
-                vs.error = 'Install Denied!';
+                il.error = 'Install Denied!';
             });
         };
     });
