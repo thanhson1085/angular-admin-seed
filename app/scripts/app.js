@@ -219,11 +219,19 @@ angular
     });
     $httpProvider.interceptors.push('httpRequestInterceptor');
 }])
-.run(['$location', '$cookies', '$rootScope', function($location, $cookies, $rootScope){
+.run(['$location', '$cookies', '$rootScope', 'getAppConfig', function($location, $cookies, $rootScope, getAppConfig){
     // keep user logged in after page refresh
     var user_info = $cookies.get('user_info') || '{}';
     $rootScope.user_info = JSON.parse(user_info);
     $rootScope.$on('$locationChangeStart', function () {
+
+        // get App Configuration
+        getAppConfig.get().then(function(data){
+            if (data.rows.length === 0){
+                $location.path('/install');
+            }
+        })
+
         // redirect to login page if not logged in and trying to access a restricted page
         var restrictedPage = ['/install', '/login', '/register', '/thankyou', '/activate'].indexOf($location.path()) > -1;
         restrictedPage = restrictedPage || ($location.path().indexOf('/activate/') > -1);
@@ -236,6 +244,21 @@ angular
         $location.path('/login');
     });
 }])
+.factory('getAppConfig', function($http, APP_CONFIG, $q) {
+    return {
+        get: function(){
+            var deferred = $q.defer();
+            var url = APP_CONFIG.services.options.config;
+            $http({
+                method: 'GET',
+                url: url
+            }).success(function(data) {
+                deferred.resolve(data);
+            }).error(deferred.reject);
+            return deferred.promise;
+        }
+    }
+})
 .factory('httpRequestInterceptor', function ($rootScope, $cookies, $location) {
     var ret = {
         request: function (config) {

@@ -19,7 +19,12 @@
         "username": "",
         "password": ""
     },
-    "unauthorization": ["/api/v1/options/install", "/api/v1/users/login", "/api/v1/users/create"],
+    "unauthorization": [
+        "/api/v1/options/install", 
+        "/api/v1/options/config", 
+        "/api/v1/users/login", 
+        "/api/v1/users/create"
+    ],
     "mailer": {
         "from": "no-reply@example.com",
         "host": "smtp.gmail.com",

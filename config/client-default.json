@@ -13,6 +13,7 @@
             "get": "http://192.168.1.191:3000/api/v1/options/view/:id",
             "create": "http://192.168.1.191:3000/api/v1/options/create",
             "install": "http://192.168.1.191:3000/api/v1/options/install",
+            "config": "http://192.168.1.191:3000/api/v1/options/config",
             "update": "http://192.168.1.191:3000/api/v1/options/update/:id"
         },
         "usermeta": {

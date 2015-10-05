@@ -16,14 +16,19 @@ router.get('/list/:page/:limit', function(req, res){
         limit: limit,
         offset: offset
 
-    }).then(function(users) {
-        res.send(JSON.stringify(users));
+    }).then(function(options) {
+        res.send(JSON.stringify(options));
     });
 });
 
 // config
-router.get('/config/:id', function(req, res){
-    res.send(JSON.stringify({}));
+router.get('/config', function(req, res){
+    db.Option.findAndCountAll({
+        include: []
+
+    }).then(function(options) {
+        res.send(JSON.stringify(options));
+    });
 });
 
 // install super admin account and site
@@ -40,7 +45,7 @@ router.post('/install', function(req, res){
         crypto.randomBytes(64, function(ex, buf) {
             var token = buf.toString('base64').replace(/\//g,'_').replace(/\+/g,'-');
             var today = moment();
-            var tomorrow = moment(today).add('seconds', config.get('token_expire'));
+            var tomorrow = moment(today).add(config.get('token_expire'), 'seconds');
             db.Token.create({
                 UserId: user.id,
                 token: token,
