@@ -226,9 +226,14 @@ angular
     $rootScope.$on('$locationChangeStart', function () {
 
         // get App Configuration
+        var appConfig = $cookies.get('appConfig') || '{}';
+        appConfig = JSON.parse('{}');
         getAppConfig.get().then(function(data){
             if (data.rows.length === 0){
                 $location.path('/install');
+            }
+            else{
+                $cookies.put('appConfig', JSON.stringify(data.rows));
             }
         })
 

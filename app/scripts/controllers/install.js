@@ -7,8 +7,14 @@
  * Controller of the sbAdminApp
  */
 angular.module('sbAdminApp')
-    .controller('InstallCtrl', function(Options, $location) {
+    .controller('InstallCtrl', function(Options, $location, $cookies) {
         var il = this;
+
+        var appConfig = $cookies.get('appConfig');
+        /// redirect to homepage if your site installed
+        if (appConfig){
+            $location.path('/');
+        }
         il.install = function login(){
             var userData = {
                 username: il.username,
