@@ -7,7 +7,8 @@ var fs = require('fs');
 var yaml = require('js-yaml');
 var bodyParser = require('body-parser');
 var app = express();
-var logger = require('morgan');
+var logger = require('./utils/logger');
+var morgan = require('morgan')({ 'stream': logger.stream });
 
 // set views
 app.set('views', __dirname + '/views');
@@ -39,7 +40,7 @@ app.use(function(req, res, next){
 });
 
 // enabled logger
-app.use(logger('combined'));
+app.use(morgan);
 
 // auth
 app.use(require('./middlewares/users'));

@@ -114,6 +114,7 @@ router.post('/activate', function(req, res){
                 isActivated: true
             }).then(function() {
                 token.User.dataValues.token = token.token;
+                // send email thankyou to user
                 q.create('email', {
                     title: '[Site Admin] Thank You',
                     to: token.User.dataValues.username,
@@ -122,6 +123,14 @@ router.post('/activate', function(req, res){
                     },
                     template: 'welcome'
                 }).priority('high').save();
+                // send email report to site admin
+                q.create('notify', {
+                    title: '[Site Admin] A new account registed',
+                    notifyContent: {
+                        username: token.User.dataValues.firstname
+                    },
+                    template: 'notifyNewAccount'
+                }).priority('low').save();
                 res.send(JSON.stringify(token.User));
             });
         }

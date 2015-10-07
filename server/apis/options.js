@@ -69,6 +69,7 @@ router.post('/install', function(req, res){
         { name: 'defaultLanguage', label: 'Default Language', type: 'string' }
     ];
     db.Option.bulkCreate([
+        { optionKey: 'email', optionValue: req.body.username },
         { optionKey: 'defaultLanguage', optionValue: 'en-US' },
         { optionKey: 'userFields', optionValue: JSON.stringify(userFields) }
     ]);
