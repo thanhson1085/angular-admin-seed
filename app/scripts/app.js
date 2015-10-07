@@ -228,14 +228,16 @@ angular
         // get App Configuration
         var appConfig = $cookies.get('appConfig') || '{}';
         appConfig = JSON.parse('{}');
-        getAppConfig.get().then(function(data){
-            if (data.rows.length === 0){
-                $location.path('/install');
-            }
-            else{
-                $cookies.put('appConfig', JSON.stringify(data.rows));
-            }
-        })
+        if (angular.equals({}, appConfig)){
+            getAppConfig.get().then(function(data){
+                if (data.rows.length === 0){
+                    $location.path('/install');
+                }
+                else{
+                    $cookies.put('appConfig', JSON.stringify(data.rows));
+                }
+            })
+        }
 
         // redirect to login page if not logged in and trying to access a restricted page
         var restrictedPage = ['/install', '/login', '/register', '/thankyou', '/activate'].indexOf($location.path()) > -1;
