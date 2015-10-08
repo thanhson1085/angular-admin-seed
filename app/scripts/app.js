@@ -223,6 +223,8 @@ angular
     // keep user logged in after page refresh
     var user_info = $cookies.get('user_info') || '{}';
     $rootScope.user_info = JSON.parse(user_info);
+    // clear appConfig
+    $cookies.remove('appConfig');
     $rootScope.$on('$locationChangeStart', function () {
 
         // get App Configuration

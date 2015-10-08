@@ -9,7 +9,7 @@
     "redis": {
         "host": "192.168.1.191",
         "port": "6379",
-        "password": "9asEitDaHoicCihapohavyahifeyFripmuDradwawb",
+        "password": null,
         "prefix": "q"
     },
     "db": {
@@ -23,6 +23,7 @@
         "/api/v1/options/install", 
         "/api/v1/options/config", 
         "/api/v1/users/login", 
+        "/api/v1/users/activate", 
         "/api/v1/users/create"
     ],
     "mailer": {

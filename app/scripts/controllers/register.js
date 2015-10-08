@@ -20,7 +20,7 @@ angular.module('sbAdminApp')
                 vs.error = null;
                 $location.path('/thankyou');
             }).catch(function(){
-                vs.error = 'Register Denied!';
+                vs.error = 'Register Denied, Your username is exists!';
             });
         };
     })

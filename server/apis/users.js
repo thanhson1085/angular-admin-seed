@@ -74,6 +74,9 @@ router.get('/view/:id', function(req, res){
             id: req.params.id
         }
     }).then(function(user){
+        // remove security attrivute
+        delete user.dataValues.password;
+        delete user.dataValues.salt;
         res.send(JSON.stringify(user));
     }).catch(function(e){
         res.status(500).send(JSON.stringify(e));
