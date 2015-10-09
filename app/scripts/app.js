@@ -229,7 +229,7 @@ angular
 
         // get App Configuration
         var appConfig = $cookies.get('appConfig') || '{}';
-        appConfig = JSON.parse('{}');
+        appConfig = JSON.parse(appConfig);
         if (angular.equals({}, appConfig)){
             getAppConfig.get().then(function(data){
                 if (data.rows.length === 0){
@@ -238,7 +238,7 @@ angular
                 else{
                     $cookies.put('appConfig', JSON.stringify(data.rows));
                 }
-            })
+            });
         }
 
         // redirect to login page if not logged in and trying to access a restricted page
@@ -266,7 +266,7 @@ angular
             }).error(deferred.reject);
             return deferred.promise;
         }
-    }
+    };
 })
 .factory('httpRequestInterceptor', function ($rootScope, $cookies, $location) {
     var ret = {

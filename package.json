@@ -8,6 +8,8 @@
   "dependencies": {
     "body-parser": "^1.13.3",
     "config": "^1.15.0",
+    "connect-busboy": "0.0.2",
+    "easyimage": "^2.1.0",
     "ejs": "^2.3.3",
     "email-templates": "^2.0.1",
     "express": "^4.13.3",

@@ -2,18 +2,25 @@
 var express = require('express'), 
     router = express.Router(), 
     fs = require('fs'),
+    logger = require('../utils/logger'),
+    q = require('../queues'),
     busboy = require('connect-busboy');
 
 router.use(busboy()); 
 
-router.post('/fileupload', function(req, res) {
+router.post('/', function(req, res) {
     var fstream;
     req.pipe(req.busboy);
     req.busboy.on('file', function (fieldname, file, filename) {
-        fstream = fs.createWriteStream(__dirname + '/files/' + filename);
+        var filePath = __dirname + '/../upload/' + filename;
+        fstream = fs.createWriteStream(filePath);
+        logger.info('Store file ' + filePath);
         file.pipe(fstream);
         fstream.on('close', function () {
-            res.redirect('back');
+            q.create('thumbnail', {
+                path: filePath
+            }).priority('high').save();
+            res.send(JSON.stringify({'path': __dirname + '/files/' + filename}));
         });
     });
 });
