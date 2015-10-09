@@ -13,6 +13,7 @@
   "views.users.list.Users": "views.users.list.Users",
   "views.users.setting.Settings": "views.users.setting.Settings",
   "views.users.setting.SettingsPanel": "views.users.setting.SettingsPanel",
+  "views.users.view.Avatar": "views.users.view.Avatar",
   "views.users.view.Firstname": "views.users.view.Firstname",
   "views.users.view.ID": "views.users.view.ID",
   "views.users.view.Lastname": "views.users.view.Lastname",

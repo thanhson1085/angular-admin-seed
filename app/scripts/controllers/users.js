@@ -24,10 +24,30 @@ angular.module('sbAdminApp')
     };
     $scope.forUnitTest = true;
 })
-.controller('ViewUserCtrl', function($scope, $stateParams, Users) {
+.controller('ViewUserCtrl', function($scope, $stateParams, Users, Upload, APP_CONFIG) {
     Users.get($stateParams.id).then(function(data){
         $scope.user = data;
     });
+
+    $scope.upload = function (files) {
+        if (files && files.length) {
+            for (var i = 0; i < files.length; i++) {
+                var file = files[i];
+                if (!file.$error) {
+                    Upload.upload({
+                        url: APP_CONFIG.services.upload.upload,
+                        file: file  
+                    }).progress(function (evt) {
+                        console.log(evt);
+                    }).success(function (data, status, headers, config) {
+                        $timeout(function() {
+                            $scope.log = 'file: ' + config.data.file.name + ', Response: ' + JSON.stringify(data) + '\n' + $scope.log;
+                        });
+                    });
+                }
+            }
+        }
+    };
 
     $scope.updateUser = function(){
         var userData = {

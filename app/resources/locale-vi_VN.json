@@ -13,6 +13,7 @@
   "views.users.list.Users": "Người sử dụng",
   "views.users.setting.Settings": "Cấu hình",
   "views.users.setting.SettingsPanel": "Bảng cấu hình",
+  "views.users.view.Avatar": "views.users.view.Avatar",
   "views.users.view.Firstname": "Họ",
   "views.users.view.ID": "ID",
   "views.users.view.Lastname": "Tên",
