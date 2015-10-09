@@ -2,6 +2,7 @@
 var express = require('express'), 
     router = express.Router(), 
     fs = require('fs'),
+    config = require('config'),
     logger = require('../utils/logger'),
     q = require('../queues'),
     busboy = require('connect-busboy');
@@ -20,7 +21,7 @@ router.post('/', function(req, res) {
             q.create('thumbnail', {
                 path: filePath
             }).priority('high').save();
-            res.send(JSON.stringify({'path': __dirname + '/files/' + filename}));
+            res.send(JSON.stringify({'path': config.get('server.url') + '/upload/' + filename}));
         });
     });
 });
