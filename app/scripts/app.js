@@ -217,6 +217,21 @@ angular
                 });
             }
         }
+    })
+    .state('dashboard.settings',{
+        templateUrl:'views/settings/list.html',
+        controller:'SettingCtrl',
+        url:'/settings',
+        resolve: {
+            loadMyFiles:function($ocLazyLoad) {
+                return $ocLazyLoad.load({
+                    name:'sbAdminApp',
+                    files:[
+                        'scripts/controllers/settings.js'
+                    ]
+                });
+            }
+        }
     });
     $httpProvider.interceptors.push('httpRequestInterceptor');
 }])
