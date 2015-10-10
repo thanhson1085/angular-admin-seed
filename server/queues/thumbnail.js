@@ -1,5 +1,4 @@
 'use strict';
-var config = require('config');
 var consumer = {};
 var logger = require('../utils/logger');
 var path = require('path');
@@ -23,7 +22,7 @@ consumer.task = function(job, done){
                 logger.error(err);
             }
         );
-    }
+    };
 
     // 100
     resize(100, 100);

@@ -16,7 +16,7 @@ angular.module('sbAdminApp')
                 firstname: vs.firstname,
                 lastname: vs.lastname
             };
-            Users.register(userData).then(function(data){
+            Users.register(userData).then(function(){
                 vs.error = null;
                 $location.path('/thankyou');
             }).catch(function(){

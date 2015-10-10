@@ -91,14 +91,12 @@ router.put('/update/:id', function(req, res){
             id: req.params.id
         } 
     }).then(function(user) {
-        console.log(req.body.avatar);
         if (user) {
             user.updateAttributes({
                 firstname: req.body.firstname,
                 lastname: req.body.lastname,
                 avatar: JSON.stringify(req.body.avatar)
             }).then(function() {
-                console.log(user.avatar);
                 user.dataValues.avatar = JSON.parse(user.dataValues.avatar);
                 res.send(JSON.stringify(user));
             });
