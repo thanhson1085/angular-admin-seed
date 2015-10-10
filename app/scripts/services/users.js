@@ -77,15 +77,7 @@ angular.module('sbAdminApp').factory('Users', function($http, httpi, $q, APP_CON
             httpi({
                 method: 'PUT',
                 url: url,
-                data: data,
-                transformRequest: function(obj) {
-                    var str = [];
-                    for(var p in obj){
-                        str.push(encodeURIComponent(p) + '=' + encodeURIComponent(obj[p]));
-                    }
-                    return str.join('&');
-                },
-                headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+                data: data
             }).success(function(data) {
                 deferred.resolve(data);
             }).error(deferred.reject);

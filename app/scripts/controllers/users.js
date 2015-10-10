@@ -24,28 +24,19 @@ angular.module('sbAdminApp')
     };
     $scope.forUnitTest = true;
 })
-.controller('ViewUserCtrl', function($scope, $stateParams, Users, Upload, APP_CONFIG) {
+.controller('ViewUserCtrl', function($scope, $stateParams, Users, Upload, Files) {
     Users.get($stateParams.id).then(function(data){
         $scope.user = data;
     });
 
     $scope.upload = function (files) {
         if (files && files.length) {
-            for (var i = 0; i < files.length; i++) {
-                var file = files[i];
-                if (!file.$error) {
-                    Upload.upload({
-                        url: APP_CONFIG.services.upload.upload,
-                        file: file  
-                    }).progress(function (evt) {
-                        console.log(evt);
-                    }).success(function (data, status, headers, config) {
-                        $timeout(function() {
-                            $scope.log = 'file: ' + config.data.file.name + ', Response: ' + JSON.stringify(data) + '\n' + $scope.log;
-                        });
-                    });
-                }
-            }
+            Files.upload(files).then(function (data) {
+                $scope.avatar = data;
+                $scope.updateUser();
+            }).catch(function(){
+                $scope.update_message = 'Upload failed';
+            });
         }
     };
 
@@ -53,9 +44,11 @@ angular.module('sbAdminApp')
         var userData = {
             id: $scope.user.id,
             firstname: $scope.user.firstname,
-            lastname: $scope.user.lastname
+            lastname: $scope.user.lastname,
+            avatar: $scope.avatar
         };
-        Users.update(userData).then(function(){
+        Users.update(userData).then(function(data){
+            $scope.user.avatar = data.avatar;
             $scope.update_message = 'Updated successfully!';
         });
     };

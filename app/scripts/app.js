@@ -157,6 +157,7 @@ angular
                             'scripts/directives/sidebar/sidebar.js',
                             'scripts/directives/sidebar/sidebar-search/sidebar-search.js',
                             'scripts/services/httpi.js',
+                            'scripts/services/files.js',
                             'scripts/services/locale.js',
                             'scripts/directives/locale/locale.js'
                         ]
