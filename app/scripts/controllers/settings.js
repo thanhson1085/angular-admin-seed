@@ -13,18 +13,24 @@ angular.module('sbAdminApp')
 
     $scope.userFields.optionValue = JSON.parse($scope.userFields.optionValue);
 
-    console.log($scope.userFields);
-
-    var optionData = {
-        id: $scope.userFields.id,
-        optionKey: 'userFields',
-        optionValue: $scope.userFields.optionValue
-    }
     $scope.updateUserField = function(){
+        var optionData = {
+            id: $scope.userFields.id,
+            optionKey: 'userFields',
+            optionValue: $scope.userFields.optionValue
+        };
         Options.update(optionData).then(function(data){
             console.log(data);
         });
 
+    };
+    $scope.addUserField = function(){
+        var optionValue = {
+            name: null,
+            label: null,
+            type: null
+        };
+        $scope.userFields.optionValue.push(optionValue);
     };
     $scope.forUnitTest = true;
 });

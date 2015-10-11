@@ -115,7 +115,7 @@ router.put('/update/:id', function(req, res){
         if (option) {
             option.updateAttributes({
                 optionKey: req.body.optionKey,
-                optionValue: req.body.optionValue
+                optionValue: JSON.stringify(req.body.optionValue)
             }).then(function() {
                 res.send(JSON.stringify(option));
             });
