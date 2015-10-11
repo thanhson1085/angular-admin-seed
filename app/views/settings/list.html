@@ -23,11 +23,11 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
+                            <tr ng-repeat="(key, userField) in userFields">
+                                <td>{{ key }}</td>
+                                <td>{{ userField.name }}</td>
+                                <td>{{ userField.label }}</td>
+                                <td>{{ userField.type }}</td>
                             </tr>
                         </tbody>
                     </table>

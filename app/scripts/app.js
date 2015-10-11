@@ -159,6 +159,7 @@ angular
                             'scripts/services/httpi.js',
                             'scripts/services/files.js',
                             'scripts/services/locale.js',
+                            'scripts/services/helper.js',
                             'scripts/directives/locale/locale.js'
                         ]
                     });
