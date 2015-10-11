@@ -19,15 +19,15 @@
                                 <th>#</th>
                                 <th translate="views.settings.list.Key"></th>
                                 <th translate="views.settings.list.Name"></th>
-                                <th translate="views.settings.list.CreatedAt"></th>
+                                <th translate="views.settings.list.Type"></th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr ng-repeat="(key, userField) in userFields">
+                            <tr ng-repeat="(key, userField) in userFields.optionValue">
                                 <td>{{ key }}</td>
-                                <td>{{ userField.name }}</td>
-                                <td>{{ userField.label }}</td>
-                                <td>{{ userField.type }}</td>
+                                <td><a href="#" editable-text="userField.name" onaftersave="updateUserField()">{{ userField.name || 'empty' }}</a></td>
+                                <td> <a href="#" editable-text="userField.label" onaftersave="updateUserField()">{{ userField.label || 'empty' }}</a></td>
+                                <td><a href="#" editable-text="userField.type" onaftersave="updateUserField()">{{ userField.type || 'empty' }}</a></td>
                             </tr>
                         </tbody>
                     </table>

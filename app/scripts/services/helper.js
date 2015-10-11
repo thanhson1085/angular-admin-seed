@@ -5,7 +5,7 @@ angular.module('sbAdminApp').factory('Helper', function () {
             var ret = options.filter(function(option){
                 return (option.optionKey === key);
             });
-            return JSON.parse(ret[0].optionValue);
+            return ret[0];
         }
     };
 });

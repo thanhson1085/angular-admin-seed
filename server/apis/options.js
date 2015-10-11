@@ -105,7 +105,7 @@ router.get('/view/:id', function(req, res){
     });
 });
 
-// update user
+// update options
 router.put('/update/:id', function(req, res){
     db.Option.find({ 
         where: {
@@ -114,8 +114,27 @@ router.put('/update/:id', function(req, res){
     }).then(function(option) {
         if (option) {
             option.updateAttributes({
-                metaKey: req.body.metaKey,
-                metaValue: req.body.metaValue
+                optionKey: req.body.optionKey,
+                optionValue: req.body.optionValue
+            }).then(function() {
+                res.send(JSON.stringify(option));
+            });
+        }
+    }).catch(function(e){
+        res.status(500).send(JSON.stringify(e));
+    });
+});
+
+// update option by option key
+router.put('/update/:optionKey', function(req, res){
+    db.Option.findOne({ 
+        where: {
+            optionKey: req.params.optionKey
+        } 
+    }).then(function(option) {
+        if (option) {
+            option.updateAttributes({
+                optionValue: req.body.optionValue
             }).then(function() {
                 res.send(JSON.stringify(option));
             });
