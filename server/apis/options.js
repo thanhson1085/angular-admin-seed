@@ -53,8 +53,9 @@ router.post('/install', function(req, res){
             }).then(function(t){
                 user.dataValues.token = t.token;
                 db.Usermeta.create({
+                    UserId: user.id,
                     metaKey: 'isSuperAadmin',
-                    metaValue: true
+                    metaValue: '1'
                 });
                 res.send(JSON.stringify(user));
             });

@@ -161,6 +161,7 @@ angular
                             'scripts/services/locale.js',
                             'scripts/services/helper.js',
                             'scripts/services/options.js',
+                            'scripts/services/usermeta.js',
                             'scripts/directives/locale/locale.js'
                         ]
                     });
