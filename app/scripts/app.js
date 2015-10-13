@@ -23,8 +23,16 @@ angular
     }
 
     $translateProvider.useStaticFilesLoader({
-        prefix: 'resources/locale-',
-        suffix: '.json'
+        files: [
+            {
+                prefix: 'resources/db-',
+                suffix: '.json'
+            },
+            {
+                prefix: 'resources/locale-',
+                suffix: '.json'
+            }
+        ]
     });
 
     $translateProvider.preferredLanguage(APP_CONFIG.locales.preferredLocale);
