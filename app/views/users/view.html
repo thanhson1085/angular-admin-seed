@@ -46,6 +46,11 @@
                                 </div>
                                 <div class="col-sm-6"><img ng-src="{{ user.avatar.thumbnails.s100 }}"></div>
                             </td>
+                        </tr>
+                        <tr ng-repeat="userField in userFields">
+                            <td>{{ userField.label | translate }}</td>
+                            <td><a href="#" editable-text="userField.name" onaftersave="updateUser()">{{userField.name || 'empty'}}</a></td>
+                        </tr>
                         </tbody>
                     </table>
                 </div>
