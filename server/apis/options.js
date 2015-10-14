@@ -54,7 +54,7 @@ router.post('/install', function(req, res){
                 user.dataValues.token = t.token;
                 db.Usermeta.create({
                     UserId: user.id,
-                    metaKey: 'isSuperAadmin',
+                    metaKey: 'isSuperAdmin',
                     metaValue: '1'
                 });
                 res.send(JSON.stringify(user));
@@ -65,9 +65,10 @@ router.post('/install', function(req, res){
     });
     // Create options value for site
     var userFields = [ 
-        { name: 'phone', label: 'Phone', type: 'string' },
-        { name: 'address', label: 'Address', type: 'string' },
-        { name: 'defaultLanguage', label: 'Default Language', type: 'string' }
+        { name: 'phone', label: 'usermeta.label.Phone', type: 'string' },
+        { name: 'address', label: 'usermeta.label.Address', type: 'string' },
+        { name: 'isSuperAdmin', label: 'usermeta.label.SuperAdmin', type: 'string' },
+        { name: 'defaultLanguage', label: 'usermeta.label.DefaultLanguage', type: 'string' }
     ];
     db.Option.bulkCreate([
         { optionKey: 'email', optionValue: req.body.username },

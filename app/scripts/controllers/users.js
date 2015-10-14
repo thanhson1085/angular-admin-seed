@@ -33,7 +33,14 @@ angular.module('sbAdminApp')
 
     var userId = Helper.getUserId();
     Usermeta.getDataByUserId(userId).then(function(data){
-        console.log(data);
+        var userFields = $scope.userFields;
+        for (var k in $scope.userFields){
+            var value = null;
+            if ($scope.userFields[k].name === data.metaKey) {
+                value = data.metaValue;
+            }
+            $scope.userFields[k].value = value;
+        }
     });
 
     $scope.upload = function (files) {

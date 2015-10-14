@@ -51,7 +51,7 @@ router.get('/view/:id', function(req, res){
 router.get('/getDataByUserId/:userId', function(req, res){
     db.Usermeta.find({
         where: {
-            id: req.params.userId
+            UserId: req.params.userId
         }
     }).then(function(usermeta){
         res.send(JSON.stringify(usermeta));
