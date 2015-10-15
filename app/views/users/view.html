@@ -49,7 +49,7 @@
                         </tr>
                         <tr ng-repeat="userField in userFields">
                             <td>{{ userField.label | translate }}</td>
-                            <td><a href="#" editable-text="userField.value" onaftersave="updateUser()">{{userField.value || 'empty'}}</a></td>
+                            <td><a href="#" editable-text="userField.value" onaftersave="updateUsermeta(userField)">{{userField.value || 'empty'}}</a></td>
                         </tr>
                         </tbody>
                     </table>

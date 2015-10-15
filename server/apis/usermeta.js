@@ -19,14 +19,34 @@ router.get('/list/:page/:limit', function(req, res){
 
 // new meta 
 router.post('/create', function(req, res){
-    db.Usermeta.create({
-        metaKey: req.body.metaKey,
-        metaValue: req.body.metaValue
-    }).then(function(usermeta){
-	res.send(JSON.stringify(usermeta));
-    }).catch(function(e){
-        res.status(500).send(JSON.stringify(e));
-    });
+    if (req.body.id) {
+        db.Usermeta.find({ 
+            where: {
+                id: req.body.id
+            } 
+        }).then(function(usermeta) {
+            if (usermeta) {
+                usermeta.updateAttributes({
+                    metaKey: req.body.metaKey,
+                    metaValue: req.body.metaValue
+                }).then(function() {
+                    res.send(JSON.stringify(usermeta));
+                });
+            }
+        }).catch(function(e){
+            res.status(500).send(JSON.stringify(e));
+        });
+    } else {
+        db.Usermeta.create({
+            UserId: req.body.UserId,
+            metaKey: req.body.metaKey,
+            metaValue: req.body.metaValue
+        }).then(function(usermeta){
+            res.send(JSON.stringify(usermeta));
+        }).catch(function(e){
+            res.status(500).send(JSON.stringify(e));
+        });
+    }
 });
 
 // delete meta
@@ -49,7 +69,7 @@ router.get('/view/:id', function(req, res){
 
 // user detail by userId
 router.get('/getDataByUserId/:userId', function(req, res){
-    db.Usermeta.find({
+    db.Usermeta.findAll({
         where: {
             UserId: req.params.userId
         }

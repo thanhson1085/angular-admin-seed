@@ -36,10 +36,16 @@ angular.module('sbAdminApp')
         var userFields = $scope.userFields;
         for (var k in $scope.userFields){
             var value = null;
-            if ($scope.userFields[k].name === data.metaKey) {
-                value = data.metaValue;
+            var id = null
+            for (var i in data) {
+                if ($scope.userFields[k].name === data[i].metaKey) {
+                    value = data[i].metaValue;
+                    id = data[i].id;
+                    break;
+                }
             }
             $scope.userFields[k].value = value;
+            $scope.userFields[k].id = id;
         }
     });
 
@@ -52,6 +58,19 @@ angular.module('sbAdminApp')
                 $scope.update_message = 'Upload failed';
             });
         }
+    };
+
+    $scope.updateUsermeta = function(uF){
+        var data = {
+            id: uF.id,
+            UserId: $scope.user.id,
+            metaKey: uF.name,
+            metaValue: uF.value
+        };
+        Usermeta.create(data).then(function(res){
+            console.log(res);
+        });
+
     };
 
     $scope.updateUser = function(){
