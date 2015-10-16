@@ -4,7 +4,7 @@
   "directives.sidebar.Settings": "Settings",
   "directives.sidebar.Users": "Users",
   "views.activate.Activation": "Activation",
-  "views.activate.ActivationMessage": "The activation is successfull. Please login",
+  "views.activate.ActivationMessage": "The activation is successfull. Redirecting to login page ...",
   "views.settings.list.AddRow": "Add Row",
   "views.settings.list.Key": "Key",
   "views.settings.list.ListOfUserFields": "List of User Fields",

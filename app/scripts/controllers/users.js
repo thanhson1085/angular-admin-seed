@@ -33,10 +33,9 @@ angular.module('sbAdminApp')
 
     var userId = Helper.getUserId();
     Usermeta.getDataByUserId(userId).then(function(data){
-        var userFields = $scope.userFields;
         for (var k in $scope.userFields){
             var value = null;
-            var id = null
+            var id = null;
             for (var i in data) {
                 if ($scope.userFields[k].name === data[i].metaKey) {
                     value = data[i].metaValue;

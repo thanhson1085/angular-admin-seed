@@ -24,10 +24,11 @@ angular.module('sbAdminApp')
             });
         };
     })
-    .controller('ActivateCtrl', function(Users, $stateParams, $location) {
+    .controller('ActivateCtrl', function(Users, $stateParams, $location, $timeout) {
         Users.activate($stateParams.token).then(function(){
-            $location.path('/dashboard');
-
+            $timeout(function() {
+                $location.path('/dashboard');
+            }, 5000);
         });
     })
     .controller('ThankyouCtrl', function() {

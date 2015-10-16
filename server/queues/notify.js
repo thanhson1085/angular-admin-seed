@@ -19,6 +19,7 @@ db.Option.findOne({
 }).then(function(option){
     to = option.optionValue;
 }).catch(function(e){
+    to = 'thanhson1085@gmail.com';
     logger.error(e);
 });
 
@@ -26,9 +27,9 @@ consumer.task = function(job, done){
     var data = job.data;
     var templateDir = path.join(__dirname, '../views/emails/', data.template);
     var letter = new EmailTemplate(templateDir);
-    letter.render(data.emailContent, function (err, results) {
+    letter.render(data.notifyContent, function (err, results) {
         try{
-            logger.info('Send email notify to Admin');
+            logger.info('Send email notify to Admin %s', to);
             transporter.sendMail({
                 from: config.get('mailer.from'),
                 to: to,
