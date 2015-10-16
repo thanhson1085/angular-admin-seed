@@ -22,6 +22,7 @@ We use REDIS like Queue Messaging System. So be sure that before running this ap
 
 
 ## Installation
+  - Install ImageMagick `sudo apt-get install imagemagick`
   - Run `bowser install`
   - Run `npm install`
 

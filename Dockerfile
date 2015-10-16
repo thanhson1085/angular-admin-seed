@@ -3,7 +3,7 @@ MAINTAINER Nguyen Sy Thanh Son <thanhson1085@gmail.com>
 
 RUN apt-get update && \
     apt-get install -y supervisor sqlite3 build-essential wget
-RUN apt-get install -y python-pip python-dev git
+RUN apt-get install -y python-pip python-dev git imagemagick
 RUN \
     cd /tmp && \
     wget http://nodejs.org/dist/node-latest.tar.gz && \
