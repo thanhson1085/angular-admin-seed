@@ -8,13 +8,18 @@
   "dependencies": {
     "body-parser": "^1.13.3",
     "config": "^1.15.0",
+    "connect-busboy": "0.0.2",
+    "easyimage": "^2.1.0",
     "ejs": "^2.3.3",
     "email-templates": "^2.0.1",
     "express": "^4.13.3",
+    "grunt": "^0.4.5",
     "grunt-locales": "git+https://github.com/thanhson1085/grunt-locales.git",
+    "grunt-ngdocs": "^0.2.9",
     "js-yaml": "^3.4.0",
     "kue": "^0.9.4",
     "lodash": "^3.10.1",
+    "moment": "^2.10.6",
     "morgan": "^1.6.1",
     "mysql": "^2.9.0",
     "nodemailer": "^1.4.0",
@@ -23,7 +28,8 @@
     "pg-hstore": "^2.3.2",
     "sequelize": "^3.6.0",
     "sqlite3": "^3.0.10",
-    "swagger-ui": "^2.1.2"
+    "swagger-ui": "^2.1.2",
+    "winston": "^1.0.2"
   },
   "devDependencies": {
     "grunt": "^0.4.1",

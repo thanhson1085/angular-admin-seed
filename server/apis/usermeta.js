@@ -19,18 +19,38 @@ router.get('/list/:page/:limit', function(req, res){
 
 // new meta 
 router.post('/create', function(req, res){
-    db.Usermeta.create({
-        metaKey: req.body.metaKey,
-        metaValue: req.body.metaValue
-    }).then(function(usermeta){
-	res.send(JSON.stringify(usermeta));
-    }).catch(function(e){
-        res.status(500).send(JSON.stringify(e));
-    });
+    if (req.body.id) {
+        db.Usermeta.find({ 
+            where: {
+                id: req.body.id
+            } 
+        }).then(function(usermeta) {
+            if (usermeta) {
+                usermeta.updateAttributes({
+                    metaKey: req.body.metaKey,
+                    metaValue: req.body.metaValue
+                }).then(function() {
+                    res.send(JSON.stringify(usermeta));
+                });
+            }
+        }).catch(function(e){
+            res.status(500).send(JSON.stringify(e));
+        });
+    } else {
+        db.Usermeta.create({
+            UserId: req.body.UserId,
+            metaKey: req.body.metaKey,
+            metaValue: req.body.metaValue
+        }).then(function(usermeta){
+            res.send(JSON.stringify(usermeta));
+        }).catch(function(e){
+            res.status(500).send(JSON.stringify(e));
+        });
+    }
 });
 
 // delete meta
-router.delete('/:id', function(req, res){
+router.delete('/delete/:id', function(req, res){
     res.send(JSON.stringify({}));
 });
 
@@ -39,6 +59,19 @@ router.get('/view/:id', function(req, res){
     db.Usermeta.findOne({
         where: {
             id: req.params.id
+        }
+    }).then(function(usermeta){
+        res.send(JSON.stringify(usermeta));
+    }).catch(function(e){
+        res.status(500).send(JSON.stringify(e));
+    });
+});
+
+// user detail by userId
+router.get('/getDataByUserId/:userId', function(req, res){
+    db.Usermeta.findAll({
+        where: {
+            UserId: req.params.userId
         }
     }).then(function(usermeta){
         res.send(JSON.stringify(usermeta));

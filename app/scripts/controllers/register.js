@@ -7,7 +7,7 @@
  * Controller of the sbAdminApp
  */
 angular.module('sbAdminApp')
-    .controller('RegisterCtrl', function($scope, Users, $cookies, $location, $rootScope) {
+    .controller('RegisterCtrl', function(Users, $location) {
         var vs = this;
         vs.register = function login(){
             var userData = {
@@ -16,13 +16,20 @@ angular.module('sbAdminApp')
                 firstname: vs.firstname,
                 lastname: vs.lastname
             };
-            Users.register(userData).then(function(data){
-                $rootScope.user_info = data;
-                $cookies.put('user_info', JSON.stringify(data));
+            Users.register(userData).then(function(){
                 vs.error = null;
-                $location.path('/dashboard/home');
+                $location.path('/thankyou');
             }).catch(function(){
-                vs.error = 'Register Denied!';
+                vs.error = 'Register Denied, Your username is exists!';
             });
         };
+    })
+    .controller('ActivateCtrl', function(Users, $stateParams, $location, $timeout) {
+        Users.activate($stateParams.token).then(function(){
+            $timeout(function() {
+                $location.path('/dashboard');
+            }, 5000);
+        });
+    })
+    .controller('ThankyouCtrl', function() {
     });

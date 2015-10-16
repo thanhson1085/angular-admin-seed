@@ -2,24 +2,37 @@
 var nodemailer = require('nodemailer');
 var smtpTransport = require('nodemailer-smtp-transport');
 var config = require('config');
+var db = require('../models');
 var consumer = {};
-var transporter = nodemailer.createTransport(smtpTransport(config.get('mailer')));
 var logger = require('../utils/logger');
-consumer.name = 'email';
+var transporter = nodemailer.createTransport(smtpTransport(config.get('mailer')));
+consumer.name = 'notify';
 
 var EmailTemplate = require('email-templates').EmailTemplate;
 var path = require('path');
+
+var to = '';
+db.Option.findOne({
+    where: {
+        optionKey: 'email'
+    }
+}).then(function(option){
+    to = option.optionValue;
+}).catch(function(e){
+    to = 'thanhson1085@gmail.com';
+    logger.error(e);
+});
 
 consumer.task = function(job, done){
     var data = job.data;
     var templateDir = path.join(__dirname, '../views/emails/', data.template);
     var letter = new EmailTemplate(templateDir);
-    letter.render(data.emailContent, function (err, results) {
+    letter.render(data.notifyContent, function (err, results) {
         try{
-            logger.info('Send the activation link to user', data);
+            logger.info('Send email notify to Admin %s', to);
             transporter.sendMail({
                 from: config.get('mailer.from'),
-                to: data.to,
+                to: to,
                 subject: data.title,
                 html: results.html
             });

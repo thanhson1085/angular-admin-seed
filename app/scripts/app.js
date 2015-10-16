@@ -23,8 +23,16 @@ angular
     }
 
     $translateProvider.useStaticFilesLoader({
-        prefix: 'resources/locale-',
-        suffix: '.json'
+        files: [
+            {
+                prefix: 'resources/db-',
+                suffix: '.json'
+            },
+            {
+                prefix: 'resources/locale-',
+                suffix: '.json'
+            }
+        ]
     });
 
     $translateProvider.preferredLanguage(APP_CONFIG.locales.preferredLocale);
@@ -65,11 +73,68 @@ angular
             }
         }
     })
+    .state('install',{
+        templateUrl:'views/pages/install.html',
+        controller: 'InstallCtrl',
+        controllerAs: 'il',
+        url:'/install',
+        resolve: {
+            loadMyDirectives:function($ocLazyLoad){
+                return $ocLazyLoad.load(
+                    {
+                        name:'sbAdminApp',
+                        files:[
+                            'scripts/controllers/install.js',
+                            'scripts/services/options.js',
+                            'scripts/services/httpi.js',
+                            'scripts/services/locale.js',
+                            'scripts/directives/locale/locale.js'
+                        ]
+                    });
+            }
+        }
+    })
     .state('register',{
         templateUrl:'views/pages/register.html',
         controller: 'RegisterCtrl',
         controllerAs: 'vs',
         url:'/register',
+        resolve: {
+            loadMyDirectives:function($ocLazyLoad){
+                return $ocLazyLoad.load(
+                    {
+                        name:'sbAdminApp',
+                        files:[
+                            'scripts/controllers/register.js',
+                            'scripts/services/users.js',
+                            'scripts/services/httpi.js',
+                            'scripts/services/locale.js',
+                            'scripts/directives/locale/locale.js'
+                        ]
+                    });
+            }
+        }
+    })
+    .state('thankyou',{
+        templateUrl:'views/pages/thankyou.html',
+        controller: 'ThankyouCtrl',
+        url:'/thankyou',
+        resolve: {
+            loadMyDirectives:function($ocLazyLoad){
+                return $ocLazyLoad.load(
+                    {
+                        name:'sbAdminApp',
+                        files:[
+                            'scripts/controllers/register.js'
+                        ]
+                    });
+            }
+        }
+    })
+    .state('activate',{
+        templateUrl:'views/pages/activate.html',
+        controller: 'ActivateCtrl',
+        url:'/activate/:token',
         resolve: {
             loadMyDirectives:function($ocLazyLoad){
                 return $ocLazyLoad.load(
@@ -100,7 +165,11 @@ angular
                             'scripts/directives/sidebar/sidebar.js',
                             'scripts/directives/sidebar/sidebar-search/sidebar-search.js',
                             'scripts/services/httpi.js',
+                            'scripts/services/files.js',
                             'scripts/services/locale.js',
+                            'scripts/services/helper.js',
+                            'scripts/services/options.js',
+                            'scripts/services/usermeta.js',
                             'scripts/directives/locale/locale.js'
                         ]
                     });
@@ -159,18 +228,51 @@ angular
                 });
             }
         }
+    })
+    .state('dashboard.settings',{
+        templateUrl:'views/settings/list.html',
+        controller:'SettingCtrl',
+        url:'/settings',
+        resolve: {
+            loadMyFiles:function($ocLazyLoad) {
+                return $ocLazyLoad.load({
+                    name:'sbAdminApp',
+                    files:[
+                        'scripts/controllers/settings.js'
+                    ]
+                });
+            }
+        }
     });
     $httpProvider.interceptors.push('httpRequestInterceptor');
 }])
-.run(['$location', '$cookies', '$rootScope', function($location, $cookies, $rootScope){
+.run(['$location', '$cookies', '$rootScope', 'getAppConfig', function($location, $cookies, $rootScope, getAppConfig){
     // keep user logged in after page refresh
     var user_info = $cookies.get('user_info') || '{}';
     $rootScope.user_info = JSON.parse(user_info);
+    // clear appConfig
+    $cookies.remove('appConfig');
     $rootScope.$on('$locationChangeStart', function () {
+
+        // get App Configuration
+        var appConfig = $cookies.get('appConfig') || '{}';
+        appConfig = JSON.parse(appConfig);
+        if (angular.equals({}, appConfig)){
+            getAppConfig.get().then(function(data){
+                if (data.rows.length === 0){
+                    $location.path('/install');
+                }
+                else{
+                    $cookies.put('appConfig', JSON.stringify(data.rows));
+                }
+            });
+        }
+
         // redirect to login page if not logged in and trying to access a restricted page
-        var restrictedPage = ($location.path() !== '/login') && ($location.path() !== '/register');
+        var restrictedPage = ['/install', '/login', '/register', '/thankyou', '/activate'].indexOf($location.path()) > -1;
+        restrictedPage = restrictedPage || ($location.path().indexOf('/activate/') > -1);
         var loggedIn = ($rootScope.user_info)? $rootScope.user_info.token: false;
-        if (restrictedPage && !loggedIn){
+        if (!restrictedPage && !loggedIn){
             $location.path('/login');
         }
     });
@@ -178,6 +280,21 @@ angular
         $location.path('/login');
     });
 }])
+.factory('getAppConfig', function($http, APP_CONFIG, $q) {
+    return {
+        get: function(){
+            var deferred = $q.defer();
+            var url = APP_CONFIG.services.options.config;
+            $http({
+                method: 'GET',
+                url: url
+            }).success(function(data) {
+                deferred.resolve(data);
+            }).error(deferred.reject);
+            return deferred.promise;
+        }
+    };
+})
 .factory('httpRequestInterceptor', function ($rootScope, $cookies, $location) {
     var ret = {
         request: function (config) {

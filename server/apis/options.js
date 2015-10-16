@@ -1,9 +1,13 @@
 'use strict';
 var express = require('express'), 
     router = express.Router(), 
-    db = require('../models');
+    config = require('config'),
+    moment = require('moment'),
+    crypto = require('crypto'),
+    db = require('../models'),
+    pass = require('../helpers/password.js');
 
-// list meta
+// list options
 router.get('/list/:page/:limit', function(req, res){
     var limit = (req.params.limit)? req.params.limit: 10;
     var offset = (req.params.page)? limit * (req.params.page - 1): 0;
@@ -12,25 +16,81 @@ router.get('/list/:page/:limit', function(req, res){
         limit: limit,
         offset: offset
 
-    }).then(function(users) {
-        res.send(JSON.stringify(users));
+    }).then(function(options) {
+        res.send(JSON.stringify(options));
     });
 });
 
-// new meta 
+// config
+router.get('/config', function(req, res){
+    db.Option.findAndCountAll({
+        include: []
+
+    }).then(function(options) {
+        res.send(JSON.stringify(options));
+    });
+});
+
+// install super admin account and site
+router.post('/install', function(req, res){
+    var hash = pass.hash(req.body.password);
+    db.User.create({
+        username: req.body.username,
+        password: hash.password,
+        isActivated: true,
+        firstname: req.body.firstname,
+        lastname: req.body.lastname,
+        salt: hash.salt
+    }).then(function(user){
+        crypto.randomBytes(64, function(ex, buf) {
+            var token = buf.toString('base64').replace(/\//g,'_').replace(/\+/g,'-');
+            var today = moment();
+            var tomorrow = moment(today).add(config.get('token_expire'), 'seconds');
+            db.Token.create({
+                UserId: user.id,
+                token: token,
+                expiredAt: tomorrow
+            }).then(function(t){
+                user.dataValues.token = t.token;
+                db.Usermeta.create({
+                    UserId: user.id,
+                    metaKey: 'isSuperAdmin',
+                    metaValue: '1'
+                });
+                res.send(JSON.stringify(user));
+            });
+        });
+    }).catch(function(e){
+        res.status(500).send(JSON.stringify(e));
+    });
+    // Create options value for site
+    var userFields = [ 
+        { name: 'phone', label: 'usermeta.label.Phone', type: 'string' },
+        { name: 'address', label: 'usermeta.label.Address', type: 'string' },
+        { name: 'isSuperAdmin', label: 'usermeta.label.SuperAdmin', type: 'string' },
+        { name: 'defaultLanguage', label: 'usermeta.label.DefaultLanguage', type: 'string' }
+    ];
+    db.Option.bulkCreate([
+        { optionKey: 'email', optionValue: req.body.username },
+        { optionKey: 'defaultLanguage', optionValue: 'en-US' },
+        { optionKey: 'userFields', optionValue: JSON.stringify(userFields) }
+    ]);
+});
+
+// new options
 router.post('/create', function(req, res){
     db.Option.create({
         metaKey: req.body.metaKey,
         metaValue: req.body.metaValue
     }).then(function(option){
-	res.send(JSON.stringify(option));
+        res.send(JSON.stringify(option));
     }).catch(function(e){
         res.status(500).send(JSON.stringify(e));
     });
 });
 
-// delete meta
-router.delete('/:id', function(req, res){
+// delete options
+router.delete('/delete/:id', function(req, res){
     res.send(JSON.stringify({}));
 });
 
@@ -47,7 +107,7 @@ router.get('/view/:id', function(req, res){
     });
 });
 
-// update user
+// update options
 router.put('/update/:id', function(req, res){
     db.Option.find({ 
         where: {
@@ -56,8 +116,27 @@ router.put('/update/:id', function(req, res){
     }).then(function(option) {
         if (option) {
             option.updateAttributes({
-                metaKey: req.body.metaKey,
-                metaValue: req.body.metaValue
+                optionKey: req.body.optionKey,
+                optionValue: JSON.stringify(req.body.optionValue)
+            }).then(function() {
+                res.send(JSON.stringify(option));
+            });
+        }
+    }).catch(function(e){
+        res.status(500).send(JSON.stringify(e));
+    });
+});
+
+// update option by option key
+router.put('/update/:optionKey', function(req, res){
+    db.Option.findOne({ 
+        where: {
+            optionKey: req.params.optionKey
+        } 
+    }).then(function(option) {
+        if (option) {
+            option.updateAttributes({
+                optionValue: req.body.optionValue
             }).then(function() {
                 res.send(JSON.stringify(option));
             });

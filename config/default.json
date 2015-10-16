@@ -1,11 +1,16 @@
 {
     "server": {
-        "port": 3000
+        "port": 3000,
+        "url": "http://192.168.1.191:3000"
+    },
+    "token_expire": 3600,
+    "client": {
+        "url": "http://192.168.1.191:9000/"
     },
     "redis": {
         "host": "192.168.1.191",
         "port": "6379",
-        "password": "9asEitDaHoicCihapohavyahifeyFripmuDradwawb",
+        "password": null,
         "prefix": "q"
     },
     "db": {
@@ -15,7 +20,13 @@
         "username": "",
         "password": ""
     },
-    "unauthorization": ["/api/v1/users/login", "/api/v1/users/create"],
+    "unauthorization": [
+        "/api/v1/options/install", 
+        "/api/v1/options/config", 
+        "/api/v1/users/login", 
+        "/api/v1/users/activate", 
+        "/api/v1/users/create"
+    ],
     "mailer": {
         "from": "no-reply@example.com",
         "host": "smtp.gmail.com",

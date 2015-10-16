@@ -7,7 +7,8 @@ var fs = require('fs');
 var yaml = require('js-yaml');
 var bodyParser = require('body-parser');
 var app = express();
-var logger = require('morgan');
+var logger = require('./utils/logger');
+var morgan = require('morgan')({ 'stream': logger.stream });
 
 // set views
 app.set('views', __dirname + '/views');
@@ -29,6 +30,9 @@ app.get('/docs', function(req, res){
     res.send(JSON.stringify(docs));
 });
 
+// images
+app.use('/upload', express.static(__dirname + '/upload'));
+
 // add modification header
 app.use(function(req, res, next){
     res.header('Content-Type', 'application/json');
@@ -39,7 +43,7 @@ app.use(function(req, res, next){
 });
 
 // enabled logger
-app.use(logger('combined'));
+app.use(morgan);
 
 // auth
 app.use(require('./middlewares/users'));
@@ -51,7 +55,7 @@ db.sequelize.sync().then(function () {
     var server = app.listen(port, function () {
         var host = server.address().address;
         var port = server.address().port;
-        console.log('Server start at http://%s:%s', host, port);
+        logger.info('Server start at http://%s:%s', host, port);
     });
 });
 

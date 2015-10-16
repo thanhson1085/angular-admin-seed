@@ -1,0 +1,42 @@
+<div class="row">
+    <div class="col-lg-12">
+        <h1 class="page-header" translate="views.settings.list.Settings"></h1>
+    </div>
+    <!-- /.col-lg-12 -->
+</div>
+<!-- /.row -->
+<div class="row">
+    <div class="col-lg-12">
+        <div class="panel panel-default">
+            <div class="panel-heading" translate="views.settings.list.ListOfUserFields">
+            </div>
+            <!-- /.panel-heading -->
+            <div class="panel-body">
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th translate="views.settings.list.Key"></th>
+                                <th translate="views.settings.list.Name"></th>
+                                <th translate="views.settings.list.Type"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="(key, userField) in userFields.optionValue">
+                                <td>{{ key }}</td>
+                                <td><a href="#" editable-text="userField.name" onaftersave="updateUserField()">{{ userField.name || 'empty' }}</a></td>
+                                <td> <a href="#" editable-text="userField.label" onaftersave="updateUserField()">{{ userField.label || 'empty' }}</a></td>
+                                <td><a href="#" editable-text="userField.type" onaftersave="updateUserField()">{{ userField.type || 'empty' }}</a></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <button class="btn btn-default" ng-click="addUserField()" translate="views.settings.list.AddRow"></button>
+                </div>
+                <!-- /.table-responsive -->
+            </div>
+            <!-- /.panel-body -->
+        </div>
+    </div>
+    <!-- /.col-lg-12 -->
+</div>

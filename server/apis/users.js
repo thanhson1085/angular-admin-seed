@@ -1,8 +1,11 @@
 'use strict';
 var express = require('express'), 
     router = express.Router(), 
+    config = require('config'),
+    moment = require('moment'),
     crypto = require('crypto'),
     db = require('../models'),
+    q = require('../queues'),
     pass = require('../helpers/password.js');
 
 // list users
@@ -26,24 +29,29 @@ router.post('/create', function(req, res){
     db.User.create({
         username: req.body.username,
         password: hash.password,
+        isActivated: false,
         firstname: req.body.firstname,
         lastname: req.body.lastname,
         salt: hash.salt
     }).then(function(user){
         crypto.randomBytes(64, function(ex, buf) {
             var token = buf.toString('base64').replace(/\//g,'_').replace(/\+/g,'-');
-            var now = new Date();
+            var today = moment();
+            var tomorrow = moment(today).add('seconds', config.get('token_expire'));
             db.Token.create({
                 UserId: user.id,
                 token: token,
-                expiredAt: now
+                expiredAt: tomorrow
             }).then(function(t){
                 user.dataValues.token = t.token;
-                var q = require('../queues');
                 q.create('email', {
-                    title: '[Site Admin] Welcome Email',
+                    title: '[Site Admin] Activation Email',
                     to: user.username,
-                    template: 'welcome'
+                    emailContent: {
+                        username: user.firstname,
+                        url: config.get('client.url') + '#/activate/' + t.token
+                    },
+                    template: 'activate'
                 }).priority('high').save();
                 res.send(JSON.stringify(user));
             });
@@ -66,6 +74,10 @@ router.get('/view/:id', function(req, res){
             id: req.params.id
         }
     }).then(function(user){
+        // remove security attrivute
+        delete user.dataValues.password;
+        delete user.dataValues.salt;
+        user.dataValues.avatar = JSON.parse(user.dataValues.avatar);
         res.send(JSON.stringify(user));
     }).catch(function(e){
         res.status(500).send(JSON.stringify(e));
@@ -82,9 +94,50 @@ router.put('/update/:id', function(req, res){
         if (user) {
             user.updateAttributes({
                 firstname: req.body.firstname,
-                lastname: req.body.lastname
+                lastname: req.body.lastname,
+                avatar: JSON.stringify(req.body.avatar)
             }).then(function() {
+                user.dataValues.avatar = JSON.parse(user.dataValues.avatar);
                 res.send(JSON.stringify(user));
+            });
+        }
+    }).catch(function(e){
+        res.status(500).send(JSON.stringify(e));
+    });
+});
+
+// activate user
+router.post('/activate', function(req, res){
+    var t = req.body.token;
+    db.Token.find({ 
+        where: {
+            token: t
+        } ,
+        include: [db.User]
+    }).then(function(token) {
+        if (token) {
+            token.User.updateAttributes({
+                isActivated: true
+            }).then(function() {
+                token.User.dataValues.token = token.token;
+                // send email thankyou to user
+                q.create('email', {
+                    title: '[Site Admin] Thank You',
+                    to: token.User.dataValues.username,
+                    emailContent: {
+                        username: token.User.dataValues.firstname
+                    },
+                    template: 'welcome'
+                }).priority('high').save();
+                // send email report to site admin
+                q.create('notify', {
+                    title: '[Site Admin] A new account registed',
+                    notifyContent: {
+                        username: token.User.dataValues.firstname
+                    },
+                    template: 'notifyNewAccount'
+                }).priority('low').save();
+                res.send(JSON.stringify(token.User));
             });
         }
     }).catch(function(e){
@@ -98,7 +151,8 @@ router.post('/login', function(req, res){
     var password = req.body.password;
     db.User.findOne({
         where: {
-            username: username
+            username: username,
+            isActivated: true
         }
     }).then(function(user){
         if (!pass.validate(user.password, password, user.salt)){

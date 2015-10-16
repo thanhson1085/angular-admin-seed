@@ -11,12 +11,16 @@ module.exports = function(sequelize, DataTypes){
             type: DataTypes.STRING,
             allowNull: false
         },
+        isActivated: {
+            type: DataTypes.BOOLEAN(),
+            allowNull: false
+        },
         salt: {
             type: DataTypes.STRING,
             allowNull: false
         },
         avatar: {
-            type: DataTypes.STRING,
+            type: DataTypes.TEXT('long'),
             allowNull: true
         },
         firstname: {
@@ -28,6 +32,7 @@ module.exports = function(sequelize, DataTypes){
             allowNull: true
         }
     }, {
+        indexes: [{ fields: ['isActivated'] }],
         classMethods: {
             associate: function(models) {
                 User.hasMany(models.Token);

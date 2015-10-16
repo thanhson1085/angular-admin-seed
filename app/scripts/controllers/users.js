@@ -24,18 +24,63 @@ angular.module('sbAdminApp')
     };
     $scope.forUnitTest = true;
 })
-.controller('ViewUserCtrl', function($scope, $stateParams, Users) {
+.controller('ViewUserCtrl', function($scope, $stateParams, Users, Upload, Files, Usermeta, Helper) {
     Users.get($stateParams.id).then(function(data){
         $scope.user = data;
     });
+
+    $scope.userFields = Helper.getUserFields();
+
+    var userId = Helper.getUserId();
+    Usermeta.getDataByUserId(userId).then(function(data){
+        for (var k in $scope.userFields){
+            var value = null;
+            var id = null;
+            for (var i in data) {
+                if ($scope.userFields[k].name === data[i].metaKey) {
+                    value = data[i].metaValue;
+                    id = data[i].id;
+                    break;
+                }
+            }
+            $scope.userFields[k].value = value;
+            $scope.userFields[k].id = id;
+        }
+    });
+
+    $scope.upload = function (files) {
+        if (files && files.length) {
+            Files.upload(files).then(function (data) {
+                $scope.avatar = data;
+                $scope.updateUser();
+            }).catch(function(){
+                $scope.update_message = 'Upload failed';
+            });
+        }
+    };
+
+    $scope.updateUsermeta = function(uF){
+        var data = {
+            id: uF.id,
+            UserId: $scope.user.id,
+            metaKey: uF.name,
+            metaValue: uF.value
+        };
+        Usermeta.create(data).then(function(res){
+            console.log(res);
+        });
+
+    };
 
     $scope.updateUser = function(){
         var userData = {
             id: $scope.user.id,
             firstname: $scope.user.firstname,
-            lastname: $scope.user.lastname
+            lastname: $scope.user.lastname,
+            avatar: $scope.avatar
         };
-        Users.update(userData).then(function(){
+        Users.update(userData).then(function(data){
+            $scope.user.avatar = data.avatar;
             $scope.update_message = 'Updated successfully!';
         });
     };

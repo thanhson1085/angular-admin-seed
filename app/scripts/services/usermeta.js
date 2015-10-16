@@ -31,21 +31,27 @@ angular.module('sbAdminApp').factory('Usermeta', function($http, httpi, $q, APP_
             }).error(deferred.reject);
             return deferred.promise;
         },
+        getDataByUserId: function(userId){
+            var deferred = $q.defer();
+            var url = APP_CONFIG.services.usermeta.getDataByUserId;
+            httpi({
+                method: 'GET',
+                url: url,
+                data: {
+                    userId: userId
+                }
+            }).success(function(data) {
+                deferred.resolve(data);
+            }).error(deferred.reject);
+            return deferred.promise;
+        },
         create: function(data){
             var deferred = $q.defer();
             var url = APP_CONFIG.services.usermeta.create;
             httpi({
                 method: 'POST',
                 url: url,
-                data: data,
-                transformRequest: function(obj) {
-                    var str = [];
-                    for(var p in obj){
-                        str.push(encodeURIComponent(p) + '=' + encodeURIComponent(obj[p]));
-                    }
-                    return str.join('&');
-                },
-                headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+                data: data
             }).success(function(data) {
                 deferred.resolve(data);
             }).error(deferred.reject);
@@ -57,15 +63,7 @@ angular.module('sbAdminApp').factory('Usermeta', function($http, httpi, $q, APP_
             httpi({
                 method: 'PUT',
                 url: url,
-                data: data,
-                transformRequest: function(obj) {
-                    var str = [];
-                    for(var p in obj){
-                        str.push(encodeURIComponent(p) + '=' + encodeURIComponent(obj[p]));
-                    }
-                    return str.join('&');
-                },
-                headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+                data: data
             }).success(function(data) {
                 deferred.resolve(data);
             }).error(deferred.reject);
