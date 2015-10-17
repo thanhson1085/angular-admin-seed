@@ -31,8 +31,7 @@ angular.module('sbAdminApp')
 
     $scope.userFields = Helper.getUserFields();
 
-    var userId = Helper.getUserId();
-    Usermeta.getDataByUserId(userId).then(function(data){
+    Usermeta.getDataByUserId($stateParams.id).then(function(data){
         for (var k in $scope.userFields){
             var value = null;
             var id = null;

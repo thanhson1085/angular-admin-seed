@@ -1,5 +1,6 @@
 {
   "usermeta.label.Phone": "Phone",
   "usermeta.label.Address": "Address",
-  "usermeta.label.DefaultLanguage": "Default Language"
+  "usermeta.label.DefaultLanguage": "Default Language",
+  "usermeta.label.SuperAdmin": "Super Admin"
 }
