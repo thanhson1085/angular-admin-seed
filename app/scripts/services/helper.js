@@ -14,7 +14,7 @@ angular.module('sbAdminApp').factory('Helper', function ($cookies) {
             });
             return JSON.parse(ret[0].optionValue);
         },
-        getUserId: function () {
+        getCurrentUserId: function () {
             var userInfo = JSON.parse($cookies.get('user_info'));
             return userInfo.id;
         }

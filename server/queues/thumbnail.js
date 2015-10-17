@@ -12,7 +12,7 @@ consumer.task = function(job, done){
     var file = path.basename(data.path,extension);
     var resize = function(x,y){
         easyimg.resize({
-            src: data.path, dst: path.join(__dirname ,'/../upload/', 
+            src: path.join(data.path), dst: path.join(__dirname ,'/../upload/', 
                                            file + '-thumbnail-' + x + 'x' + y + extension),
             width: x,
             height: y
