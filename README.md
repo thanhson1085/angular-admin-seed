@@ -15,6 +15,7 @@ This is a seed project. It will help you to easily start a Admin Site with Angul
 
 ## To do
 - Privileges
+- Term & Taxonomies
 
 This project includes a simple server-side. So it is very easy for you to download and run.
 
