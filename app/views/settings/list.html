@@ -27,7 +27,7 @@
                                 <td>{{ key }}</td>
                                 <td><a href="#" editable-text="userField.name" onaftersave="updateUserField()">{{ userField.name || 'empty' }}</a></td>
                                 <td> <a href="#" editable-text="userField.label" onaftersave="updateUserField()">{{ userField.label || 'empty' }}</a></td>
-                                <td><a href="#" editable-text="userField.type" onaftersave="updateUserField()">{{ userField.type || 'empty' }}</a></td>
+                                <td><a href="#" editable-select="userField.type" onaftersave="updateUserField()"  e-ng-options="s.value as s.text for s in optionTypes">{{ userField.type || 'empty' }}</a></td>
                             </tr>
                         </tbody>
                     </table>

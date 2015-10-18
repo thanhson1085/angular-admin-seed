@@ -9,6 +9,13 @@
 angular.module('sbAdminApp')
 .controller('SettingCtrl', function($scope, $cookies, Helper, Options) {
     var appConfig = JSON.parse($cookies.get('appConfig'));
+
+    $scope.optionTypes = [
+        {text: 'text', value: 'text' },
+        {text: 'checkbox', value: 'checkbox' },
+        {text: 'textarea', value: 'textarea' },
+        {text: 'select', value: 'select' },
+    ];
     $scope.userFields = Helper.getOptionValueByKey('userFields', appConfig);
 
     $scope.userFields.optionValue = JSON.parse($scope.userFields.optionValue);

@@ -63,17 +63,25 @@ router.post('/install', function(req, res){
     }).catch(function(e){
         res.status(500).send(JSON.stringify(e));
     });
+
     // Create options value for site
     var userFields = [ 
-        { name: 'phone', label: 'usermeta.label.Phone', type: 'string' },
-        { name: 'address', label: 'usermeta.label.Address', type: 'string' },
-        { name: 'isSuperAdmin', label: 'usermeta.label.SuperAdmin', type: 'string' },
-        { name: 'defaultLanguage', label: 'usermeta.label.DefaultLanguage', type: 'string' }
+        { name: 'phone', label: 'userfields.label.Phone', type: 'text' },
+        { name: 'address', label: 'userfields.label.Address', type: 'textarea' },
+        { name: 'gender', label: 'userfields.label.Gender', type: 'textarea' },
+        { name: 'defaultLanguage', label: 'userfields.label.DefaultLanguage', type: 'checkbox' }
     ];
+
+    // User Capacities
+    var userCapacities = [ 
+        { name: 'edit_user_profile', label: 'usermeta.label.EditUserProfile', value: ''}
+    ];
+
     db.Option.bulkCreate([
         { optionKey: 'email', optionValue: req.body.username },
         { optionKey: 'defaultLanguage', optionValue: 'en-US' },
-        { optionKey: 'userFields', optionValue: JSON.stringify(userFields) }
+        { optionKey: 'userFields', optionValue: JSON.stringify(userFields) },
+        { optionKey: 'userCapacities', optionValue: JSON.stringify(userCapacities) }
     ]);
 });
 
