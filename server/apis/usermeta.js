@@ -12,8 +12,8 @@ router.get('/list/:page/:limit', function(req, res){
         limit: limit,
         offset: offset
 
-    }).then(function(users) {
-        res.send(JSON.stringify(users));
+    }).then(function(usermeta) {
+        res.send(JSON.stringify(usermeta));
     });
 });
 

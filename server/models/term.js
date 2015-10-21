@@ -8,6 +8,22 @@ module.exports = function(sequelize, DataTypes){
             type: DataTypes.STRING,
             allowNull: false
         },
+        taxonomy: {
+            type: DataTypes.STRING,
+            allowNull: false
+        },
+        description: {
+            type: DataTypes.STRING,
+            allowNull: false
+        },
+        parent: {
+            type: DataTypes.INTEGER,
+            allowNull: true
+        },
+        count: {
+            type: DataTypes.INTEGER,
+            allowNull: true
+        },
         order: {
             type: DataTypes.INTEGER,
             allowNull: true
@@ -16,7 +32,7 @@ module.exports = function(sequelize, DataTypes){
         indexes: [{ fields: ['slug'] }],
         classMethods: {
             associate: function(models) {
-                Term.hasMany(models.TermTaxonomy);
+                Term.hasMany(models.TermRelationship);
             }
         }
     });
