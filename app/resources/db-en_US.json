@@ -1,6 +1,6 @@
 {
-  "usermeta.label.Phone": "Phone",
-  "usermeta.label.Address": "Address",
-  "usermeta.label.DefaultLanguage": "Default Language",
-  "usermeta.label.SuperAdmin": "Super Admin"
+  "userfields.label.Phone": "Phone",
+  "userfields.label.Address": "Address",
+  "userfields.label.DefaultLanguage": "Default Language",
+  "userfields.label.SuperAdmin": "Super Admin"
 }

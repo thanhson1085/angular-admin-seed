@@ -29,7 +29,6 @@ angular.module('sbAdminApp')
         Options.update(optionData).then(function(data){
             console.log(data);
         });
-
     };
 
     // add a new user fields
@@ -44,6 +43,19 @@ angular.module('sbAdminApp')
 
     $scope.taxonomies = Helper.getOptionValueByKey('taxonomies', appConfig);
     $scope.taxonomies.optionValue = JSON.parse($scope.taxonomies.optionValue);
+
+    // update a taxonomy
+    $scope.updateTaxonomy = function(){
+        var optionData = {
+            id: $scope.taxonomies.id,
+            optionKey: 'taxonomies',
+            optionValue: $scope.taxonomies.optionValue
+        };
+        Options.update(optionData).then(function(data){
+            console.log(data);
+        });
+    };
+
     // add a new taxonomy
     $scope.addTaxonomy = function(){
         var optionValue = {
