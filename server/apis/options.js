@@ -74,14 +74,21 @@ router.post('/install', function(req, res){
 
     // User Capacities
     var userCapacities = [ 
-        { name: 'edit_user_profile', label: 'usermeta.label.EditUserProfile', value: ''}
+        { name: 'editUserProfile', label: 'usermeta.label.EditUserProfile', value: ''}
+    ];
+
+    // Taxonomies
+    var taxonomies = [ 
+        { name: 'category', label: 'taxonomy.label.Category', description: 'Categories'},
+        { name: 'tag', label: 'taxonomy.label.Tag', description: 'Tags'}
     ];
 
     db.Option.bulkCreate([
         { optionKey: 'email', optionValue: req.body.username },
         { optionKey: 'defaultLanguage', optionValue: 'en-US' },
         { optionKey: 'userFields', optionValue: JSON.stringify(userFields) },
-        { optionKey: 'userCapacities', optionValue: JSON.stringify(userCapacities) }
+        { optionKey: 'userCapacities', optionValue: JSON.stringify(userCapacities) },
+        { optionKey: 'taxonomies', optionValue: JSON.stringify(taxonomies) }
     ]);
 });
 

@@ -17,9 +17,9 @@ angular.module('sbAdminApp')
         {text: 'select', value: 'select' },
     ];
     $scope.userFields = Helper.getOptionValueByKey('userFields', appConfig);
-
     $scope.userFields.optionValue = JSON.parse($scope.userFields.optionValue);
 
+    // update a user field
     $scope.updateUserField = function(){
         var optionData = {
             id: $scope.userFields.id,
@@ -31,6 +31,8 @@ angular.module('sbAdminApp')
         });
 
     };
+
+    // add a new user fields
     $scope.addUserField = function(){
         var optionValue = {
             name: null,
@@ -38,6 +40,18 @@ angular.module('sbAdminApp')
             type: null
         };
         $scope.userFields.optionValue.push(optionValue);
+    };
+
+    $scope.taxonomies = Helper.getOptionValueByKey('taxonomies', appConfig);
+    $scope.taxonomies.optionValue = JSON.parse($scope.taxonomies.optionValue);
+    // add a new taxonomy
+    $scope.addTaxonomy = function(){
+        var optionValue = {
+            name: null,
+            label: null,
+            description: null
+        };
+        $scope.taxonomies.optionValue.push(optionValue);
     };
     $scope.forUnitTest = true;
 });

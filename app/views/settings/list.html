@@ -40,3 +40,40 @@
     </div>
     <!-- /.col-lg-12 -->
 </div>
+
+<!-- /.row -->
+<div class="row">
+    <div class="col-lg-12">
+        <div class="panel panel-default">
+            <div class="panel-heading" translate="views.settings.list.ListOfTaxonomies">
+            </div>
+            <!-- /.panel-heading -->
+            <div class="panel-body">
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th translate="views.settings.list.Key"></th>
+                                <th translate="views.settings.list.Name"></th>
+                                <th translate="views.settings.list.Description"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="(key, taxonomy) in taxonomies.optionValue">
+                                <td>{{ key }}</td>
+                                <td><a href="#" editable-text="taxonomy.name" onaftersave="updateTaxonomy()">{{ taxonomy.name || 'empty' }}</a></td>
+                                <td> <a href="#" editable-text="taxonomy.label" onaftersave="updateTaxonomy()">{{ taxonomy.label || 'empty' }}</a></td>
+                                <td><a href="#" editable-textarea="taxonomy.description" onaftersave="updateTaxonomy()">{{ taxonomy.description || 'empty' }}</a></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <button class="btn btn-default" ng-click="addTaxonomy()" translate="views.settings.list.AddRow"></button>
+                </div>
+                <!-- /.table-responsive -->
+            </div>
+            <!-- /.panel-body -->
+        </div>
+    </div>
+    <!-- /.col-lg-12 -->
+</div>

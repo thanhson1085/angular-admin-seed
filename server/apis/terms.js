@@ -48,7 +48,7 @@ router.get('/view/:id', function(req, res){
     });
 });
 
-// update user
+// update term
 router.put('/update/:id', function(req, res){
     db.Terms.find({ 
         where: {
