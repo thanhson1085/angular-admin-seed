@@ -4,10 +4,13 @@ var express = require('express'),
     db = require('../models');
 
 // list term
-router.get('/list/:page/:limit', function(req, res){
+router.get('/list/:taxonomy/:page/:limit', function(req, res){
     var limit = (req.params.limit)? req.params.limit: 10;
     var offset = (req.params.page)? limit * (req.params.page - 1): 0;
-    db.Terms.findAndCountAll({
+    db.Term.findAndCountAll({
+        where: {
+            taxonomy: req.params.taxonomy
+        },
         include: [],
         limit: limit,
         offset: offset
@@ -19,7 +22,7 @@ router.get('/list/:page/:limit', function(req, res){
 
 // new term
 router.post('/create', function(req, res){
-    db.Terms.create({
+    db.Term.create({
         slug: req.body.slug,
         name: req.body.name,
         description: req.body.description
@@ -37,7 +40,7 @@ router.delete('/delete/:id', function(req, res){
 
 // term detail
 router.get('/view/:id', function(req, res){
-    db.Terms.findOne({
+    db.Term.findOne({
         where: {
             id: req.params.id
         }
@@ -50,7 +53,7 @@ router.get('/view/:id', function(req, res){
 
 // update term
 router.put('/update/:id', function(req, res){
-    db.Terms.find({ 
+    db.Term.find({ 
         where: {
             id: req.params.id
         } 

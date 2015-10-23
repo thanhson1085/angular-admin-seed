@@ -29,7 +29,7 @@ module.exports = function(sequelize, DataTypes){
             allowNull: true
         }
     }, {
-        indexes: [{ fields: ['slug'] }],
+        indexes: [{ fields: ['slug', 'taxonomy'] }],
         classMethods: {
             associate: function(models) {
                 Term.hasMany(models.TermRelationship);

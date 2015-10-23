@@ -193,6 +193,22 @@ angular
             }
         }
     })
+    .state('dashboard.terms',{
+        url:'/terms/:taxonomy/:page/:limit',
+        controller:'ListTermCtrl',
+        templateUrl:'views/terms/list.html',
+        resolve: {
+            loadMyFiles:function($ocLazyLoad) {
+                return $ocLazyLoad.load({
+                    name:'sbAdminApp',
+                    files:[
+                        'scripts/controllers/terms.js',
+                        'scripts/services/terms.js',
+                    ]
+                });
+            }
+        }
+    })
     .state('dashboard.user_setting',{
         templateUrl:'views/users/setting.html',
         url:'/users/setting',
