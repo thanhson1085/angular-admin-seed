@@ -18,6 +18,8 @@
   "views.terms.list.Name": "views.terms.list.Name",
   "views.terms.list.Parent": "views.terms.list.Parent",
   "views.terms.list.Slug": "views.terms.list.Slug",
+  "views.terms.view.ID": "views.terms.view.ID",
+  "views.terms.view.Username": "views.terms.view.Username",
   "views.thankyou.ThankYou": "views.thankyou.ThankYou",
   "views.thankyou.ThankYouMessage": "views.thankyou.ThankYouMessage",
   "views.users.list.CreatedAt": "views.users.list.CreatedAt",

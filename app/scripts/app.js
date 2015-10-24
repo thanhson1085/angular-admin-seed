@@ -209,6 +209,22 @@ angular
             }
         }
     })
+    .state('dashboard.term_new',{
+        url:'/terms/:taxonomy/new',
+        controller:'NewTermCtrl',
+        templateUrl:'views/terms/new.html',
+        resolve: {
+            loadMyFiles:function($ocLazyLoad) {
+                return $ocLazyLoad.load({
+                    name:'sbAdminApp',
+                    files:[
+                        'scripts/controllers/terms.js',
+                        'scripts/services/terms.js',
+                    ]
+                });
+            }
+        }
+    })
     .state('dashboard.user_setting',{
         templateUrl:'views/users/setting.html',
         url:'/users/setting',

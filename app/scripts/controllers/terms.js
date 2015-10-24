@@ -3,7 +3,7 @@
  * @ngdoc function
  * @name sbAdminApp.controller:TermCtrl
  * @description
- * # UserCtrl
+ * # TermCtrl
  * Controller of the sbAdminApp
  */
 angular.module('sbAdminApp')
@@ -14,14 +14,25 @@ angular.module('sbAdminApp')
     var taxonomy = $stateParams.taxonomy;
     $scope.limit = limit;
     Terms.list(taxonomy, page, limit).then(function(data){
-        $scope.users = data.rows;
+        $scope.terms = data.rows;
         $scope.count = data.count;
     });
 
     $scope.pageChanged = function() {
-        Users.list($scope.current_page, limit).then(function(response){
-            $scope.users = response.rows;
+        Terms.list(taxonomy, $scope.current_page, limit).then(function(response){
+            $scope.terms = response.rows;
         });
     };
     $scope.forUnitTest = true;
 })
+.controller('NewTermCtrl', function($scope, $stateParams, Terms, APP_CONFIG) {
+    $scope.taxonomy = $stateParams.taxonomy;
+
+    $scope.createTerm = function(taxonomy) {
+        $scope.term.taxonomy = taxonomy;
+        Terms.create($scope.term).then(function(data){
+            console.log(data);
+        });
+    };
+    $scope.forUnitTest = true;
+});

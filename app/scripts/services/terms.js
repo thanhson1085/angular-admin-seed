@@ -17,6 +17,18 @@ angular.module('sbAdminApp').factory('Terms', function($http, httpi, $q, APP_CON
                 deferred.resolve(data);
             }).error(deferred.reject);
             return deferred.promise;
+        },
+        create: function(data){
+            var deferred = $q.defer();
+            var url = APP_CONFIG.services.terms.create;
+            httpi({
+                method: 'POST',
+                url: url,
+                data: data
+            }).success(function(data) {
+                deferred.resolve(data);
+            }).error(deferred.reject);
+            return deferred.promise;
         }
     };
 });

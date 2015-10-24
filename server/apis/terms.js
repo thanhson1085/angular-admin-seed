@@ -24,6 +24,7 @@ router.get('/list/:taxonomy/:page/:limit', function(req, res){
 router.post('/create', function(req, res){
     db.Term.create({
         slug: req.body.slug,
+        taxonomy: req.body.taxonomy,
         name: req.body.name,
         description: req.body.description
     }).then(function(term){
