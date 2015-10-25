@@ -61,6 +61,8 @@ router.put('/update/:id', function(req, res){
     }).then(function(term) {
         if (term) {
             term.updateAttributes({
+                name: req.body.name,
+                parent: req.body.parent,
                 slug: req.body.slug,
                 description: req.body.description
             }).then(function() {

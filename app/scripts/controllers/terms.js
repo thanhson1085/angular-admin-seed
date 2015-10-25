@@ -41,9 +41,13 @@ angular.module('sbAdminApp')
     var id = $stateParams.id;
 
     Terms.get(id).then(function(data){
-        console.log(data);
         $scope.term = data;
-        $scope.count = data.count;
     });
+
+    $scope.updateTerm = function(){
+        Terms.update($scope.term).then(function(res){
+            console.log(res);
+        });
+    };
     $scope.forUnitTest = true;
 });
