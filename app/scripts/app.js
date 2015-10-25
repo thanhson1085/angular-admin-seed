@@ -170,6 +170,7 @@ angular
                             'scripts/services/helper.js',
                             'scripts/services/options.js',
                             'scripts/services/usermeta.js',
+                            'scripts/services/terms.js',
                             'scripts/directives/locale/locale.js'
                         ]
                     });
@@ -202,8 +203,7 @@ angular
                 return $ocLazyLoad.load({
                     name:'sbAdminApp',
                     files:[
-                        'scripts/controllers/terms.js',
-                        'scripts/services/terms.js',
+                        'scripts/controllers/terms.js'
                     ]
                 });
             }
@@ -218,8 +218,7 @@ angular
                 return $ocLazyLoad.load({
                     name:'sbAdminApp',
                     files:[
-                        'scripts/controllers/terms.js',
-                        'scripts/services/terms.js',
+                        'scripts/controllers/terms.js'
                     ]
                 });
             }
@@ -234,8 +233,7 @@ angular
                 return $ocLazyLoad.load({
                     name:'sbAdminApp',
                     files:[
-                        'scripts/controllers/terms.js',
-                        'scripts/services/terms.js',
+                        'scripts/controllers/terms.js'
                     ]
                 });
             }

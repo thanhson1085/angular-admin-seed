@@ -24,7 +24,7 @@ angular.module('sbAdminApp')
     };
     $scope.forUnitTest = true;
 })
-.controller('ViewUserCtrl', function($scope, $stateParams, Users, Upload, Files, Usermeta, Helper) {
+.controller('ViewUserCtrl', function($scope, $stateParams, Users, Upload, Files, Usermeta, Helper, Terms) {
     Users.get($stateParams.id).then(function(data){
         $scope.user = data;
     });

@@ -11,9 +11,9 @@ angular.module('sbAdminApp')
     var page = $stateParams.page ? parseInt($stateParams.page) : 1,
         limit = $stateParams.limit ? parseInt($stateParams.limit) : APP_CONFIG.pagination.limit;
 
-    var taxonomy = $stateParams.taxonomy;
+    $scope.taxonomy = $stateParams.taxonomy;
     $scope.limit = limit;
-    Terms.list(taxonomy, page, limit).then(function(data){
+    Terms.list($scope.taxonomy, page, limit).then(function(data){
         $scope.terms = data.rows;
         $scope.count = data.count;
     });

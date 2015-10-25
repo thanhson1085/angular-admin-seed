@@ -30,9 +30,6 @@ app.get('/docs', function(req, res){
     res.send(JSON.stringify(docs));
 });
 
-// images
-app.use('/upload', express.static(__dirname + '/upload'));
-
 // add modification header
 app.use(function(req, res, next){
     res.header('Content-Type', 'application/json');
