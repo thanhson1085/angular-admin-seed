@@ -35,4 +35,15 @@ angular.module('sbAdminApp')
         });
     };
     $scope.forUnitTest = true;
+})
+.controller('ViewTermCtrl', function($scope, $stateParams, Terms, APP_CONFIG) {
+    var taxonomy = $stateParams.taxonomy;
+    var id = $stateParams.id;
+
+    Terms.get(id).then(function(data){
+        console.log(data);
+        $scope.term = data;
+        $scope.count = data.count;
+    });
+    $scope.forUnitTest = true;
 });

@@ -25,7 +25,7 @@
                         <tbody>
                             <tr ng-repeat="term in terms">
                                 <td>{{ term.id }}</td>
-                                <td><a ui-sref="dashboard.user_view({id: user.id})">{{ term.name }}</a></td>
+                                <td><a ui-sref="dashboard.term_view({id: term.id})">{{ term.name }}</a></td>
                                 <td>{{ term.slug }}
                                 <td>{{ term.parent }}</td>
                             </tr>

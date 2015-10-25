@@ -193,6 +193,22 @@ angular
             }
         }
     })
+    .state('dashboard.term_view',{
+        url:'/terms/view/:id',
+        controller:'ViewTermCtrl',
+        templateUrl:'views/terms/view.html',
+        resolve: {
+            loadMyFiles:function($ocLazyLoad) {
+                return $ocLazyLoad.load({
+                    name:'sbAdminApp',
+                    files:[
+                        'scripts/controllers/terms.js',
+                        'scripts/services/terms.js',
+                    ]
+                });
+            }
+        }
+    })
     .state('dashboard.terms',{
         url:'/terms/:taxonomy/:page/:limit',
         controller:'ListTermCtrl',
