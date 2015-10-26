@@ -25,13 +25,14 @@ angular.module('sbAdminApp')
     };
     $scope.forUnitTest = true;
 })
-.controller('NewTermCtrl', function($scope, $stateParams, Terms, APP_CONFIG) {
+.controller('NewTermCtrl', function($scope, $stateParams, $location, Terms, APP_CONFIG) {
     $scope.taxonomy = $stateParams.taxonomy;
 
     $scope.createTerm = function(taxonomy) {
         $scope.term.taxonomy = taxonomy;
         Terms.create($scope.term).then(function(data){
             console.log(data);
+            $location.path('/dashboard/terms/view/' + data.id);
         });
     };
     $scope.forUnitTest = true;
