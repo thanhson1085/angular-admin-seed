@@ -52,6 +52,19 @@ router.get('/view/:id', function(req, res){
     });
 });
 
+// getAll term
+router.get('/getAll/:taxonomy', function(req, res){
+    db.Term.findAll({
+        where: {
+            taxonomy: req.params.taxonomy
+        }
+    }).then(function(terms){
+        res.send(JSON.stringify(terms));
+    }).catch(function(e){
+        res.status(500).send(JSON.stringify(e));
+    });
+});
+
 // update term
 router.put('/update/:id', function(req, res){
     db.Term.find({ 

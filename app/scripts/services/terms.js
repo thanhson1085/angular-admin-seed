@@ -42,6 +42,18 @@ angular.module('sbAdminApp').factory('Terms', function($http, httpi, $q, APP_CON
             }).error(deferred.reject);
             return deferred.promise;
         },
+        getAll: function(taxonomy){
+            var deferred = $q.defer();
+            var url = APP_CONFIG.services.terms.getAll;
+            httpi({
+                method: 'GET',
+                url: url,
+                data: {taxonomy: taxonomy}
+            }).success(function(data) {
+                deferred.resolve(data);
+            }).error(deferred.reject);
+            return deferred.promise;
+        },
         update: function(data){
             var deferred = $q.defer();
             var url = APP_CONFIG.services.terms.update;

@@ -31,6 +31,14 @@ angular.module('sbAdminApp')
 
     $scope.userFields = Helper.getUserFields();
 
+    $scope.taxonomies = Helper.getTaxonomies();
+
+    for (var k in $scope.taxonomies) {
+        Terms.getAll($scope.taxonomies[k].name).then(function(data){
+            console.log(data);
+        });
+    }
+
     Usermeta.getDataByUserId($stateParams.id).then(function(data){
         for (var k in $scope.userFields){
             var value = null;
