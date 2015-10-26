@@ -42,17 +42,21 @@ angular.module('sbAdminApp').factory('Terms', function($http, httpi, $q, APP_CON
             }).error(deferred.reject);
             return deferred.promise;
         },
-        getAll: function(taxonomy){
-            var deferred = $q.defer();
+        getAll: function(taxonomies){
+            var promises = [];
             var url = APP_CONFIG.services.terms.getAll;
-            httpi({
-                method: 'GET',
-                url: url,
-                data: {taxonomy: taxonomy}
-            }).success(function(data) {
-                deferred.resolve(data);
-            }).error(deferred.reject);
-            return deferred.promise;
+            angular.forEach(taxonomies, function(taxonomy) {
+                var deferred = $q.defer();
+                httpi({
+                    method: 'GET',
+                    url: url,
+                    data: {taxonomy: taxonomy.name}
+                }).success(function(data) {
+                    deferred.resolve(data);
+                }).error(deferred.reject);
+                promises.push(deferred.promise);
+            });
+            return $q.all(promises);
         },
         update: function(data){
             var deferred = $q.defer();
