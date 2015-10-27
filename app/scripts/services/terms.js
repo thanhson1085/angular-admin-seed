@@ -52,7 +52,8 @@ angular.module('sbAdminApp').factory('Terms', function($http, httpi, $q, APP_CON
                     url: url,
                     data: {taxonomy: taxonomy.name}
                 }).success(function(data) {
-                    deferred.resolve(data);
+                    taxonomy.data = data;
+                    deferred.resolve(taxonomy);
                 }).error(deferred.reject);
                 promises.push(deferred.promise);
             });
