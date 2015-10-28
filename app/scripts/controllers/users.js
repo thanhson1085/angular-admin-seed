@@ -37,6 +37,11 @@ angular.module('sbAdminApp')
         console.log(data);
     });
 
+    $scope.userTerm = [];
+    $scope.updateUserTerm = function(userTerm) {
+        console.log(userTerm);
+    }
+
     Usermeta.getDataByUserId($stateParams.id).then(function(data){
         for (var k in $scope.userFields){
             var value = null;
