@@ -73,7 +73,7 @@
                     <table class="table table-hover">
                         <tbody>
                         <tr ng-repeat="item in tax.data">
-                            <td><input type="checkbox" value="item.id" ng-model="userTerm[item.id]" ng-change="updateUserTerm(userTerm)" name="userTerm"></td>
+                            <td><input type="checkbox" value="item.id" ng-model="userTerm[item.id]" ng-change="updateUserTerm(item.id, userTerm)" name="userTerm"></td>
                             <td>{{ item.name }}</td>
                         </tr>
                         </tbody>

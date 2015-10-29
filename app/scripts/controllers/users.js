@@ -24,7 +24,7 @@ angular.module('sbAdminApp')
     };
     $scope.forUnitTest = true;
 })
-.controller('ViewUserCtrl', function($scope, $stateParams, Users, Upload, Files, Usermeta, Helper, Terms) {
+.controller('ViewUserCtrl', function($scope, $stateParams, Users, Upload, Files, Usermeta, Helper, Terms, TermRelationships) {
     Users.get($stateParams.id).then(function(data){
         $scope.user = data;
     });
@@ -34,12 +34,38 @@ angular.module('sbAdminApp')
     $scope.taxonomies = Helper.getTaxonomies();
 
     Terms.getAll($scope.taxonomies).then(function(data){
-        console.log(data);
+        TermRelationships.getByUserId($stateParams.id).then(function(res) {
+            res.rows.map(function(item) {
+                $scope.userTerm[item.TermId] = true;
+                return item.TermId;
+
+            });
+        });
+
     });
 
     $scope.userTerm = [];
-    $scope.updateUserTerm = function(userTerm) {
-        console.log(userTerm);
+    $scope.updateUserTerm = function(TermId, userTerm) {
+        if (userTerm[TermId]) {
+            var createData = {
+                UserId: $stateParams.id,
+                TermId: TermId,
+                order: 0
+            };
+            console.log(createData)
+            TermRelationships.create(createData).then(function(data){
+                console.log(data);
+            });
+        } else {
+            var deleteData = {
+                UserId: $stateParams.id,
+                TermId: TermId
+            };
+            console.log(deleteData);
+            TermRelationships.delete(deleteData).then(function(data){
+                console.log(data);
+            });
+        }
     }
 
     Usermeta.getDataByUserId($stateParams.id).then(function(data){

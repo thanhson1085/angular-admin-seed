@@ -171,6 +171,7 @@ angular
                             'scripts/services/options.js',
                             'scripts/services/usermeta.js',
                             'scripts/services/terms.js',
+                            'scripts/services/termRelationships.js',
                             'scripts/directives/locale/locale.js'
                         ]
                     });
