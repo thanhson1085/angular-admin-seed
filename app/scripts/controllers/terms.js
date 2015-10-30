@@ -42,11 +42,19 @@ angular.module('sbAdminApp')
     $scope.forUnitTest = true;
 })
 .controller('ViewTermCtrl', function($scope, $stateParams, Terms, APP_CONFIG) {
-    var taxonomy = $stateParams.taxonomy;
     var id = $stateParams.id;
 
     Terms.get(id).then(function(data){
-        console.log(data);
+        var taxonomy = data.taxonomy;
+        Terms.getAllByTaxonomy(taxonomy).then(function(res){
+            $scope.parents = res;
+            $scope.getParent = function(parentId){
+                var ret = $scope.parents.filter(function(parent){
+                    return (parent.id == parentId);
+                });
+                return (ret.length > 0)?ret[0].name:null;
+            }
+        });
         $scope.term = data;
     });
 

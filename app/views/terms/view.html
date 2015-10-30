@@ -32,7 +32,7 @@
                         </tr>
                         <tr>
                             <td translate="views.terms.view.Parent"></td>
-                            <td><a href="#" editable-text="term.parent" onaftersave="updateTerm()">{{term.parent || 'empty'}}</a></td>
+                            <td><a href="#" editable-select="term.parent" e-ng-options="s.id as s.name for s in parents" onaftersave="updateTerm()">{{ getParent(term.parent) || 'empty'}}</a></td>
                         </tr>
                         <tr>
                             <td translate="views.terms.view.Description"></td>
