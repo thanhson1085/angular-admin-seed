@@ -26,6 +26,7 @@ router.post('/create', function(req, res){
         slug: req.body.slug,
         taxonomy: req.body.taxonomy,
         name: req.body.name,
+        parent: req.body.parent,
         description: req.body.description
     }).then(function(term){
         res.send(JSON.stringify(term));

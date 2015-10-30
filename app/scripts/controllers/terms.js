@@ -28,10 +28,14 @@ angular.module('sbAdminApp')
 .controller('NewTermCtrl', function($scope, $stateParams, $location, Terms, APP_CONFIG) {
     $scope.taxonomy = $stateParams.taxonomy;
 
+    Terms.getAllByTaxonomy($scope.taxonomy).then(function(data){
+        $scope.parents = data;
+    });
+
     $scope.createTerm = function(taxonomy) {
         $scope.term.taxonomy = taxonomy;
+        $scope.term.parent = $scope.parent.id;
         Terms.create($scope.term).then(function(data){
-            console.log(data);
             $location.path('/dashboard/terms/view/' + data.id);
         });
     };
@@ -42,6 +46,7 @@ angular.module('sbAdminApp')
     var id = $stateParams.id;
 
     Terms.get(id).then(function(data){
+        console.log(data);
         $scope.term = data;
     });
 
