@@ -24,6 +24,16 @@ angular.module('sbAdminApp').factory('Helper', function ($cookies) {
         getCurrentUserId: function () {
             var userInfo = JSON.parse($cookies.get('user_info'));
             return userInfo.id;
+        },
+        getTree: function getTree(parent, level) {
+            level = level || 0;
+            terms.forEach(function (a) {
+                if (a.parent === parent) {
+                    a.deep = level;
+                    orderedTerms.push(a);
+                    getTree(a.id, level + 1);
+                }
+            });
         }
     };
 });
