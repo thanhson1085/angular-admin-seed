@@ -74,7 +74,7 @@
                         <tbody>
                         <tr ng-repeat="item in tax.data">
                             <td><input type="checkbox" value="item.id" ng-model="userTerm[item.id]" ng-change="updateUserTerm(item.id, userTerm)" name="userTerm"></td>
-                            <td>{{ item.name }}</td>
+                            <td><span ng-repeat="i in item.deep">-</span>{{ item.name }}</td>
                         </tr>
                         </tbody>
                     </table>

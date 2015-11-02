@@ -34,11 +34,16 @@ angular.module('sbAdminApp')
     $scope.taxonomies = Helper.getTaxonomies();
 
     Terms.getAll($scope.taxonomies).then(function(data){
+        $scope.taxonomies = data;
+        $scope.orderedTerms = []
+        for (var k in $scope.taxonomies) {
+            $scope.orderedTerms.push(Helper.sortTree($scope.taxonomies[k].data));
+        }
+        console.log($scope.orderedTerms);
         TermRelationships.getByUserId($stateParams.id).then(function(res) {
             res.rows.map(function(item) {
                 $scope.userTerm[item.TermId] = true;
                 return item.TermId;
-
             });
         });
 
@@ -52,7 +57,6 @@ angular.module('sbAdminApp')
                 TermId: TermId,
                 order: 0
             };
-            console.log(createData)
             TermRelationships.create(createData).then(function(data){
                 console.log(data);
             });
@@ -61,7 +65,6 @@ angular.module('sbAdminApp')
                 UserId: $stateParams.id,
                 TermId: TermId
             };
-            console.log(deleteData);
             TermRelationships.delete(deleteData).then(function(data){
                 console.log(data);
             });
