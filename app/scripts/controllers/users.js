@@ -39,7 +39,6 @@ angular.module('sbAdminApp')
         for (var k in $scope.taxonomies) {
             $scope.taxonomies[k].data = Helper.sortTree($scope.taxonomies[k].data);
         }
-        console.log($scope.taxonomies);
         TermRelationships.getByUserId($stateParams.id).then(function(res) {
             res.rows.map(function(item) {
                 $scope.userTerm[item.TermId] = true;
