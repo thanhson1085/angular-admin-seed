@@ -180,6 +180,7 @@ angular
     })
     .state('dashboard.home',{
         url:'/home',
+        controller:'MainCtrl',
         templateUrl:'views/dashboard/home.html',
         resolve: {
             loadMyFiles:function($ocLazyLoad) {
@@ -187,6 +188,7 @@ angular
                     name:'sbAdminApp',
                     files:[
                         'scripts/directives/timeline/timeline.js',
+                        'scripts/controllers/main.js',
                         'scripts/directives/notifications/notifications.js',
                         'scripts/directives/chat/chat.js',
                         'scripts/directives/dashboard/stats/stats.js'
