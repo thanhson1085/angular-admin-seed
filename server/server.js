@@ -4,6 +4,7 @@ var config = require('config');
 var express = require('express');
 var db = require('./models');
 var fs = require('fs');
+var path = require('path');
 var yaml = require('js-yaml');
 var bodyParser = require('body-parser');
 var app = express();
@@ -31,7 +32,7 @@ app.get('/docs', function(req, res){
 });
 
 // images
-app.use('/upload', express.static(__dirname + '/upload'));
+app.use('/upload', express.static(path.join(__dirname, '/upload')));
 
 // add modification header
 app.use(function(req, res, next){

@@ -30,7 +30,7 @@ angular.module('sbAdminApp').factory('Helper', function ($cookies) {
                 result = [];
             function getTree(parent, level) {
                 temp[parent] && temp[parent].forEach(function (a) {
-                    array[a].deep = new Array(level);
+                    array[a].deep = level;
                     result.push(array[a]);
                     getTree(array[a].id, level + 1);
                 });
