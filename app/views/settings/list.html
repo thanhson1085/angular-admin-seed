@@ -20,14 +20,16 @@
                                 <th translate="views.settings.list.Key"></th>
                                 <th translate="views.settings.list.Name"></th>
                                 <th translate="views.settings.list.Type"></th>
+                                <th></th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr ng-repeat="(key, userField) in userFields.optionValue">
-                                <td>{{ key }}</td>
+                                <td>{{ key + 1 }}</td>
                                 <td><a href="#" editable-text="userField.name" onaftersave="updateUserField()">{{ userField.name || 'empty' }}</a></td>
                                 <td> <a href="#" editable-text="userField.label" onaftersave="updateUserField()">{{ userField.label || 'empty' }}</a></td>
                                 <td><a href="#" editable-select="userField.type" onaftersave="updateUserField()"  e-ng-options="s.value as s.text for s in optionTypes">{{ userField.type || 'empty' }}</a></td>
+                                <td><button class="btn" data-toggle="modal" data-target="#myModal" ng-click="startDelete(k)"><i class="fa fa-trash"></i></button></td>
                             </tr>
                         </tbody>
                     </table>
@@ -57,14 +59,16 @@
                                 <th translate="views.settings.list.Key"></th>
                                 <th translate="views.settings.list.Name"></th>
                                 <th translate="views.settings.list.Description"></th>
+                                <th></th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr ng-repeat="(key, taxonomy) in taxonomies.optionValue">
-                                <td>{{ key }}</td>
+                                <td>{{ key + 1 }}</td>
                                 <td><a href="#" editable-text="taxonomy.name" onaftersave="updateTaxonomy()">{{ taxonomy.name || 'empty' }}</a></td>
                                 <td> <a href="#" editable-text="taxonomy.label" onaftersave="updateTaxonomy()">{{ taxonomy.label || 'empty' }}</a></td>
                                 <td><a href="#" editable-textarea="taxonomy.description" onaftersave="updateTaxonomy()">{{ taxonomy.description || 'empty' }}</a></td>
+                                <td><button class="btn" data-toggle="modal" data-target="#myModal" ng-click="startDelete()"><i class="fa fa-trash"></i></button></td>
                             </tr>
                         </tbody>
                     </table>
@@ -76,4 +80,16 @@
         </div>
     </div>
     <!-- /.col-lg-12 -->
+</div>
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h4 class="modal-title" id="myModalLabel">Modal title</h4> </div>
+            <div class="modal-body"> Are you sure? </div>
+            <div class="modal-footer"> <button type="button" class="btn btn-default" data-dismiss="modal">Close</button> <button type="button" class="btn btn-danger" data-dismiss="modal" ng-click="deleteUserField(deleteKey)">Delete</button>
+            </div>
+        </div> <!-- /.modal-content -->
+    </div> <!-- /.modal-dialog -->
 </div>

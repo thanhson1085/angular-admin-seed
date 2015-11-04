@@ -19,6 +19,13 @@ angular.module('sbAdminApp')
     $scope.userFields = Helper.getOptionValueByKey('userFields', appConfig);
     $scope.userFields.optionValue = JSON.parse($scope.userFields.optionValue);
 
+    // Starting to delete a user field
+    $scope.startDelete = function(key){
+    };
+    // delete a user field
+    $scope.deleteUserField = function(key){
+    };
+
     // update a user field
     $scope.updateUserField = function(){
         var optionData = {

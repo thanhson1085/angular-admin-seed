@@ -29,7 +29,10 @@ angular.module('sbAdminApp')
     }
     $scope.deleteTerm = function(termId) {
         Terms.delete(termId).then(function (data) {
-            console.log(data)
+            Terms.list($scope.taxonomy, page, limit).then(function(data){
+                $scope.terms = data.rows;
+                $scope.count = data.count;
+            });
         });
     }
     $scope.forUnitTest = true;
