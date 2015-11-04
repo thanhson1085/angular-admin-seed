@@ -166,6 +166,7 @@ angular
                             'scripts/directives/sidebar/sidebar-search/sidebar-search.js',
                             'scripts/services/httpi.js',
                             'scripts/services/files.js',
+                            'scripts/services/users.js',
                             'scripts/services/locale.js',
                             'scripts/services/helper.js',
                             'scripts/services/options.js',
