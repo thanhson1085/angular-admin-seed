@@ -37,7 +37,15 @@ router.post('/create', function(req, res){
 
 // delete term
 router.delete('/delete/:id', function(req, res){
-    res.send(JSON.stringify({}));
+    db.Term.destroy({
+        where: {
+            id: req.params.id
+        }
+    }).then(function(term) {
+        res.send(JSON.stringify(term));
+    }).catch(function(e){
+        res.status(500).send(JSON.stringify(e));
+    });
 });
 
 // term detail

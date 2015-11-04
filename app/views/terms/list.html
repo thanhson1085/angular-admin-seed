@@ -27,15 +27,15 @@
                                 <th>#</th>
                                 <th translate="views.terms.list.Name"></th>
                                 <th translate="views.terms.list.Slug"></th>
-                                <th translate="views.terms.list.Parent"></th>
+                                <th></th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr ng-repeat="term in terms">
                                 <td>{{ term.id }}</td>
                                 <td><a ui-sref="dashboard.term_view({id: term.id})">{{ term.name }}</a></td>
-                                <td>{{ term.slug }}
-                                <td>{{ term.parent }}</td>
+                                <td>{{ term.slug }}</td>
+                                <td><button class="btn btn-danger" data-toggle="modal" data-target="#myModal" ng-click="startDelete(term.id)"><i class="fa fa-trash fa-red"></i></button></td>
                             </tr>
                         </tbody>
                     </table>
@@ -51,4 +51,16 @@
         </div>
     </div>
     <!-- /.col-lg-12 -->
+</div>
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;"> 
+    <div class="modal-dialog"> 
+        <div class="modal-content"> 
+            <div class="modal-header"> 
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button> 
+                <h4 class="modal-title" id="myModalLabel">Modal title</h4> </div> 
+            <div class="modal-body"> Are you sure? </div>
+            <div class="modal-footer"> <button type="button" class="btn btn-default" data-dismiss="modal">Close</button> <button type="button" class="btn btn-danger" data-dismiss="modal" ng-click="deleteTerm(deleteId)">Delete</button> 
+            </div> 
+        </div> <!-- /.modal-content --> 
+    </div> <!-- /.modal-dialog --> 
 </div>

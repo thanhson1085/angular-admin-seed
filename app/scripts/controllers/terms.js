@@ -23,6 +23,15 @@ angular.module('sbAdminApp')
             $scope.terms = response.rows;
         });
     };
+
+    $scope.startDelete = function(termId) {
+        $scope.deleteId = termId;
+    }
+    $scope.deleteTerm = function(termId) {
+        Terms.delete(termId).then(function (data) {
+            console.log(data)
+        });
+    }
     $scope.forUnitTest = true;
 })
 .controller('NewTermCtrl', function($scope, $stateParams, $location, Terms, APP_CONFIG) {
@@ -34,7 +43,7 @@ angular.module('sbAdminApp')
 
     $scope.createTerm = function(taxonomy) {
         $scope.term.taxonomy = taxonomy;
-        $scope.term.parent = $scope.parent.id;
+        $scope.term.parent = ($scope.parent)?$scope.parent.id:null;
         Terms.create($scope.term).then(function(data){
             $location.path('/dashboard/terms/view/' + data.id);
         });
