@@ -2,5 +2,7 @@
   "userfields.label.Phone": "Phone",
   "userfields.label.Address": "Address",
   "userfields.label.DefaultLanguage": "Default Language",
-  "userfields.label.SuperAdmin": "Super Admin"
+  "userfields.label.SuperAdmin": "Super Admin",
+  "sidebar.taxonomy.label.Category": "Categories",
+  "sidebar.taxonomy.label.Tag": "Tags"
 }

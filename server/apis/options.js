@@ -90,6 +90,11 @@ router.post('/install', function(req, res){
         { optionKey: 'userCapacities', optionValue: JSON.stringify(userCapacities) },
         { optionKey: 'taxonomies', optionValue: JSON.stringify(taxonomies) }
     ]);
+
+    db.Term.bulkCreate([
+        { name: 'Uncategorized', slug: 'uncategorized', taxonomy: 'category' },
+        { name: 'Untaged', slug: 'untaged', taxonomy: 'tag' }
+    ]);
 });
 
 // new options
