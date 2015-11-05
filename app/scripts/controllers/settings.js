@@ -70,7 +70,7 @@ angular.module('sbAdminApp')
     // delete a user field
     $scope.deleteTaxonomy = function(key){
         $scope.taxonomies.optionValue.splice(key, 1);
-        $scope.updateTaxonomies();
+        $scope.updateTaxonomy();
     };
 
 
