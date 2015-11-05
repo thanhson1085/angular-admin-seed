@@ -21,9 +21,7 @@ angular.module('sbAdminApp')
 
     // Starting to delete a user field
     $scope.startDelete = function(key){
-    };
-    // delete a user field
-    $scope.deleteUserField = function(key){
+        $scope.deleteKey = key;
     };
 
     // update a user field
@@ -36,6 +34,12 @@ angular.module('sbAdminApp')
         Options.update(optionData).then(function(data){
             console.log(data);
         });
+    };
+
+    // delete a user field
+    $scope.deleteUserField = function(key){
+        $scope.userFields.optionValue.splice(key, 1);
+        $scope.updateUserField();
     };
 
     // add a new user fields
@@ -62,6 +66,13 @@ angular.module('sbAdminApp')
             console.log(data);
         });
     };
+
+    // delete a user field
+    $scope.deleteTaxonomy = function(key){
+        $scope.taxonomies.optionValue.splice(key, 1);
+        $scope.updateTaxonomies();
+    };
+
 
     // add a new taxonomy
     $scope.addTaxonomy = function(){
