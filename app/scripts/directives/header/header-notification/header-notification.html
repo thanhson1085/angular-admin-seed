@@ -4,12 +4,12 @@
             <i class="fa fa-user fa-fw"></i>  <i class="fa fa-caret-down"></i>
         </a>
         <ul class="dropdown-menu dropdown-user">
-            <li><a ui-sref="dashboard.user_view({id: userId})"><i class="fa fa-user fa-fw"></i> User Profile</a>
+            <li><a ui-sref="dashboard.user_view({id: userId})"><i class="fa fa-user fa-fw"></i> <span translate="header.UserProfile"></span></a>
             </li>
-            <li><a ui-sref="dashboard.user_setting"><i class="fa fa-gear fa-fw"></i> Settings</a>
+            <li><a ui-sref="dashboard.user_setting"><i class="fa fa-language fa-fw"></i> <span translate="header.Languages"></span></a>
             </li>
             <li class="divider"></li>
-            <li><a ui-sref="login"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+            <li><a ui-sref="login"><i class="fa fa-sign-out fa-fw"></i> <span translate="header.Logout"></span></a>
             </li>
         </ul>
         <!-- /.dropdown-user -->

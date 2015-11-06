@@ -330,6 +330,11 @@ angular
         $location.path('/login');
     });
 }])
+.run(function(editableOptions, editableThemes) {
+    editableThemes.bs3.inputClass = 'input-sm';
+    editableThemes.bs3.buttonsClass = 'btn-sm';
+    editableOptions.theme = 'bs3';
+})
 .factory('getAppConfig', function($http, APP_CONFIG, $q) {
     return {
         get: function(){
