@@ -3,6 +3,11 @@
   "userfields.label.Address": "Address",
   "userfields.label.DefaultLanguage": "Default Language",
   "userfields.label.SuperAdmin": "Super Admin",
+  "userfields.label.Gender": "Gender",
   "sidebar.taxonomy.label.Category": "Categories",
-  "sidebar.taxonomy.label.Tag": "Tags"
+  "sidebar.taxonomy.label.Tag": "Tags",
+  "views.terms.list.tag": "Tags",
+  "views.terms.list.ListOftag": "List Of Tags",
+  "views.terms.list.category": "Categories",
+  "views.terms.list.ListOfcategory": "List Of Categories"
 }

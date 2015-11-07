@@ -60,6 +60,7 @@ angular.module('sbAdminApp')
         var taxonomy = data.taxonomy;
         Terms.getAllByTaxonomy(taxonomy).then(function(res){
             $scope.parents = res;
+            $scope.parents.push({name: ''});
             $scope.getParent = function(parentId){
                 var ret = $scope.parents.filter(function(parent, key){
                     return (parent.id === parentId);
