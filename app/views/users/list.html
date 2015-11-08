@@ -19,6 +19,7 @@
                                 <th>#</th>
                                 <th translate="views.users.list.Username"></th>
                                 <th translate="views.users.list.Name"></th>
+                                <th translate="views.users.list.IsActivated"></th>
                                 <th translate="views.users.list.CreatedAt"></th>
                             </tr>
                         </thead>
@@ -27,6 +28,7 @@
                                 <td>{{ user.id }}</td>
                                 <td><a ui-sref="dashboard.user_view({id: user.id})">{{ user.username }}</a></td>
                                 <td>{{ user.firstname +  ' ' + user.lastname }}</td>
+                                <td>{{ user.isActivated || '' }}</td>
                                 <td>{{ user.createdAt }}</td>
                             </tr>
                         </tbody>

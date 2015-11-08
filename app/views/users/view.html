@@ -27,6 +27,10 @@
                             <td>{{user.username}}</td>
                         </tr>
                         <tr>
+                            <td translate="views.users.view.IsActivated"></td>
+                            <td><a href="#" editable-checkbox="user.isActivated" onaftersave="updateUser()">{{user.isActivated || 'empty'}}</td>
+                        </tr>
+                        <tr>
                             <td translate="views.users.view.Firstname"></td>
                             <td><a href="#" editable-text="user.firstname" onaftersave="updateUser()">{{user.firstname || 'empty'}}</a></td>
                         </tr>

@@ -95,6 +95,7 @@ router.put('/update/:id', function(req, res){
             user.updateAttributes({
                 firstname: req.body.firstname,
                 lastname: req.body.lastname,
+                isActivated: req.body.isActivated,
                 avatar: JSON.stringify(req.body.avatar)
             }).then(function() {
                 user.dataValues.avatar = JSON.parse(user.dataValues.avatar);

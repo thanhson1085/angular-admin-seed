@@ -9,5 +9,7 @@
   "views.terms.list.tag": "Tags",
   "views.terms.list.ListOftag": "List Of Tags",
   "views.terms.list.category": "Categories",
-  "views.terms.list.ListOfcategory": "List Of Categories"
+  "views.terms.list.ListOfcategory": "List Of Categories",
+  "taxonomy.label.Category": "Category",
+  "taxonomy.label.Tag": "Tag"
 }

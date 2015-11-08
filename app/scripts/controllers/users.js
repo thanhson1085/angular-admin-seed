@@ -115,6 +115,7 @@ angular.module('sbAdminApp')
             id: $scope.user.id,
             firstname: $scope.user.firstname,
             lastname: $scope.user.lastname,
+            isActivated: $scope.user.isActivated,
             avatar: $scope.avatar
         };
         Users.update(userData).then(function(data){
