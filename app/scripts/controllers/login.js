@@ -7,7 +7,7 @@
  * Controller of the sbAdminApp
  */
 angular.module('sbAdminApp')
-    .controller('LoginCtrl', function($scope, Users, $cookies, $location, $rootScope) {
+    .controller('LoginCtrl', function($scope, Users, $cookies, $state, $rootScope) {
         var vm = this;
         // logout before login
         $rootScope.user_info = {};
@@ -16,9 +16,10 @@ angular.module('sbAdminApp')
         vm.login = function login(){
             Users.login(vm.username, vm.password).then(function(data){
                 $rootScope.user_info = data;
+                console.log($rootScope.user_info);
                 $cookies.put('user_info', JSON.stringify(data));
                 vm.error = null;
-                $location.path('/dashboard/home');
+                $state.go('dashboard.user_view', {id: $rootScope.user_info.id});
             }).catch(function(){
                 vm.error = 'Access Denied!';
             });
