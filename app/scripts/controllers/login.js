@@ -18,7 +18,7 @@ angular.module('sbAdminApp')
                 $rootScope.user_info = data;
                 $cookies.put('user_info', JSON.stringify(data));
                 vm.error = null;
-                $location.path('/dashboard/home');
+                $location.path('dashboard/home');
             }).catch(function(){
                 vm.error = 'Access Denied!';
             });

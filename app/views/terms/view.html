@@ -1,0 +1,51 @@
+<div class="row">
+    <div class="col-lg-12">
+        <h1 class="page-header" translate="views.terms.view.Term" translate-value-name="{{term.name}}"></h1>
+    </div>
+    <!-- /.col-lg-12 -->
+</div>
+<div class="row">
+    <div class="col-lg-12">
+        <div class="panel panel-default">
+            <div class="panel-heading"><i class="fa fa-tags"></i> <span translate="views.terms.view.TermDetail"></span>
+            </div>
+            <!-- /.panel-heading -->
+            <div class="panel-body">
+                <div class="table-responsive">
+                    <div ng-show="update_message" class="alert alert-success">
+                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                        {{update_message}}
+                    </div>
+                    <table class="table table-hover">
+                        <tbody>
+                        <tr>
+                            <td class="col-xs-4" translate="views.terms.view.ID"></td>
+                            <td class="col-xs-8">{{term.id}}</td>
+                        </tr>
+                        <tr>
+                            <td translate="views.terms.view.Name"></td>
+                            <td><a href="#" editable-text="term.name" onaftersave="updateTerm()">{{term.name}}</a></td>
+                        </tr>
+                        <tr>
+                            <td translate="views.terms.view.Slug"></td>
+                            <td><a href="#" editable-text="term.slug" onaftersave="updateTerm()">{{term.slug|| 'empty'}}</a></td>
+                        </tr>
+                        <tr>
+                            <td translate="views.terms.view.Parent"></td>
+                            <td><a href="#" editable-select="term.parent" e-ng-options="s.id as s.name for s in parents" onaftersave="updateTerm()">{{ getParent(term.parent) || 'empty'}}</a></td>
+                        </tr>
+                        <tr>
+                            <td translate="views.terms.view.Description"></td>
+                            <td><a href="#" editable-textarea="term.description" onaftersave="updateTerm()">{{term.description || 'empty'}}</a></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <!-- /.table-responsive -->
+            </div>
+            <!-- /.panel-body -->
+        </div>
+        <!-- /.panel -->
+    </div>
+    <div class="clearfix"></div>
+</div>

@@ -24,12 +24,51 @@ angular.module('sbAdminApp')
     };
     $scope.forUnitTest = true;
 })
-.controller('ViewUserCtrl', function($scope, $stateParams, Users, Upload, Files, Usermeta, Helper) {
+.controller('ViewUserCtrl', function($scope, $stateParams, Users, Upload, Files, Usermeta, Helper, Terms, TermRelationships) {
     Users.get($stateParams.id).then(function(data){
         $scope.user = data;
     });
 
     $scope.userFields = Helper.getUserFields();
+
+    $scope.taxonomies = Helper.getTaxonomies();
+
+    Terms.getAll($scope.taxonomies).then(function(data){
+        $scope.taxonomies = data;
+        $scope.orderedTerms = []
+        for (var k in $scope.taxonomies) {
+            $scope.taxonomies[k].data = Helper.sortTree($scope.taxonomies[k].data);
+        }
+        TermRelationships.getByUserId($stateParams.id).then(function(res) {
+            res.rows.map(function(item) {
+                $scope.userTerm[item.TermId] = true;
+                return item.TermId;
+            });
+        });
+
+    });
+
+    $scope.userTerm = [];
+    $scope.updateUserTerm = function(TermId, userTerm) {
+        if (userTerm[TermId]) {
+            var createData = {
+                UserId: $stateParams.id,
+                TermId: TermId,
+                order: 0
+            };
+            TermRelationships.create(createData).then(function(data){
+                console.log(data);
+            });
+        } else {
+            var deleteData = {
+                UserId: $stateParams.id,
+                TermId: TermId
+            };
+            TermRelationships.delete(deleteData).then(function(data){
+                console.log(data);
+            });
+        }
+    }
 
     Usermeta.getDataByUserId($stateParams.id).then(function(data){
         for (var k in $scope.userFields){
@@ -76,6 +115,7 @@ angular.module('sbAdminApp')
             id: $scope.user.id,
             firstname: $scope.user.firstname,
             lastname: $scope.user.lastname,
+            isActivated: $scope.user.isActivated,
             avatar: $scope.avatar
         };
         Users.update(userData).then(function(data){

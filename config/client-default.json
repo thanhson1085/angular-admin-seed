@@ -8,6 +8,18 @@
             "activate": "http://192.168.1.191:3000/api/v1/users/activate",
             "update": "http://192.168.1.191:3000/api/v1/users/update/:id"
         },
+        "terms": {
+            "list": "http://192.168.1.191:3000/api/v1/terms/list/:taxonomy/:page/:limit",
+            "create": "http://192.168.1.191:3000/api/v1/terms/create/",
+            "get": "http://192.168.1.191:3000/api/v1/terms/view/:id",
+            "getAll": "http://192.168.1.191:3000/api/v1/terms/getAll/:taxonomy",
+            "update": "http://192.168.1.191:3000/api/v1/terms/update/:id"
+        },
+        "termRelationships": {
+            "getByUserId": "http://192.168.1.191:3000/api/v1/termRelationships/getByUserId/:UserId",
+            "create": "http://192.168.1.191:3000/api/v1/termRelationships/create",
+            "delete": "http://192.168.1.191:3000/api/v1/termRelationships/delete"
+        },
         "files": {
             "upload": "http://192.168.1.191:3000/api/v1/upload"
         },

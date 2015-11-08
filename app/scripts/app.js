@@ -166,10 +166,13 @@ angular
                             'scripts/directives/sidebar/sidebar-search/sidebar-search.js',
                             'scripts/services/httpi.js',
                             'scripts/services/files.js',
+                            'scripts/services/users.js',
                             'scripts/services/locale.js',
                             'scripts/services/helper.js',
                             'scripts/services/options.js',
                             'scripts/services/usermeta.js',
+                            'scripts/services/terms.js',
+                            'scripts/services/termRelationships.js',
                             'scripts/directives/locale/locale.js'
                         ]
                     });
@@ -178,6 +181,7 @@ angular
     })
     .state('dashboard.home',{
         url:'/home',
+        controller:'MainCtrl',
         templateUrl:'views/dashboard/home.html',
         resolve: {
             loadMyFiles:function($ocLazyLoad) {
@@ -185,9 +189,55 @@ angular
                     name:'sbAdminApp',
                     files:[
                         'scripts/directives/timeline/timeline.js',
+                        'scripts/controllers/main.js',
                         'scripts/directives/notifications/notifications.js',
                         'scripts/directives/chat/chat.js',
                         'scripts/directives/dashboard/stats/stats.js'
+                    ]
+                });
+            }
+        }
+    })
+    .state('dashboard.term_view',{
+        url:'/terms/view/:id',
+        controller:'ViewTermCtrl',
+        templateUrl:'views/terms/view.html',
+        resolve: {
+            loadMyFiles:function($ocLazyLoad) {
+                return $ocLazyLoad.load({
+                    name:'sbAdminApp',
+                    files:[
+                        'scripts/controllers/terms.js'
+                    ]
+                });
+            }
+        }
+    })
+    .state('dashboard.terms',{
+        url:'/terms/:taxonomy/:page/:limit',
+        controller:'ListTermCtrl',
+        templateUrl:'views/terms/list.html',
+        resolve: {
+            loadMyFiles:function($ocLazyLoad) {
+                return $ocLazyLoad.load({
+                    name:'sbAdminApp',
+                    files:[
+                        'scripts/controllers/terms.js'
+                    ]
+                });
+            }
+        }
+    })
+    .state('dashboard.term_new',{
+        url:'/terms/:taxonomy/new',
+        controller:'NewTermCtrl',
+        templateUrl:'views/terms/new.html',
+        resolve: {
+            loadMyFiles:function($ocLazyLoad) {
+                return $ocLazyLoad.load({
+                    name:'sbAdminApp',
+                    files:[
+                        'scripts/controllers/terms.js'
                     ]
                 });
             }
@@ -280,6 +330,11 @@ angular
         $location.path('/login');
     });
 }])
+.run(function(editableOptions, editableThemes) {
+    editableThemes.bs3.inputClass = 'input-sm';
+    editableThemes.bs3.buttonsClass = 'btn-sm';
+    editableOptions.theme = 'bs3';
+})
 .factory('getAppConfig', function($http, APP_CONFIG, $q) {
     return {
         get: function(){
@@ -313,4 +368,15 @@ angular
         };
     }
     return ret;
+})
+.filter('range', function() {
+    return function(input, total) {
+        total = parseInt(total);
+
+        for (var i=0; i<total; i++) {
+            input.push(i);
+        }
+
+        return input;
+    };
 });

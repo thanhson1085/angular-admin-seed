@@ -1,0 +1,66 @@
+<div class="row">
+    <div class="col-lg-12">
+        <h1 class="page-header">{{ 'views.terms.list.' + taxonomy | translate }}</h1>
+    </div>
+    <!-- /.col-lg-12 -->
+</div>
+<!-- /.row -->
+<div class="row">
+    <div class="col-lg-12">
+        <div class="panel panel-default">
+            <div class="panel-heading"><i class="fa fa-list"></i>
+                <span>{{ 'views.terms.list.ListOf' + taxonomy | translate }}</span>
+                <div class="pull-right">
+                    <div class="btn-group">
+                        <a class="btn btn-default btn-xs" ui-sref="dashboard.term_new({taxonomy: taxonomy})">
+                            <i class="fa fa-plus"></i> <span translate="views.terms.list.AddNew"></span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <!-- /.panel-heading -->
+            <div class="panel-body">
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th translate="views.terms.list.Name"></th>
+                                <th translate="views.terms.list.Slug"></th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="term in terms">
+                                <td>{{ term.id }}</td>
+                                <td><a ui-sref="dashboard.term_view({id: term.id})">{{ term.name }}</a></td>
+                                <td>{{ term.slug }}</td>
+                                <td><button class="btn btn-danger" data-toggle="modal" data-target="#myModal" ng-click="startDelete(term.id)"><i class="fa fa-trash fa-red"></i></button></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <!-- /.table-responsive -->
+                <div class="row">
+                    <div class="pull-right">
+                        <pagination style="margin-right: 20px" total-items="count" items-per-page="limit" ng-model="currentPage" ng-change="pageChanged()" max-size="5" boundary-links="true" rotate="false"></pagination>
+                    </div>
+                </div>
+            </div>
+            <!-- /.panel-body -->
+        </div>
+    </div>
+    <!-- /.col-lg-12 -->
+</div>
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;"> 
+    <div class="modal-dialog"> 
+        <div class="modal-content"> 
+            <div class="modal-header"> 
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button> 
+                <h4 class="modal-title" id="myModalLabel">Modal title</h4> </div> 
+            <div class="modal-body"> Are you sure? </div>
+            <div class="modal-footer"> <button type="button" class="btn btn-default" data-dismiss="modal">Close</button> <button type="button" class="btn btn-danger" data-dismiss="modal" ng-click="deleteTerm(deleteId)">Delete</button> 
+            </div> 
+        </div> <!-- /.modal-content --> 
+    </div> <!-- /.modal-dialog --> 
+</div>

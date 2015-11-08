@@ -8,7 +8,7 @@
 <div class="row">
     <div class="col-lg-12">
         <div class="panel panel-default">
-            <div class="panel-heading" translate="views.users.list.ListOfUsers">
+            <div class="panel-heading"><i class="fa fa-list"></i> <span translate="views.users.list.ListOfUsers"></span>
             </div>
             <!-- /.panel-heading -->
             <div class="panel-body">
@@ -19,7 +19,8 @@
                                 <th>#</th>
                                 <th translate="views.users.list.Username"></th>
                                 <th translate="views.users.list.Name"></th>
-                                <th translate="views.users.list.CreatedAt"></th>
+                                <th translate="views.users.list.IsActivated"></th>
+                                <th></th>
                             </tr>
                         </thead>
                         <tbody>
@@ -27,6 +28,7 @@
                                 <td>{{ user.id }}</td>
                                 <td><a ui-sref="dashboard.user_view({id: user.id})">{{ user.username }}</a></td>
                                 <td>{{ user.firstname +  ' ' + user.lastname }}</td>
+                                <td>{{ user.isActivated || '' }}</td>
                                 <td>{{ user.createdAt }}</td>
                             </tr>
                         </tbody>

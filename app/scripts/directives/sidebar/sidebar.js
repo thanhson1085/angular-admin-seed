@@ -2,20 +2,25 @@
 
 /**
  * @ngdoc directive
- * @name izzyposWebApp.directive:adminPosHeader
+ * @name sdAdminApp.directive:adminPosHeader
  * @description
  * # adminPosHeader
  */
 
 angular.module('sbAdminApp')
-.directive('sidebar',['$location',function() {
+.directive('sidebar',['$location', '$cookies',  function() {
     return {
         templateUrl:'scripts/directives/sidebar/sidebar.html',
         restrict: 'E',
         replace: true,
         scope: {
         },
-        controller:function($scope){
+        controller:function($scope, $cookies, Helper){
+
+            var appConfig = JSON.parse($cookies.get('appConfig'));
+            $scope.taxonomies = Helper.getOptionValueByKey('taxonomies', appConfig);
+            $scope.taxonomies.optionValue = JSON.parse($scope.taxonomies.optionValue);
+
             $scope.selectedMenu = 'dashboard';
             $scope.collapseVar = 0;
             $scope.multiCollapseVar = 0;

@@ -1,0 +1,55 @@
+<div class="row">
+    <div class="col-lg-12">
+        <h1 class="page-header">Users</h1>
+    </div>
+    <!-- /.col-lg-12 -->
+</div>
+<!-- /.row -->
+<div class="row">
+    <div class="col-lg-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <i class="fa fa-plus"></i>
+                New User
+            </div>
+            <!-- /.panel-heading -->
+            <div class="panel-body">
+                <div class="table-responsive">
+                    <form ng-submit="createTerm(taxonomy)">
+                        <div class="error" ng-show="isError">
+                            <div class="alert alert-danger alert-dismissable">
+                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                                {{error_message}}
+                            </div>
+                        </div>
+                        <table class="table">
+                            <tr>
+                                <td>Name:</td>
+                                <td><input type="text" ng-model="term.name" class="form-control" placeholder="Name">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Slug:</td>
+                                <td><input type="text" ng-model="term.slug" class="form-control" placeholder="Slug"></td>
+                            </tr>
+                            <tr>
+                                <td>Parent:</td>
+                                <td><select ng-options="item.name for item in parents track by item.id" class="form-control" ng-model="parent"></select></td>
+                            </tr>
+                            <tr>
+                                <td>Description:</td>
+                                <td><textarea ng-model="term.description" class="form-control" placeholder="Description"></textarea></td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td><input type="submit" value="Create" class="btn btn-primary"/></td>
+                            </tr>
+                        </table>
+                    </form>
+                </div>
+            </div>
+            <!-- /.panel-body -->
+        </div>
+    </div>
+    <!-- /.col-lg-12 -->
+</div>
