@@ -28,7 +28,6 @@
   "views.terms.view.TermDetail": "views.terms.view.TermDetail",
   "views.thankyou.ThankYou": "views.thankyou.ThankYou",
   "views.thankyou.ThankYouMessage": "views.thankyou.ThankYouMessage",
-  "views.users.list.CreatedAt": "views.users.list.CreatedAt",
   "views.users.list.IsActivated": "views.users.list.IsActivated",
   "views.users.list.ListOfUsers": "views.users.list.ListOfUsers",
   "views.users.list.Name": "views.users.list.Name",
