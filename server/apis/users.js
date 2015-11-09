@@ -169,20 +169,23 @@ router.post('/login', function(req, res){
             if (!t.token){
                 crypto.randomBytes(64, function(ex, buf) {
                     var token = buf.toString('base64');
-                    var now = new Date();
+                    var today = moment();
+                    var tomorrow = moment(today).add('seconds', config.get('token_expire'));
                     db.Token.create({
                         UserId: user.id,
                         token: token,
-                        expiredAt: now
+                        expiredAt: tomorrow
                     }).then(function(to){
                         user.dataValues.token = to.token;
+                        user.dataValues.expiredAt = to.expiredAt;
                         res.send(JSON.stringify(user));
                     });
                 });
             }
             res.send(JSON.stringify({
                 token: t.token,
-                id: user.id
+                id: user.id,
+                expiredAt: t.expiredAt
             }));
         });
     }).catch(function(e){
