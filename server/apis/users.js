@@ -98,7 +98,9 @@ router.put('/update/:id', function(req, res){
                 isActivated: req.body.isActivated,
                 avatar: JSON.stringify(req.body.avatar)
             }).then(function() {
-                user.dataValues.avatar = JSON.parse(user.dataValues.avatar);
+                if (user.dataValues.avatar !== undefined) {
+                    user.dataValues.avatar = JSON.parse(user.dataValues.avatar);
+                }
                 res.send(JSON.stringify(user));
             });
         }
