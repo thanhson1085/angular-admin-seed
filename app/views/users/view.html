@@ -55,6 +55,17 @@
                             <td>{{ userField.label | translate }}</td>
                             <td><a href="#" editable-text="userField.value" onaftersave="updateUsermeta(userField)">{{userField.value || 'empty'}}</a></td>
                         </tr>
+                        <tr ng-show="!isAdding">
+                            <td><button ng-click="addField()"><i class="fa fa-plus"></i> Add Custom Field</button></td>
+                            <td></td>
+                        </tr>
+                        <tr ng-show="isAdding">
+                            <td> <form ng-submit="addUserFields()" name="formUserField">
+                                <input type="text" name="newUserField" ng-model="optionValue.label">
+                                <button type="submit"><i class="fa fa-check"></i> Save</button>
+                            </form></td>
+                            <td></td>
+                        </tr>
                         </tbody>
                     </table>
                 </div>

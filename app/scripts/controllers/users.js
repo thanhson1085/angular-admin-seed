@@ -31,6 +31,19 @@ angular.module('sbAdminApp')
 
     $scope.userFields = Helper.getUserFields();
 
+    $scope.addField = function () {
+        $scope.isAdding = true;
+        $scope.optionValue = {
+            name: null,
+            label: null,
+            type: null
+        };
+    }
+    $scope.addUserFields = function () {
+        $scope.isAdding = false;
+        $scope.userFields.push($scope.optionValue);
+    };
+
     $scope.taxonomies = Helper.getTaxonomies();
 
     Terms.getAll($scope.taxonomies).then(function(data){
