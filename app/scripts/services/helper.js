@@ -14,6 +14,13 @@ angular.module('sbAdminApp').factory('Helper', function ($cookies) {
             });
             return JSON.parse(ret[0].optionValue);
         },
+        getOptionId: function (key) {
+            var options = JSON.parse($cookies.get('appConfig'));
+            var ret = options.filter(function(option){
+                return (option.optionKey === key);
+            });
+            return parseInt(ret[0].id);
+        },
         getTaxonomies: function () {
             var options = JSON.parse($cookies.get('appConfig'));
             var ret = options.filter(function(option){
