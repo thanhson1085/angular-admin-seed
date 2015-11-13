@@ -24,12 +24,34 @@ angular.module('sbAdminApp')
     };
     $scope.forUnitTest = true;
 })
-.controller('ViewUserCtrl', function($scope, $stateParams, Users, Upload, Files, Usermeta, Helper, Terms, TermRelationships) {
+.controller('ViewUserCtrl', function($scope, $stateParams, Users, Upload, Files, Usermeta, Helper, Terms, TermRelationships, Options) {
     Users.get($stateParams.id).then(function(data){
         $scope.user = data;
     });
 
     $scope.userFields = Helper.getUserFields();
+
+    $scope.addField = function () {
+        $scope.isAdding = true;
+        $scope.optionValue = {
+            name: null,
+            label: null,
+            type: 'text'
+        };
+    }
+    $scope.addUserFields = function () {
+        $scope.isAdding = false;
+        $scope.optionValue.name = $scope.optionValue.label
+        $scope.userFields.push($scope.optionValue);
+        var optionData = {
+            id: Helper.getOptionId('userFields'),
+            optionKey: 'userFields',
+            optionValue: $scope.userFields
+        };
+        Options.update(optionData).then(function(data){
+            console.log(data);
+        });
+    };
 
     $scope.taxonomies = Helper.getTaxonomies();
 
