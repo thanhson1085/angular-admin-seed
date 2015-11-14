@@ -19,7 +19,7 @@ This is a seed project. It will help you to easily start a Admin Site with Angul
 
 This project includes a simple server-side. So it is very easy for you to download and run.
 
-We use REDIS like Queue Messaging System. So be sure that before running this applicaction you have to install REDIS, GRUNT, BOWER.
+We use REDIS like Queue Messaging System. So be sure that before running this application you have to install REDIS, GRUNT, BOWER.
 
 
 ## Installation
