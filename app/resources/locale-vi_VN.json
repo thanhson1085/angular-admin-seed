@@ -2,6 +2,7 @@
   "directives.language-select.Language": "Ngôn ngữ",
   "directives.sidebar.CustomFields": "Trường động",
   "directives.sidebar.Dashboard": "Bảng tin",
+  "directives.sidebar.Roles": "directives.sidebar.Roles",
   "directives.sidebar.Users": "Người dùng",
   "header.Languages": "Ngôn ngữ",
   "header.Logout": "header.Logout",
