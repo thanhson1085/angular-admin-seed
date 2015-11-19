@@ -56,20 +56,20 @@ module.exports = function (grunt) {
                 dest: '<%= yeoman.app %>/resources/locale-{locale}.json'
             }
         },
-	ngdocs: {
-	   options: {
-	       dest: 'docs',
-	       html5Mode: false,
-	       scripts: [
-		   'bower_components/angular/angular.js',
-		   'bower_components/angular-animate/angular-animate.js'
-	       ]
-	   },
-	   api: {
-	       src: ['app/**/*.js', '!app/**/*-spec.js'],
-	       title: 'Docs'
-	   }
-	},
+        ngdocs: {
+           options: {
+               dest: 'docs',
+               html5Mode: false,
+               scripts: [
+               'bower_components/angular/angular.js',
+               'bower_components/angular-animate/angular-animate.js'
+               ]
+           },
+           api: {
+               src: ['app/**/*.js', '!app/**/*-spec.js'],
+               title: 'Docs'
+           }
+        },
         express: {
             options: {
                 // Override defaults here

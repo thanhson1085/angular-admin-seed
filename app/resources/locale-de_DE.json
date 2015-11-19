@@ -2,6 +2,7 @@
   "directives.language-select.Language": "directives.language-select.Language",
   "directives.sidebar.CustomFields": "directives.sidebar.CustomFields",
   "directives.sidebar.Dashboard": "directives.sidebar.Dashboard",
+  "directives.sidebar.Roles": "directives.sidebar.Roles",
   "directives.sidebar.Users": "directives.sidebar.Users",
   "header.Languages": "header.Languages",
   "header.Logout": "header.Logout",

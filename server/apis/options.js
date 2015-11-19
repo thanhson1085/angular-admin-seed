@@ -83,12 +83,29 @@ router.post('/install', function(req, res){
         { name: 'tag', label: 'taxonomy.label.Tag', description: 'Tags'}
     ];
 
+    // Roles
+    var roles = [ 
+        { name: 'superadmin', label: 'role.label.SuperAdmin', description: 'Super Admin'},
+        { name: 'admin', label: 'role.label.Admin', description: 'Admin'},
+        { name: 'user', label: 'role.label.User', description: 'User'},
+        { name: 'subscriber', label: 'role.label.Subscriber', description: 'Subscriber'}
+    ];
+
+    // Capacities
+    var capacities = [ 
+        { name: 'edit_user', description: 'Who can edit user information'},
+        { name: 'edit_role', description: 'Who can edit role'},
+        { name: 'edit_taxonomy', description: 'Who can edit taxonomy'}
+    ];
+
     db.Option.bulkCreate([
         { optionKey: 'email', optionValue: req.body.username },
         { optionKey: 'defaultLanguage', optionValue: 'en-US' },
         { optionKey: 'userFields', optionValue: JSON.stringify(userFields) },
         { optionKey: 'userCapacities', optionValue: JSON.stringify(userCapacities) },
-        { optionKey: 'taxonomies', optionValue: JSON.stringify(taxonomies) }
+        { optionKey: 'taxonomies', optionValue: JSON.stringify(taxonomies) },
+        { optionKey: 'roles', optionValue: JSON.stringify(roles) },
+        { optionKey: 'capacities', optionValue: JSON.stringify(capacities) }
     ]);
 
     db.Term.bulkCreate([
