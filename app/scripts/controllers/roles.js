@@ -19,12 +19,12 @@ angular.module('sbAdminApp')
     $scope.roles = Helper.getOptionValueByKey('roles', appConfig);
     $scope.roles.optionValue = JSON.parse($scope.roles.optionValue);
 
-    // Starting to delete a user field
+    // Starting to delete a field
     $scope.startDelete = function(key){
         $scope.deleteKey = key;
     };
 
-    // update a user field
+    // update a capacity
     $scope.updateRole = function(){
         var optionData = {
             id: $scope.roles.id,
@@ -46,9 +46,40 @@ angular.module('sbAdminApp')
     $scope.addRole = function(){
         var optionValue = {
             name: null,
-            label: null
+            label: null,
+            description: null
         };
         $scope.roles.optionValue.push(optionValue);
+    };
+
+    $scope.capacities = Helper.getOptionValueByKey('capacities', appConfig);
+    $scope.capacities.optionValue = JSON.parse($scope.capacities.optionValue);
+
+    // update a capacity
+    $scope.updateCapacity = function(){
+        var optionData = {
+            id: $scope.capacities.id,
+            optionKey: 'capacities',
+            optionValue: $scope.capacities.optionValue
+        };
+        Options.update(optionData).then(function(data){
+            console.log(data);
+        });
+    };
+
+    // delete a capacities
+    $scope.deleteCapacity = function(key){
+        $scope.capacities.optionValue.splice(key, 1);
+        $scope.updateCapacity();
+    };
+
+    // add a new capacity
+    $scope.addCapacity = function(){
+        var optionValue = {
+            name: null,
+            description: null
+        };
+        $scope.capacities.optionValue.push(optionValue);
     };
 
     $scope.forUnitTest = true;
