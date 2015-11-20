@@ -67,7 +67,7 @@ angular.module('sbAdminApp')
         });
     };
 
-    // delete a user field
+    // delete a taxonomy
     $scope.deleteTaxonomy = function(key){
         $scope.taxonomies.optionValue.splice(key, 1);
         $scope.updateTaxonomy();
