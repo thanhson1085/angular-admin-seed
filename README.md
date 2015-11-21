@@ -36,7 +36,8 @@ We use REDIS like Queue Messaging System. So be sure that before running this ap
 You also can run it in Docker.
 
 ## Demo
-[ click here angular-admin-seed](http://angular-admin-seed.sonnguyen.ws)
+Click here [ angular-admin-seed](http://angular-admin-seed.sonnguyen.ws)
+
 Please try to register a new account (requires a real email). After that, you are able to login and change your avatar, or profile ...
 You also can use account (test@test.com/test) to login the site.
 
