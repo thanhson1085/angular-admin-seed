@@ -279,6 +279,21 @@ angular
             }
         }
     })
+    .state('dashboard.roles',{
+        url:'/roles',
+        controller:'RoleCtrl',
+        templateUrl:'views/roles/list.html',
+        resolve: {
+            loadMyFiles:function($ocLazyLoad) {
+                return $ocLazyLoad.load({
+                    name:'sbAdminApp',
+                    files:[
+                        'scripts/controllers/roles.js'
+                    ]
+                });
+            }
+        }
+    })
     .state('dashboard.settings',{
         templateUrl:'views/settings/list.html',
         controller:'SettingCtrl',

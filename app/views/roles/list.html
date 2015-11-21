@@ -1,0 +1,106 @@
+<div class="row">
+    <div class="col-lg-12">
+        <h1 class="page-header"><i class="fa fa-user-secret"></i> <span translate="views.roles.list.Roles"></span></h1>
+    </div>
+    <!-- /.col-lg-12 -->
+</div>
+<!-- /.row -->
+<div class="row">
+    <div class="col-lg-12">
+        <div class="panel panel-default">
+            <div class="panel-heading"><i class="fa fa-list"></i> <span translate="views.roles.list.ListOfRoles"></span>
+            </div>
+            <!-- /.panel-heading -->
+            <div class="panel-body">
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th translate="views.roles.list.Key"></th>
+                                <th translate="views.roles.list.Name"></th>
+                                <th translate="views.roles.list.Description"></th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="(key, role) in roles.optionValue">
+                                <td>{{ key + 1 }}</td>
+                                <td><a href="#" editable-text="role.name" onaftersave="updateRole()">{{ role.name || 'empty' }}</a></td>
+                                <td> <a href="#" editable-text="role.label" onaftersave="updateRole()">{{ role.label || 'empty' }}</a></td>
+                                <td> <a href="#" editable-text="role.description" onaftersave="updateRole()">{{ role.description || 'empty' }}</a></td>
+                                <td><button class="btn" data-toggle="modal" data-target="#myModal" ng-click="startDelete(key)"><i class="fa fa-trash"></i></button></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <button class="btn btn-default" ng-click="addRole()" translate="views.roles.list.AddRow"></button>
+                </div>
+                <!-- /.table-responsive -->
+            </div>
+            <!-- /.panel-body -->
+        </div>
+    </div>
+    <!-- /.col-lg-12 -->
+</div>
+
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h4 class="modal-title" id="myModalLabel">Modal title</h4> </div>
+            <div class="modal-body"> Are you sure? </div>
+            <div class="modal-footer"> <button type="button" class="btn btn-default" data-dismiss="modal">Close</button> <button type="button" class="btn btn-danger" data-dismiss="modal" ng-click="deleteRole(deleteKey)">Delete</button>
+            </div>
+        </div> <!-- /.modal-content -->
+    </div> <!-- /.modal-dialog -->
+</div>
+
+<div class="row">
+    <div class="col-lg-12">
+        <div class="panel panel-default">
+            <div class="panel-heading"><i class="fa fa-list"></i> <span translate="views.roles.list.ListOfCapacities"></span>
+            </div>
+            <!-- /.panel-heading -->
+            <div class="panel-body">
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th translate="views.roles.list.Key"></th>
+                                <th translate="views.roles.list.Name"></th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="(key, capacity) in capacities.optionValue">
+                                <td>{{ key + 1 }}</td>
+                                <td><a href="#" editable-text="capacity.name" onaftersave="updateCapacity()">{{ capacity.name || 'empty' }}</a></td>
+                                <td> <a href="#" editable-text="capacity.description" onaftersave="updateCapacity()">{{ capacity.description || 'empty' }}</a></td>
+                                <td><button class="btn" data-toggle="modal" data-target="#myModal2" ng-click="startDelete(key)"><i class="fa fa-trash"></i></button></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <button class="btn btn-default" ng-click="addCapacity()" translate="views.roles.list.AddRow"></button>
+                </div>
+                <!-- /.table-responsive -->
+            </div>
+            <!-- /.panel-body -->
+        </div>
+    </div>
+    <!-- /.col-lg-12 -->
+</div>
+
+<div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h4 class="modal-title" id="myModalLabel">Modal title</h4> </div>
+            <div class="modal-body"> Are you sure? </div>
+            <div class="modal-footer"> <button type="button" class="btn btn-default" data-dismiss="modal">Close</button> <button type="button" class="btn btn-danger" data-dismiss="modal" ng-click="deleteCapacity(deleteKey)">Delete</button>
+            </div>
+        </div> <!-- /.modal-content -->
+    </div> <!-- /.modal-dialog -->
+</div>
