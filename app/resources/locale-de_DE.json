@@ -9,6 +9,7 @@
   "header.UserProfile": "header.UserProfile",
   "views.activate.Activation": "views.activate.Activation",
   "views.activate.ActivationMessage": "views.activate.ActivationMessage",
+  "views.dashboard.home.Dashboard": "views.dashboard.home.Dashboard",
   "views.roles.list.AddRow": "views.roles.list.AddRow",
   "views.roles.list.Description": "views.roles.list.Description",
   "views.roles.list.Key": "views.roles.list.Key",
