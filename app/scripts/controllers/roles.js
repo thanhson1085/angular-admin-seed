@@ -83,4 +83,7 @@ angular.module('sbAdminApp')
     };
 
     $scope.forUnitTest = true;
+})
+.controller('ViewRoleCtrl', function($scope, $cookies, Helper, Options) {
+    $scope.forUnitTest = true;
 });
