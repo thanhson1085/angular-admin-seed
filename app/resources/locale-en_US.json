@@ -10,6 +10,7 @@
   "views.activate.Activation": "Activation",
   "views.activate.ActivationMessage": "The activation is successfull. Redirecting to login page ...",
   "views.dashboard.home.Dashboard": "Dashboard",
+  "views.roles.list.AddCapacities": "views.roles.list.AddCapacities",
   "views.roles.list.AddRow": "Add Row",
   "views.roles.list.Description": "Description",
   "views.roles.list.Key": "Key",
