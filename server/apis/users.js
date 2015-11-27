@@ -119,6 +119,11 @@ router.post('/activate', function(req, res){
         include: [db.User]
     }).then(function(token) {
         if (token) {
+            var today = moment();
+            var expiredAt = token.expiredAt;
+            if (token.expiredAt > today) {
+                return res.status(401).send(JSON.stringify({}));
+            }
             token.User.updateAttributes({
                 isActivated: true
             }).then(function() {
