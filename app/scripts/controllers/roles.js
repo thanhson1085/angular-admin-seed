@@ -85,5 +85,9 @@ angular.module('sbAdminApp')
     $scope.forUnitTest = true;
 })
 .controller('ViewRoleCtrl', function($scope, $cookies, Helper, Options) {
+    var appConfig = JSON.parse($cookies.get('appConfig'));
+    $scope.capacities = Helper.getOptionValueByKey('capacities', appConfig);
+    $scope.capacities.optionValue = JSON.parse($scope.capacities.optionValue);
+    console.log($scope.capacities.optionValue);
     $scope.forUnitTest = true;
 });
