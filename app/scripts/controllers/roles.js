@@ -84,10 +84,20 @@ angular.module('sbAdminApp')
 
     $scope.forUnitTest = true;
 })
-.controller('ViewRoleCtrl', function($scope, $cookies, Helper, Options) {
+.controller('ViewRoleCtrl', function($scope, $stateParams, $cookies, Helper, Options) {
     var appConfig = JSON.parse($cookies.get('appConfig'));
+    $scope.roleId = $stateParams.id;
+    console.log($scope.roleId);
     $scope.capacities = Helper.getOptionValueByKey('capacities', appConfig);
     $scope.capacities.optionValue = JSON.parse($scope.capacities.optionValue);
-    console.log($scope.capacities.optionValue);
+    $scope.caps = [];
+
+    $scope.addCapacity = function() {
+        $scope.caps.push($scope.capacityData);
+    }
+    $scope.deleteCapacity = function(k) {
+        $scope.caps.splice(k, 1);
+    }
+
     $scope.forUnitTest = true;
 });
