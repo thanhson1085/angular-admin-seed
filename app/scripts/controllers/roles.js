@@ -87,13 +87,20 @@ angular.module('sbAdminApp')
 .controller('ViewRoleCtrl', function($scope, $stateParams, $cookies, Helper, Options) {
     var appConfig = JSON.parse($cookies.get('appConfig'));
     $scope.roleId = $stateParams.id;
-    console.log($scope.roleId);
     $scope.capacities = Helper.getOptionValueByKey('capacities', appConfig);
     $scope.capacities.optionValue = JSON.parse($scope.capacities.optionValue);
     $scope.caps = [];
 
+
     $scope.addCapacity = function() {
         $scope.caps.push($scope.capacityData);
+        var data = {
+            optionKey: 'role_' + $scope.roleId,
+            optionValue: JSON.stringify($scope.caps)
+        };
+        Options.create(data).then(function(res){
+            console.log(res);
+        });
     }
     $scope.deleteCapacity = function(k) {
         $scope.caps.splice(k, 1);
