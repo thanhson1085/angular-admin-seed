@@ -38,13 +38,7 @@ angular.module('sbAdminApp').factory('Options', function(Helper, $http, httpi, $
                 method: 'POST',
                 url: url,
                 data: data,
-                transformRequest: function(obj) {
-                    var str = [];
-                    for(var p in obj){
-                        str.push(encodeURIComponent(p) + '=' + encodeURIComponent(obj[p]));
-                    }
-                    return str.join('&');
-                },
+                transformRequest: Helper.transformRequestEncodeURI,
                 headers: {'Content-Type': 'application/x-www-form-urlencoded'}
             }).success(function(data) {
                 deferred.resolve(data);
