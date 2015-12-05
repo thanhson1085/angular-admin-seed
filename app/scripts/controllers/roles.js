@@ -91,6 +91,9 @@ angular.module('sbAdminApp')
     $scope.capacities.optionValue = JSON.parse($scope.capacities.optionValue);
     $scope.caps = [];
 
+    var role = Helper.getOptionValueByKey('role_' + $scope.roleId, appConfig);
+    $scope.caps = JSON.parse(role.optionValue);
+
 
     $scope.addCapacity = function() {
         $scope.caps.push($scope.capacityData);
@@ -104,6 +107,13 @@ angular.module('sbAdminApp')
     }
     $scope.deleteCapacity = function(k) {
         $scope.caps.splice(k, 1);
+        var data = {
+            optionKey: 'role_' + $scope.roleId,
+            optionValue: JSON.stringify($scope.caps)
+        };
+        Options.update(data).then(function(res){
+            console.log(res);
+        });
     }
 
     $scope.forUnitTest = true;

@@ -117,8 +117,8 @@ router.post('/install', function(req, res){
 // new options
 router.post('/create', function(req, res){
     db.Option.create({
-        metaKey: req.body.metaKey,
-        metaValue: req.body.metaValue
+        optionKey: req.body.optionKey,
+        optionValue: req.body.optionValue
     }).then(function(option){
         res.send(JSON.stringify(option));
     }).catch(function(e){
@@ -165,7 +165,7 @@ router.put('/update/:id', function(req, res){
 });
 
 // update option by option key
-router.put('/update/:optionKey', function(req, res){
+router.put('/updateByOptionKey/:optionKey', function(req, res){
     db.Option.findOne({ 
         where: {
             optionKey: req.params.optionKey

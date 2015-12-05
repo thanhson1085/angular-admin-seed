@@ -71,5 +71,17 @@ angular.module('sbAdminApp').factory('Options', function(Helper, $http, httpi, $
             }).error(deferred.reject);
             return deferred.promise;
         },
+        updateByOptionKey: function(data){
+            var deferred = $q.defer();
+            var url = APP_CONFIG.services.options.updateByOptionKey;
+            httpi({
+                method: 'PUT',
+                url: url,
+                data: data
+            }).success(function(data) {
+                deferred.resolve(data);
+            }).error(deferred.reject);
+            return deferred.promise;
+        }
     };
 });
