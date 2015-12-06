@@ -96,7 +96,7 @@ angular.module('sbAdminApp')
 
 
     $scope.addCapacity = function() {
-        $scope.caps.push($scope.capacityData);
+        $scope.caps.push($scope.capacityData.name);
         var data = {
             optionKey: 'role_' + $scope.roleId,
             optionValue: JSON.stringify($scope.caps)
