@@ -92,10 +92,12 @@ angular.module('sbAdminApp')
     $scope.caps = [];
 
     var role = Helper.getOptionValueByKey('role_' + $scope.roleId, appConfig);
-    $scope.caps = JSON.parse(role.optionValue);
-
+    if (role !== undefined) {
+        $scope.caps = JSON.parse(role.optionValue);
+    }
 
     $scope.addCapacity = function() {
+        console.log($scope.capacityData);
         $scope.caps.push($scope.capacityData.name);
         var data = {
             optionKey: 'role_' + $scope.roleId,
