@@ -21,6 +21,7 @@
                                 <th translate="views.roles.list.Name"></th>
                                 <th translate="views.roles.list.Description"></th>
                                 <th></th>
+                                <th></th>
                             </tr>
                         </thead>
                         <tbody>
@@ -29,6 +30,7 @@
                                 <td><a href="#" editable-text="role.name" onaftersave="updateRole()">{{ role.name || 'empty' }}</a></td>
                                 <td> <a href="#" editable-text="role.label" onaftersave="updateRole()">{{ role.label || 'empty' }}</a></td>
                                 <td> <a href="#" editable-text="role.description" onaftersave="updateRole()">{{ role.description || 'empty' }}</a></td>
+                                <td><a ui-sref="dashboard.role_view({id: role.name})"><i class="fa fa-plus"></i> <span translate="views.roles.list.AddCapacities"></span></a></td>
                                 <td><button class="btn" data-toggle="modal" data-target="#myModal" ng-click="startDelete(key)"><i class="fa fa-trash"></i></button></td>
                             </tr>
                         </tbody>

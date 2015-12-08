@@ -12,6 +12,7 @@
             "list": "http://192.168.1.191:3000/api/v1/terms/list/:taxonomy/:page/:limit",
             "create": "http://192.168.1.191:3000/api/v1/terms/create/",
             "get": "http://192.168.1.191:3000/api/v1/terms/view/:id",
+            "delete": "http://192.168.1.191:3000/api/v1/terms/delete/:id",
             "getAll": "http://192.168.1.191:3000/api/v1/terms/getAll/:taxonomy",
             "update": "http://192.168.1.191:3000/api/v1/terms/update/:id"
         },
@@ -29,7 +30,8 @@
             "create": "http://192.168.1.191:3000/api/v1/options/create",
             "install": "http://192.168.1.191:3000/api/v1/options/install",
             "config": "http://192.168.1.191:3000/api/v1/options/config",
-            "update": "http://192.168.1.191:3000/api/v1/options/update/:id"
+            "update": "http://192.168.1.191:3000/api/v1/options/update/:id",
+            "updateByOptionKey": "http://192.168.1.191:3000/api/v1/options/updateByOptionKey/:optionKey"
         },
         "usermeta": {
             "list": "http://192.168.1.191:3000/api/v1/usermeta/list/:page/:limit",

@@ -83,4 +83,40 @@ angular.module('sbAdminApp')
     };
 
     $scope.forUnitTest = true;
+})
+.controller('ViewRoleCtrl', function($scope, $stateParams, $cookies, Helper, Options) {
+    var appConfig = JSON.parse($cookies.get('appConfig'));
+    $scope.roleId = $stateParams.id;
+    $scope.capacities = Helper.getOptionValueByKey('capacities', appConfig);
+    $scope.capacities.optionValue = JSON.parse($scope.capacities.optionValue);
+    $scope.caps = [];
+
+    var role = Helper.getOptionValueByKey('role_' + $scope.roleId, appConfig);
+    if (role !== undefined) {
+        $scope.caps = JSON.parse(role.optionValue);
+    }
+
+    $scope.addCapacity = function() {
+        console.log($scope.capacityData);
+        $scope.caps.push($scope.capacityData.name);
+        var data = {
+            optionKey: 'role_' + $scope.roleId,
+            optionValue: JSON.stringify($scope.caps)
+        };
+        Options.create(data).then(function(res){
+            console.log(res);
+        });
+    }
+    $scope.deleteCapacity = function(k) {
+        $scope.caps.splice(k, 1);
+        var data = {
+            optionKey: 'role_' + $scope.roleId,
+            optionValue: JSON.stringify($scope.caps)
+        };
+        Options.update(data).then(function(res){
+            console.log(res);
+        });
+    }
+
+    $scope.forUnitTest = true;
 });

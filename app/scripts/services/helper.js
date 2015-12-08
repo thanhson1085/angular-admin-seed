@@ -49,6 +49,13 @@ angular.module('sbAdminApp').factory('Helper', function ($cookies) {
             });
             getTree(null, 0);
             return result;
+        },
+        transformRequestEncodeURI: function(obj) {
+            var str = [];
+            for(var p in obj){
+                str.push(encodeURIComponent(p) + '=' + encodeURIComponent(obj[p]));
+            }
+            return str.join('&');
         }
     };
 });

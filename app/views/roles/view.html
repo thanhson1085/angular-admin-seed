@@ -1,0 +1,44 @@
+<div class="row">
+    <div class="col-lg-12">
+        <h1 class="page-header"><i class="fa fa-user-secret"></i> <span translate="views.roles.view.Roles" translate-value-name="{{ roleId }}"></span></h1>
+    </div>
+    <!-- /.col-lg-12 -->
+</div>
+<!-- /.row -->
+<div class="row">
+    <div class="col-lg-2">
+    </div>
+    <div class="col-lg-8">
+            <div class="panel-body">
+                <form ng-submit="addCapacity()" class="form-horizontal" name="role">
+                    <div class="form-group error" ng-show="isError">
+                        <div class="alert alert-danger alert-dismissable">
+                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                            {{ error_message | translate }}
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="username" class="control-label col-xs-2">Capacity *</label>
+                        <div class="col-xs-10">
+                            <input type="text" name="capacity" ng-model="capacityData" class="form-control" placeholder="Capacity" typeahead="c as c.name for c in capacities.optionValue" typeahead-loading="loadingLocations" typeahead-no-results="noResults" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-xs-offset-2 col-xs-10">
+                            <button type="submit" ng-disabled="role.$invalid" class="btn btn-primary" translate="views.roles.view.AddCapacity"></button>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-xs-offset-2 col-xs-10" ng-repeat="(k, cap) in caps">
+                            <div class="alert alert-info alert-dismissable">
+                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true" ng-click="deleteCapacity(k)">×</button>
+                                {{ cap }}
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+    </div>
+    <div class="col-lg-2">
+    </div>
+</div>
