@@ -63,6 +63,7 @@ angular
                     {
                         name:'sbAdminApp',
                         files:[
+                            'scripts/services/helper.js',
                             'scripts/controllers/login.js',
                             'scripts/services/users.js',
                             'scripts/services/httpi.js',
@@ -84,6 +85,7 @@ angular
                     {
                         name:'sbAdminApp',
                         files:[
+                            'scripts/services/helper.js',
                             'scripts/controllers/install.js',
                             'scripts/services/options.js',
                             'scripts/services/httpi.js',
@@ -105,6 +107,7 @@ angular
                     {
                         name:'sbAdminApp',
                         files:[
+                            'scripts/services/helper.js',
                             'scripts/controllers/register.js',
                             'scripts/services/users.js',
                             'scripts/services/httpi.js',
@@ -125,6 +128,7 @@ angular
                     {
                         name:'sbAdminApp',
                         files:[
+                            'scripts/services/helper.js',
                             'scripts/controllers/register.js'
                         ]
                     });
@@ -141,6 +145,7 @@ angular
                     {
                         name:'sbAdminApp',
                         files:[
+                            'scripts/services/helper.js',
                             'scripts/controllers/register.js',
                             'scripts/services/users.js',
                             'scripts/services/httpi.js',
@@ -165,10 +170,10 @@ angular
                             'scripts/directives/sidebar/sidebar.js',
                             'scripts/directives/sidebar/sidebar-search/sidebar-search.js',
                             'scripts/services/httpi.js',
+                            'scripts/services/helper.js',
                             'scripts/services/files.js',
                             'scripts/services/users.js',
                             'scripts/services/locale.js',
-                            'scripts/services/helper.js',
                             'scripts/services/options.js',
                             'scripts/services/usermeta.js',
                             'scripts/services/terms.js',
