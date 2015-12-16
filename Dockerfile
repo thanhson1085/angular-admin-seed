@@ -6,9 +6,9 @@ RUN apt-get update && \
 RUN apt-get install -y python-pip python-dev git imagemagick
 RUN \
     cd /tmp && \
-    wget http://nodejs.org/dist/node-latest.tar.gz && \
-    tar xvzf node-latest.tar.gz && \
-    rm -f node-latest.tar.gz && \
+    wget http://nodejs.org/dist/v4.2.2/node-v4.2.2.tar.gz && \
+    tar xvzf node-v4.2.2.tar.gz && \
+    rm -f node-v4.2.2.tar.gz && \
     cd node-v* && \
     ./configure && \
     CXX="g++ -Wno-unused-local-typedefs" make && \

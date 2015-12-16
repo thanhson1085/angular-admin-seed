@@ -13,8 +13,6 @@ This is a seed project. It will help you to easily start a Admin Site with Angul
 - Supports multiple languages
 - User Profile
 - Term & Taxonomies
-
-## To do
 - Privileges
 
 This project includes a simple server-side. So it is very easy for you to download and run.
@@ -23,7 +21,7 @@ We use REDIS like Queue Messaging System. So be sure that before running this ap
 
 
 ## Installation
-  - Install ImageMagick `sudo apt-get install imagemagick`
+  - Install ImageMagick `sudo apt-get install imagemagick` (for generating thumbnails)
   - Run `bowser install`
   - Run `npm install`
 
