@@ -6,7 +6,8 @@
                     <h3 class="panel-title" translate="views.activate.Activation"></h3>
                 </div>
                 <div class="panel-body">
-                    <p translate="views.activate.ActivationMessage"></p>
+                    <p ng-show="!error" translate="views.activate.ActivationMessage"></p>
+                    <p ng-show="error">{{ error }}</p>
                 </div>
             </div>
         </div>
