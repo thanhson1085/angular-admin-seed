@@ -121,7 +121,7 @@ router.post('/activate', function(req, res){
         if (token) {
             var today = moment();
             var expiredAt = token.expiredAt;
-            if (token.expiredAt > today) {
+            if (token.expiredAt < today) {
                 return res.status(401).send(JSON.stringify({}));
             }
             token.User.updateAttributes({

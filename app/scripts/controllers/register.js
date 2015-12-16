@@ -24,11 +24,14 @@ angular.module('sbAdminApp')
             });
         };
     })
-    .controller('ActivateCtrl', function(Users, $stateParams, $location, $timeout) {
+    .controller('ActivateCtrl', function(Users, $stateParams, $location, $timeout, $scope) {
+        $scope.error = false;
         Users.activate($stateParams.token).then(function(){
             $timeout(function() {
                 $location.path('/dashboard');
             }, 5000);
+        }).catch(function(){
+            $scope.error = 'Access Token Expired!';
         });
     })
     .controller('ThankyouCtrl', function() {
