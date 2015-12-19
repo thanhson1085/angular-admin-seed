@@ -2,8 +2,8 @@ FROM ubuntu:14.04
 MAINTAINER Nguyen Sy Thanh Son <thanhson1085@gmail.com>
 
 RUN apt-get update && \
-    apt-get install -y supervisor sqlite3 build-essential wget
-RUN apt-get install -y python-pip python-dev git imagemagick
+    apt-get install -y supervisor sqlite3 build-essential wget \
+    python-pip python-dev git imagemagick nginx
 RUN \
     cd /tmp && \
     wget http://nodejs.org/dist/v4.2.2/node-v4.2.2.tar.gz && \
@@ -34,9 +34,9 @@ RUN npm install
 RUN npm install sqlite3 --save
 ADD . /build
 
-EXPOSE 9000:9000
-EXPOSE 3000:3000
+EXPOSE 80:80
 
 RUN pip install supervisor-stdout
+COPY nginx.angular-admin-seed.conf /etc/nginx/sites-available/default
 COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 CMD ["/usr/bin/supervisord"]
