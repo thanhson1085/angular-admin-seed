@@ -3,7 +3,8 @@ MAINTAINER Nguyen Sy Thanh Son <thanhson1085@gmail.com>
 
 RUN apt-get update && \
     apt-get install -y supervisor sqlite3 build-essential wget \
-    python-pip python-dev git imagemagick nginx
+    python-pip python-dev git imagemagick nginx \
+    redis-server
 RUN \
     cd /tmp && \
     wget http://nodejs.org/dist/v4.2.2/node-v4.2.2.tar.gz && \
