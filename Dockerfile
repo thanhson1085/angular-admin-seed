@@ -33,6 +33,7 @@ ADD ./bower.json /build/bower.json
 RUN bower install --allow-root
 RUN npm install
 RUN npm install sqlite3 --save
+RUN npm install -g pm2
 ADD . /build
 
 EXPOSE 80:80
