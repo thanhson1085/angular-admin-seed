@@ -1,0 +1,42 @@
+{
+    "server": {
+        "port": 3000,
+        "url": "http://demo.sonnguyen.ws/api"
+    },
+    "token_expire": 3600,
+    "client": {
+        "url": "http://demo.sonnguyen.ws/"
+    },
+    "redis": {
+        "host": "localhost",
+        "port": "6379",
+        "password": null,
+        "prefix": "q"
+    },
+    "db": {
+        "dialect": "mysql",
+        "host": "mysql",
+        "database": "admindb",
+        "username": "root",
+        "password": "123456"
+    },
+    "unauthorization": [
+        "/api/v1/options/install", 
+        "/api/v1/options/config", 
+        "/api/v1/users/login", 
+        "/api/v1/users/activate", 
+        "/api/v1/users/create"
+    ],
+    "mailer": {
+        "from": "no-reply@example.com",
+        "host": "smtp.gmail.com",
+        "secureConnection": true,
+        "port": 465,
+        "transportMethod": "SMTP",
+        "auth": {
+            "user": "gmail.user@gmail.com",
+            "pass": "userpass"
+        }
+    }
+
+}

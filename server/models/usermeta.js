@@ -10,7 +10,7 @@ module.exports = function(sequelize, DataTypes) {
                 Usermeta.belongsTo(models.User, {
                     onDelete: 'CASCADE',
                     foreignKey: {
-                        allowNull: false
+                        allowNull: true
                     }
                 });
             }

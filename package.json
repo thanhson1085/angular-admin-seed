@@ -14,6 +14,7 @@
     "email-templates": "^2.0.1",
     "express": "^4.13.3",
     "grunt": "^0.4.5",
+    "grunt-contrib-imagemin": "^1.0.0",
     "grunt-locales": "git+https://github.com/thanhson1085/grunt-locales.git",
     "grunt-ngdocs": "^0.2.9",
     "js-yaml": "^3.4.0",
