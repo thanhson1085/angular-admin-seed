@@ -1,44 +1,44 @@
 {
     "services":{
         "users": {
-            "list": "http://192.168.1.191:3000/api/v1/users/list/:page/:limit",
-            "login": "http://192.168.1.191:3000/api/v1/users/login",
-            "get": "http://192.168.1.191:3000/api/v1/users/view/:id",
-            "create": "http://192.168.1.191:3000/api/v1/users/create",
-            "activate": "http://192.168.1.191:3000/api/v1/users/activate",
-            "update": "http://192.168.1.191:3000/api/v1/users/update/:id"
+            "list": "/api/v1/users/list/:page/:limit",
+            "login": "/api/v1/users/login",
+            "get": "/api/v1/users/view/:id",
+            "create": "/api/v1/users/create",
+            "activate": "/api/v1/users/activate",
+            "update": "/api/v1/users/update/:id"
         },
         "terms": {
-            "list": "http://192.168.1.191:3000/api/v1/terms/list/:taxonomy/:page/:limit",
-            "create": "http://192.168.1.191:3000/api/v1/terms/create/",
-            "get": "http://192.168.1.191:3000/api/v1/terms/view/:id",
-            "delete": "http://192.168.1.191:3000/api/v1/terms/delete/:id",
-            "getAll": "http://192.168.1.191:3000/api/v1/terms/getAll/:taxonomy",
-            "update": "http://192.168.1.191:3000/api/v1/terms/update/:id"
+            "list": "/api/v1/terms/list/:taxonomy/:page/:limit",
+            "create": "/api/v1/terms/create/",
+            "get": "/api/v1/terms/view/:id",
+            "delete": "/api/v1/terms/delete/:id",
+            "getAll": "/api/v1/terms/getAll/:taxonomy",
+            "update": "/api/v1/terms/update/:id"
         },
         "termRelationships": {
-            "getByUserId": "http://192.168.1.191:3000/api/v1/termRelationships/getByUserId/:UserId",
-            "create": "http://192.168.1.191:3000/api/v1/termRelationships/create",
-            "delete": "http://192.168.1.191:3000/api/v1/termRelationships/delete"
+            "getByUserId": "/api/v1/termRelationships/getByUserId/:UserId",
+            "create": "/api/v1/termRelationships/create",
+            "delete": "/api/v1/termRelationships/delete"
         },
         "files": {
-            "upload": "http://192.168.1.191:3000/api/v1/upload"
+            "upload": "/api/v1/upload"
         },
         "options": {
-            "list": "http://192.168.1.191:3000/api/v1/options/list/:page/:limit",
-            "get": "http://192.168.1.191:3000/api/v1/options/view/:id",
-            "create": "http://192.168.1.191:3000/api/v1/options/create",
-            "install": "http://192.168.1.191:3000/api/v1/options/install",
-            "config": "http://192.168.1.191:3000/api/v1/options/config",
-            "update": "http://192.168.1.191:3000/api/v1/options/update/:id",
-            "updateByOptionKey": "http://192.168.1.191:3000/api/v1/options/updateByOptionKey/:optionKey"
+            "list": "/api/v1/options/list/:page/:limit",
+            "get": "/api/v1/options/view/:id",
+            "create": "/api/v1/options/create",
+            "install": "/api/v1/options/install",
+            "config": "/api/v1/options/config",
+            "update": "/api/v1/options/update/:id",
+            "updateByOptionKey": "/api/v1/options/updateByOptionKey/:optionKey"
         },
         "usermeta": {
-            "list": "http://192.168.1.191:3000/api/v1/usermeta/list/:page/:limit",
-            "get": "http://192.168.1.191:3000/api/v1/usermeta/view/:id",
-            "getDataByUserId": "http://192.168.1.191:3000/api/v1/usermeta/getDataByUserId/:userId",
-            "create": "http://192.168.1.191:3000/api/v1/usermeta/create",
-            "update": "http://192.168.1.191:3000/api/v1/usermeta/update/:id"
+            "list": "/api/v1/usermeta/list/:page/:limit",
+            "get": "/api/v1/usermeta/view/:id",
+            "getDataByUserId": "/api/v1/usermeta/getDataByUserId/:userId",
+            "create": "/api/v1/usermeta/create",
+            "update": "/api/v1/usermeta/update/:id"
         }
     },
     "pagination":{
