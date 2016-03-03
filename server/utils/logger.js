@@ -21,10 +21,10 @@ var logger = new winston.Logger({
                 var seconds = today.getSeconds();
 
                 if(dd<10) {
-                    dd='0'+dd
+                    dd='0'+dd;
                 }
                 if(mm<10) {
-                    mm='0'+mm
+                    mm='0'+mm;
                 }
                 var time = mm+'/'+dd+'/'+yyyy + ' ' + hours + ':' + minutes + ':' + seconds;
                 return time;
