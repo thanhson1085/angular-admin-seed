@@ -3,7 +3,7 @@ var db = require('../models');
 var _ = require('lodash');
 var config = require('config');
 module.exports = function(err, req, res, next) {
-    var t = req.get('authorization');
+    var t = req.get('Authorization').replace('Bearer ', '');
     var unauthorization = config.get('unauthorization');
     if (_.indexOf(unauthorization, req.url) < 0){
         db.Token.findOne({

@@ -8,6 +8,11 @@ info:
 # array of all schemes that your API supports
 schemes:
   - http
+securityDefinitions:
+  Bearer:
+    type: apiKey
+    name: Authorization
+    in: header
 # will be prefixed to all paths
 basePath: /
 produces:
@@ -91,6 +96,8 @@ paths:
 
   /api/v1/users/list/{page}/{limit}:
     get:
+      security:
+        - Bearer: []
       summary: List user accounts
       description: |
           Show user accounts
