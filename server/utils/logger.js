@@ -1,33 +1,39 @@
 'use strict';
 var winston = require('winston');
+var config = require('config');
 winston.emitErrs = true;
 
 var logger = new winston.Logger({
     transports: [
         new winston.transports.Console({
-            level: 'debug',
+            level: config.get('log.level'),
             handleExceptions: true,
             json: false,
             colorize: false,
             timestamp: function() {
-                var today = new Date();
-                var dd = today.getDate();
-                var mm = today.getMonth()+1;
-                var yyyy = today.getFullYear();
-                var hours = today.getHours();
-                // Minutes part from the timestamp
-                var minutes = today.getMinutes();
-                // Seconds part from the timestamp
-                var seconds = today.getSeconds();
+                var date = new Date();                          
 
-                if(dd<10) {
-                    dd='0'+dd;
-                }
-                if(mm<10) {
-                    mm='0'+mm;
-                }
-                var time = mm+'/'+dd+'/'+yyyy + ' ' + hours + ':' + minutes + ':' + seconds;
-                return time;
+                var hour = date.getUTCHours();              
+                hour = (hour < 10 ? '0' : '') + hour;   
+
+                var min  = date.getUTCMinutes();
+                min = (min < 10 ? '0' : '') + min;
+
+                var sec  = date.getUTCSeconds();
+                sec = (sec < 10 ? '0' : '') + sec;
+
+                var year = date.getUTCFullYear();
+
+                var month = date.getUTCMonth() + 1;
+                month = (month < 10 ? '0' : '') + month;
+
+                var day  = date.getUTCDate();
+                day = (day < 10 ? '0' : '') + day;
+
+                var millisecond = date.getUTCMilliseconds();
+
+                return year + '-' + month + '-' + day + ' ' + hour + ':' + min + ':' + sec + '.' + millisecond;
+
             },
             formatter: function(options) {
                 // Return string will be passed to logger.

@@ -13,6 +13,9 @@
         "password": null,
         "prefix": "q"
     },
+    "log": {
+        "level": "info"
+    },
     "db": {
         "dialect": "sqlite",
         "storage": "./db/db.sqlite",
