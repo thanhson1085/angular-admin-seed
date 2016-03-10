@@ -1,11 +1,11 @@
 {
     "server": {
         "port": 3000,
-        "url": "http://localhost:3000"
+        "url": "http://demo.sonnguyen.ws/api"
     },
     "token_expire": 3600,
     "client": {
-        "url": "http://localhost/"
+        "url": "http://demo.sonnguyen.ws/"
     },
     "redis": {
         "host": "localhost",
@@ -17,11 +17,11 @@
         "level": "info"
     },
     "db": {
-        "dialect": "sqlite",
-        "storage": "./db/db.sqlite",
-        "database": "",
-        "username": "",
-        "password": ""
+        "dialect": "mysql",
+        "host": "mysql",
+        "database": "admindb",
+        "username": "root",
+        "password": "123456"
     },
     "unauthorization": [
         "/api/v1/options/install", 
@@ -41,4 +41,5 @@
             "pass": "userpass"
         }
     }
+
 }

@@ -8,6 +8,11 @@ info:
 # array of all schemes that your API supports
 schemes:
   - http
+securityDefinitions:
+  Bearer:
+    type: apiKey
+    name: Authorization
+    in: header
 # will be prefixed to all paths
 basePath: /
 produces:
@@ -91,6 +96,8 @@ paths:
 
   /api/v1/users/list/{page}/{limit}:
     get:
+      security:
+        - Bearer: []
       summary: List user accounts
       description: |
           Show user accounts
@@ -98,13 +105,13 @@ paths:
         - name: page
           in: path
           description: page number
-          required: false
+          required: true
           type: string
           format: string
         - name: limit
           in: path
           description: limit of record
-          required: false
+          required: true
           type: string
           format: string
       responses:
@@ -130,7 +137,7 @@ paths:
         - name: id
           in: path
           description: page number
-          required: false
+          required: true
           type: string
           format: string
       responses:
@@ -237,7 +244,7 @@ paths:
         - name: id
           in: path
           description: page number
-          required: false
+          required: true
           type: string
           format: string
       responses:
@@ -263,13 +270,13 @@ paths:
         - name: page
           in: path
           description: page number
-          required: false
+          required: true
           type: string
           format: string
         - name: limit
           in: path
           description: limit of record
-          required: false
+          required: true
           type: string
           format: string
       responses:

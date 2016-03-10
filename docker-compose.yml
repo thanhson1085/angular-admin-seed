@@ -1,14 +1,14 @@
 angular-admin-seed:
-    build: ./
+    image: thanhson1085/angular-admin-seed:mysql
     ports:
-        - "9000:9000"
-        - "3000:3000"
+        - 80
     links:
-        - redis
+        - mysql
     environment:
-        NODE_ENV: "dev"
+        NODE_ENV: "mysql"
 
-redis:
-    image: redis:latest
-    ports:
-        - "6379:6379"
+mysql:
+    image: mysql:5.6
+    environment:
+        - MYSQL_ROOT_PASSWORD=123456
+        - MYSQL_DATABASE=admindb

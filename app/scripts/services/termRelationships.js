@@ -32,7 +32,7 @@ angular.module('sbAdminApp').factory('TermRelationships', function($http, httpi,
                 method: 'DELETE',
                 url: url,
                 data: data,
-                headers: {"Content-Type": "application/json;charset=utf-8"}
+                headers: {'Content-Type': 'application/json;charset=utf-8'}
             }).success(function(data) {
                 deferred.resolve(data);
             }).error(deferred.reject);
