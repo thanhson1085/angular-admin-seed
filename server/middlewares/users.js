@@ -23,6 +23,8 @@ module.exports = function(req, res, next) {
         }).then(function(token){
             if (!token){
                 throw('');
+            } else {
+                return next();
             }
         }).catch(function(){
             logger.info('Access Denied');
