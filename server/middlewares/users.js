@@ -28,6 +28,7 @@ module.exports = function(req, res, next) {
             logger.info('Access Denied');
             res.status(401).send(JSON.stringify({}));
         });
+    } else {
+        next();
     }
-    next();
 };

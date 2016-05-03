@@ -17,9 +17,13 @@ angular.module('sbAdminApp')
         },
         controller:function($scope, $cookies, Helper){
 
-            var appConfig = JSON.parse($cookies.get('appConfig'));
-            $scope.taxonomies = Helper.getOptionValueByKey('taxonomies', appConfig);
-            $scope.taxonomies.optionValue = JSON.parse($scope.taxonomies.optionValue);
+            try {
+                var appConfig = JSON.parse($cookies.get('appConfig'));
+                $scope.taxonomies = Helper.getOptionValueByKey('taxonomies', appConfig);
+                $scope.taxonomies.optionValue = JSON.parse($scope.taxonomies.optionValue);
+            } catch (e) {
+                console.log(e);
+            }
 
             $scope.selectedMenu = 'dashboard';
             $scope.collapseVar = 0;
