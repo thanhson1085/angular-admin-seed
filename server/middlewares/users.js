@@ -24,6 +24,10 @@ module.exports = function(req, res, next) {
             if (!token){
                 throw('');
             } else {
+                // do not permit DELETE method with non root user
+                if (req.method === 'DELETE' && token.User.id !== 1) {
+                    res.status(401).send(JSON.stringify({}));
+                }
                 return next();
             }
         }).catch(function(){
